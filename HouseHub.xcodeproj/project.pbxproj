@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,12 @@
 		8B0EEA8624A404D10086A9AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B0EEA8524A404D10086A9AB /* Assets.xcassets */; };
 		8B0EEA8924A404D10086A9AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B0EEA8824A404D10086A9AB /* Preview Assets.xcassets */; };
 		8B0EEA8C24A404D10086A9AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B0EEA8A24A404D10086A9AB /* LaunchScreen.storyboard */; };
+		8B3D068D24A48EDE006B6465 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B3D068C24A48EDE006B6465 /* GoogleService-Info.plist */; };
+		F7FC169C8280BFF07AFE96C7 /* Pods_HouseHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFC5AEA8B5F25D577E20EBD6 /* Pods_HouseHub.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		524AA31B7238EB92AF9DEB0B /* Pods-HouseHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HouseHub.release.xcconfig"; path = "Target Support Files/Pods-HouseHub/Pods-HouseHub.release.xcconfig"; sourceTree = "<group>"; };
 		8B0EEA7C24A404D00086A9AB /* HouseHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HouseHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0EEA7F24A404D00086A9AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B0EEA8124A404D00086A9AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +27,9 @@
 		8B0EEA8824A404D10086A9AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8B0EEA8B24A404D10086A9AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B0EEA8D24A404D10086A9AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B3D068C24A48EDE006B6465 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DFC5AEA8B5F25D577E20EBD6 /* Pods_HouseHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HouseHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBE3798AFDDD581C36C68F1B /* Pods-HouseHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HouseHub.debug.xcconfig"; path = "Target Support Files/Pods-HouseHub/Pods-HouseHub.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7FC169C8280BFF07AFE96C7 /* Pods_HouseHub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0B8159460802F59D26DEE4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EBE3798AFDDD581C36C68F1B /* Pods-HouseHub.debug.xcconfig */,
+				524AA31B7238EB92AF9DEB0B /* Pods-HouseHub.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8B0EEA7324A404D00086A9AB = {
 			isa = PBXGroup;
 			children = (
 				8B0EEA7E24A404D00086A9AB /* HouseHub */,
 				8B0EEA7D24A404D00086A9AB /* Products */,
+				0E0B8159460802F59D26DEE4 /* Pods */,
+				A6B50B16AB16CCE70BEA3E27 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +74,7 @@
 		8B0EEA7E24A404D00086A9AB /* HouseHub */ = {
 			isa = PBXGroup;
 			children = (
+				8B3D068C24A48EDE006B6465 /* GoogleService-Info.plist */,
 				8B0EEA7F24A404D00086A9AB /* AppDelegate.swift */,
 				8B0EEA8124A404D00086A9AB /* SceneDelegate.swift */,
 				8B0EEA8324A404D00086A9AB /* ContentView.swift */,
@@ -75,6 +94,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		A6B50B16AB16CCE70BEA3E27 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFC5AEA8B5F25D577E20EBD6 /* Pods_HouseHub.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,9 +109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8B0EEA9024A404D10086A9AB /* Build configuration list for PBXNativeTarget "HouseHub" */;
 			buildPhases = (
+				3F4A01AE96DBFE714BD69905 /* [CP] Check Pods Manifest.lock */,
 				8B0EEA7824A404D00086A9AB /* Sources */,
 				8B0EEA7924A404D00086A9AB /* Frameworks */,
 				8B0EEA7A24A404D00086A9AB /* Resources */,
+				69AC07A1BCB780A9BE4B1B3A /* [CP] Embed Pods Frameworks */,
+				70A2C034054777CCE38215F8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -134,12 +164,72 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B0EEA8C24A404D10086A9AB /* LaunchScreen.storyboard in Resources */,
+				8B3D068D24A48EDE006B6465 /* GoogleService-Info.plist in Resources */,
 				8B0EEA8924A404D10086A9AB /* Preview Assets.xcassets in Resources */,
 				8B0EEA8624A404D10086A9AB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F4A01AE96DBFE714BD69905 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HouseHub-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69AC07A1BCB780A9BE4B1B3A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HouseHub/Pods-HouseHub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HouseHub/Pods-HouseHub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HouseHub/Pods-HouseHub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		70A2C034054777CCE38215F8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HouseHub/Pods-HouseHub-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HouseHub/Pods-HouseHub-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HouseHub/Pods-HouseHub-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8B0EEA7824A404D00086A9AB /* Sources */ = {
@@ -282,10 +372,12 @@
 		};
 		8B0EEA9124A404D10086A9AB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBE3798AFDDD581C36C68F1B /* Pods-HouseHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HouseHub/Preview Content\"";
+				DEVELOPMENT_TEAM = NSZWSN79P8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HouseHub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -301,10 +393,12 @@
 		};
 		8B0EEA9224A404D10086A9AB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 524AA31B7238EB92AF9DEB0B /* Pods-HouseHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"HouseHub/Preview Content\"";
+				DEVELOPMENT_TEAM = NSZWSN79P8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HouseHub/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
