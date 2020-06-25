@@ -6,6 +6,7 @@ target 'HouseHub' do
   use_frameworks!
   # Pods for HouseHub
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Analytics'
   pod 'FirebaseUI'
