@@ -20,11 +20,10 @@ struct ContentView: View {
                 TextField("Username", text: $username)
             }
             Button(action: {
-                //let updates = ["Users": [self.username:String(count)]]
                 count += 1
                 ref.child("users/\(count)").setValue(self.username)
-                //ref.updateChildValues(updates)
                 self.username = ""
+                
             }) {
                 Text("Click to add to DB")
                     .padding(.bottom, 650.0)
@@ -32,13 +31,6 @@ struct ContentView: View {
         }
     }
 }
-//
-//func testDb() {
-//    let ref = Database.database().reference()
-//    let updates = ["1/name":"John", "2/name":"David"]
-//    ref.updateChildValues(updates)
-//}
-//
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
