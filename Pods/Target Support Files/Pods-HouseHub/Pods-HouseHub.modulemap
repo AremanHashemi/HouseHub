@@ -1,6 +1,0 @@
-framework module Pods_HouseHub {
-  umbrella header "Pods-HouseHub-umbrella.h"
-
-  export *
-  module * { export * }
-}
