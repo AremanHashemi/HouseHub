@@ -8,4 +8,21 @@
 
 import UIKit
 class ProfileViewController: UIViewController{
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func logoutBtn(_ sender: Any) {
+          // ...
+              // after user has successfully logged out
+        
+          let storyboard = UIStoryboard(name: "Main", bundle: nil)
+          let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavController")
+
+          (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
+        
+    }
+    
 }

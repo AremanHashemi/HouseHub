@@ -25,7 +25,10 @@
 		5A1F43FB24A6CF4500761B9B /* FixitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F43FA24A6CF4500761B9B /* FixitViewController.swift */; };
 		5A1F43FD24A6D5CE00761B9B /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F43FC24A6D5CE00761B9B /* MessagesViewController.swift */; };
 		5A1F43FF24A6D7DB00761B9B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F43FE24A6D7DB00761B9B /* ProfileViewController.swift */; };
-		8BA87E7324AC1D9E0053C50F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BA87E7224AC1D9E0053C50F /* GoogleService-Info.plist */; };
+		5AE9416924AC14920092DA4B /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416824AC14920092DA4B /* SignInViewController.swift */; };
+		5AE9416B24AC23A20092DA4B /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416A24AC23A20092DA4B /* CreateGroupViewController.swift */; };
+		5AE9416D24AC23C40092DA4B /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416C24AC23C40092DA4B /* JoinGroupViewController.swift */; };
+		5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +73,10 @@
 		5A1F43FA24A6CF4500761B9B /* FixitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixitViewController.swift; sourceTree = "<group>"; };
 		5A1F43FC24A6D5CE00761B9B /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		5A1F43FE24A6D7DB00761B9B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		8BA87E7224AC1D9E0053C50F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		8F38585D1BD58539ED0ABBDC /* Pods_House_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_House_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B6340735F5D822ABCA4148BD /* Pods-House Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-House Hub.debug.xcconfig"; path = "Target Support Files/Pods-House Hub/Pods-House Hub.debug.xcconfig"; sourceTree = "<group>"; };
+		5AE9416824AC14920092DA4B /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		5AE9416A24AC23A20092DA4B /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
+		5AE9416C24AC23C40092DA4B /* JoinGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
+		5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +132,10 @@
 			children = (
 				5A1F430224A427EE00761B9B /* AppDelegate.swift */,
 				5A1F430424A427EE00761B9B /* SceneDelegate.swift */,
+				5AE9416824AC14920092DA4B /* SignInViewController.swift */,
+				5AE9416A24AC23A20092DA4B /* CreateGroupViewController.swift */,
+				5AE9416C24AC23C40092DA4B /* JoinGroupViewController.swift */,
+				5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */,
 				5A1F43FE24A6D7DB00761B9B /* ProfileViewController.swift */,
 				5A1F43FC24A6D5CE00761B9B /* MessagesViewController.swift */,
 				5A1F430624A427EE00761B9B /* ChoresViewController.swift */,
@@ -381,12 +389,16 @@
 				5A1F433724A429D000761B9B /* ChoreManager.swift in Sources */,
 				5A1F43F324A6A21000761B9B /* BillsViewController.swift in Sources */,
 				5A1F43F924A6CE8300761B9B /* FixitManager.swift in Sources */,
+				5AE9416924AC14920092DA4B /* SignInViewController.swift in Sources */,
 				5A1F430324A427EE00761B9B /* AppDelegate.swift in Sources */,
 				5A1F43FF24A6D7DB00761B9B /* ProfileViewController.swift in Sources */,
+				5AE9416B24AC23A20092DA4B /* CreateGroupViewController.swift in Sources */,
 				5A1F430524A427EE00761B9B /* SceneDelegate.swift in Sources */,
+				5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */,
 				5A1F43FB24A6CF4500761B9B /* FixitViewController.swift in Sources */,
 				5A1F43F724A6B4D600761B9B /* BillsManager.swift in Sources */,
 				5A1F43FD24A6D5CE00761B9B /* MessagesViewController.swift in Sources */,
+				5AE9416D24AC23C40092DA4B /* JoinGroupViewController.swift in Sources */,
 				5A1F43F524A6A34200761B9B /* GroceryManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
