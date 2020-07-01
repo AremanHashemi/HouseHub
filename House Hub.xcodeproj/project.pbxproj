@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D9B0AC8BB8C42CC5D63CD18 /* Pods_House_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F38585D1BD58539ED0ABBDC /* Pods_House_Hub.framework */; };
+		0D9B0AC8BB8C42CC5D63CD18 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		5A1F430324A427EE00761B9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F430224A427EE00761B9B /* AppDelegate.swift */; };
 		5A1F430524A427EE00761B9B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F430424A427EE00761B9B /* SceneDelegate.swift */; };
 		5A1F430724A427EE00761B9B /* ChoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F430624A427EE00761B9B /* ChoresViewController.swift */; };
@@ -29,6 +29,8 @@
 		5AE9416B24AC23A20092DA4B /* CreateGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416A24AC23A20092DA4B /* CreateGroupViewController.swift */; };
 		5AE9416D24AC23C40092DA4B /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416C24AC23C40092DA4B /* JoinGroupViewController.swift */; };
 		5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */; };
+		83748EFC9D8A50EA1C259A72 /* Pods_House_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */; };
+		8B9D6B3624ACFD9F0024303D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,9 @@
 		5AE9416A24AC23A20092DA4B /* CreateGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupViewController.swift; sourceTree = "<group>"; };
 		5AE9416C24AC23C40092DA4B /* JoinGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
 		5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_House_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A47B23F7BD9307DBDDCC479 /* Pods-House Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-House Hub.debug.xcconfig"; path = "Target Support Files/Pods-House Hub/Pods-House Hub.debug.xcconfig"; sourceTree = "<group>"; };
+		8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +89,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0D9B0AC8BB8C42CC5D63CD18 /* Pods_House_Hub.framework in Frameworks */,
+				0D9B0AC8BB8C42CC5D63CD18 /* (null) in Frameworks */,
+				83748EFC9D8A50EA1C259A72 /* Pods_House_Hub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +152,9 @@
 				5A1F43F824A6CE8300761B9B /* FixitManager.swift */,
 				5A1F43F624A6B4D500761B9B /* BillsManager.swift */,
 				5A1F43F424A6A34200761B9B /* GroceryManager.swift */,
-				8BA87E7224AC1D9E0053C50F /* GoogleService-Info.plist */,
 				5A1F433624A429D000761B9B /* ChoreManager.swift */,
 				5A1F430D24A427F300761B9B /* Assets.xcassets */,
+				8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */,
 				5A1F430F24A427F300761B9B /* LaunchScreen.storyboard */,
 				5A1F431224A427F300761B9B /* Info.plist */,
 			);
@@ -176,7 +182,7 @@
 		9DDBD06E6CE4245E70B32570 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8F38585D1BD58539ED0ABBDC /* Pods_House_Hub.framework */,
+				6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -184,8 +190,8 @@
 		AC3273B3A5081EB00B54C0D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B6340735F5D822ABCA4148BD /* Pods-House Hub.debug.xcconfig */,
 				271FDCFFA310B98BF6905773 /* Pods-House Hub.release.xcconfig */,
+				7A47B23F7BD9307DBDDCC479 /* Pods-House Hub.debug.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -298,7 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A1F431124A427F300761B9B /* LaunchScreen.storyboard in Resources */,
-				8BA87E7324AC1D9E0053C50F /* GoogleService-Info.plist in Resources */,
+				8B9D6B3624ACFD9F0024303D /* GoogleService-Info.plist in Resources */,
 				5A1F430E24A427F300761B9B /* Assets.xcassets in Resources */,
 				5A1F430C24A427EE00761B9B /* Main.storyboard in Resources */,
 			);
@@ -570,7 +576,7 @@
 		};
 		5A1F432C24A427F300761B9B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B6340735F5D822ABCA4148BD /* Pods-House Hub.debug.xcconfig */;
+			baseConfigurationReference = 7A47B23F7BD9307DBDDCC479 /* Pods-House Hub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
