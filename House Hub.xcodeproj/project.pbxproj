@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D9B0AC8BB8C42CC5D63CD18 /* Pods_House_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F38585D1BD58539ED0ABBDC /* Pods_House_Hub.framework */; };
 		5A1F430324A427EE00761B9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F430224A427EE00761B9B /* AppDelegate.swift */; };
 		5A1F430524A427EE00761B9B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F430424A427EE00761B9B /* SceneDelegate.swift */; };
 		5A1F430724A427EE00761B9B /* ChoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1F430624A427EE00761B9B /* ChoresViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		271FDCFFA310B98BF6905773 /* Pods-House Hub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-House Hub.release.xcconfig"; path = "Target Support Files/Pods-House Hub/Pods-House Hub.release.xcconfig"; sourceTree = "<group>"; };
 		5A1F42FF24A427EE00761B9B /* House Hub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "House Hub.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A1F430224A427EE00761B9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A1F430424A427EE00761B9B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D9B0AC8BB8C42CC5D63CD18 /* Pods_House_Hub.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +112,8 @@
 				5A1F431A24A427F300761B9B /* House HubTests */,
 				5A1F432524A427F300761B9B /* House HubUITests */,
 				5A1F430024A427EE00761B9B /* Products */,
+				AC3273B3A5081EB00B54C0D3 /* Pods */,
+				9DDBD06E6CE4245E70B32570 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,6 +146,7 @@
 				5A1F43F824A6CE8300761B9B /* FixitManager.swift */,
 				5A1F43F624A6B4D500761B9B /* BillsManager.swift */,
 				5A1F43F424A6A34200761B9B /* GroceryManager.swift */,
+				8BA87E7224AC1D9E0053C50F /* GoogleService-Info.plist */,
 				5A1F433624A429D000761B9B /* ChoreManager.swift */,
 				5A1F430D24A427F300761B9B /* Assets.xcassets */,
 				5A1F430F24A427F300761B9B /* LaunchScreen.storyboard */,
@@ -167,6 +173,23 @@
 			path = "House HubUITests";
 			sourceTree = "<group>";
 		};
+		9DDBD06E6CE4245E70B32570 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8F38585D1BD58539ED0ABBDC /* Pods_House_Hub.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC3273B3A5081EB00B54C0D3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B6340735F5D822ABCA4148BD /* Pods-House Hub.debug.xcconfig */,
+				271FDCFFA310B98BF6905773 /* Pods-House Hub.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -174,9 +197,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5A1F432B24A427F300761B9B /* Build configuration list for PBXNativeTarget "House Hub" */;
 			buildPhases = (
+				C77D13D0186740019D04E0E0 /* [CP] Check Pods Manifest.lock */,
 				5A1F42FB24A427EE00761B9B /* Sources */,
 				5A1F42FC24A427EE00761B9B /* Frameworks */,
 				5A1F42FD24A427EE00761B9B /* Resources */,
+				1BA914CAC54FD6B2EE9C9407 /* [CP] Embed Pods Frameworks */,
+				9649E680DBA400A0BE7B358B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -272,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A1F431124A427F300761B9B /* LaunchScreen.storyboard in Resources */,
+				8BA87E7324AC1D9E0053C50F /* GoogleService-Info.plist in Resources */,
 				5A1F430E24A427F300761B9B /* Assets.xcassets in Resources */,
 				5A1F430C24A427EE00761B9B /* Main.storyboard in Resources */,
 			);
@@ -292,6 +319,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BA914CAC54FD6B2EE9C9407 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-House Hub/Pods-House Hub-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-House Hub/Pods-House Hub-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-House Hub/Pods-House Hub-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9649E680DBA400A0BE7B358B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-House Hub/Pods-House Hub-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-House Hub/Pods-House Hub-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-House Hub/Pods-House Hub-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C77D13D0186740019D04E0E0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-House Hub-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5A1F42FB24A427EE00761B9B /* Sources */ = {
@@ -484,6 +570,7 @@
 		};
 		5A1F432C24A427F300761B9B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6340735F5D822ABCA4148BD /* Pods-House Hub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -502,6 +589,7 @@
 		};
 		5A1F432D24A427F300761B9B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 271FDCFFA310B98BF6905773 /* Pods-House Hub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
