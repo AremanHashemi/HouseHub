@@ -16,6 +16,17 @@ class CreateGroupViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBOutlet weak var addCodeLabel: UILabel!
+    
+    @IBAction func genCodeBtn(_ sender: Any) {
+        
+        func randomString(length: Int) -> String {
+          let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+          return String((0..<length).map{ _ in letters.randomElement()! })
+        }
+        let code = randomString(length: 5)
+        addCodeLabel.text = "\(code)"
+    }
     @IBAction func CreateBtn(_ sender: Any) {
         //if successful
         //go to tab bar
