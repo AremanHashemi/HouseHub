@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+
 class ProfileViewController: UIViewController{
     
     override func viewDidLoad() {
@@ -17,11 +20,16 @@ class ProfileViewController: UIViewController{
     @IBAction func logoutBtn(_ sender: Any) {
           // ...
               // after user has successfully logged out
-        
-          let storyboard = UIStoryboard(name: "Main", bundle: nil)
-          let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavController")
+        do {
+            try Auth.auth().signOut()
+        }
+        catch let signOutError as NSError {
+            print("error signing out: %@", signOutError)
+        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavController")
 
-          (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
         
     }
     
