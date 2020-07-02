@@ -18,8 +18,12 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var enterPassword: UILabel!
     @IBOutlet weak var invalidUser: UILabel!
     
+    @IBOutlet weak var LoginImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        LoginImage.layer.masksToBounds = true
+              LoginImage.layer.cornerRadius = LoginImage.bounds.width / 2
 
         // Do any additional setup after loading the view.
     }
