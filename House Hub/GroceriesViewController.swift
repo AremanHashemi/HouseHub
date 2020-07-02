@@ -14,33 +14,26 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var tblGroceries: UITableView!
     @IBOutlet var txtGrocery: UITextField!
     @IBOutlet var txtDesc: UITextField!
-
-     override func viewWillAppear(_ animated: Bool){
-          let ref = Database.database().reference()
-                ref.child("Groceries/test-group").observeSingleEvent(of: .value, with: { (snapshot) in
-                    let groceryList = snapshot.value as? [String:String] ?? [:]
-                    print(groceryList)
-                    for (name, desc) in groceryList{
-                        groceryMngr.addGrocery(name: name, desc: desc)
-                    }
-                })
-                tblGroceries.reloadData()
-    }
+    
+    /***********************************
+    * DO BEFORE SHOWING
+    ************************************/
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let ref = Database.database().reference()
-        ref.child("Groceries/test-group").observeSingleEvent(of: .value, with: { (snapshot) in
-            let groceryList = snapshot.value as? [String:String] ?? [:]
-            print(groceryList)
-            for (name, desc) in groceryList{
-                groceryMngr.addGrocery(name: name, desc: desc)
-            }
-        })
         tblGroceries.reloadData()
     }
-       
-    //button click
+
+    /***********************************
+    * DO WHEN SWITCHING BACK
+    ************************************/
+    override func viewWillAppear(_ animated: Bool){
+         tblGroceries.reloadData()
+    }
+
+    /***********************************
+    * ADDS TO GROCERY LIST
+    ************************************/
     @IBAction func btnAddGrocery_Click(_ sender: UIButton) {
         if txtGrocery.text == "" {
             return
@@ -52,7 +45,9 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
         tblGroceries.reloadData()
     }
     
-    //IOS touch fcns
+    /***********************************
+    * IOS TOUCH FUNCTIONS
+    ************************************/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -64,7 +59,9 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
         return true
     }
     
-    //delete from table
+    /***********************************
+    * DELETE FROM TABLE
+    ************************************/
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if(editingStyle == UITableViewCell.EditingStyle.delete){
             groceryMngr.groceries.remove(at: indexPath.row)
@@ -72,7 +69,9 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
-    //UItableview data source
+    /***********************************
+    * TABLE DATA SOURCE
+    ************************************/
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return groceryMngr.groceries.count
     }

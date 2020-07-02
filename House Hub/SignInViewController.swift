@@ -7,37 +7,37 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class SignInViewController: UIViewController {
-
-    
-    @IBAction func signInButton(_ sender: Any) {
-        //sign in
-        //if authenticated
-        //go to tab bar
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
-        
-        // This is to get the SceneDelegate object from your view controller
-        // then call the change root view controller function to change to main tab bar
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func signInButton(_ sender: Any) {//switches from login screen to actual app if user is authenticated and loads all data
+        //sign in
+        //if authenticated
+    /***********************************
+    * LOAD DATA FROM DATABASE
+    ************************************/
+        /***********************************
+        * GROCERY DATA
+        ************************************/
+        let ref = Database.database().reference()
+        ref.child("Groceries/test-group").observeSingleEvent(of: .value, with: { (snapshot) in
+            let groceryList = snapshot.value as? [String:String] ?? [:]
+            print(groceryList)
+            for (name, desc) in groceryList{
+                groceryMngr.addGrocery(name: name, desc: desc)
+            }
+        })
+        /***********************************
+        * GO TO APP
+        ************************************/
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
     }
-    */
-
 }

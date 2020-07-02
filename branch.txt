@@ -1,2 +1,0 @@
-1)added log in/signup skeleton
-2)created random add code for checkout
