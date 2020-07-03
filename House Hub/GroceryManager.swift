@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 let ref = Database.database().reference()
 
 var groceryMngr: GroceryManager = GroceryManager()
@@ -19,8 +20,15 @@ struct grocery{
 
 class GroceryManager: NSObject {
     var groceries: [grocery] = []
+ //   let group = ref.child("users/\(Auth.auth().currentUser!.uid)/").value(forKey: "Group")
+
     func addGrocery(name: String, desc: String){
-        ref.child("Groceries/test-group/\(name)").setValue(desc)
+        let userID = Auth.auth().currentUser?.uid
+        let usersRef = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let group = snapshot.value  as? String{
+                 ref.child("Groceries/\(group)/\(name)").setValue(desc)
+            }
+        })
         groceries.append(grocery(name: name, desc: desc))
         //dbUpdate()
     }
