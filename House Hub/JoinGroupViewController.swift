@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
+import FirebaseAuth
+import FirebaseDatabase
 class JoinGroupViewController: UIViewController {
 
+    @IBOutlet weak var joinCode: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +22,8 @@ class JoinGroupViewController: UIViewController {
     @IBAction func JoinBtn(_ sender: Any) {
         //if successful
         //go to tab bar
+//        let ref = Database.database().reference()
+//        ref.child("Groups")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         

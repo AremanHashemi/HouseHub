@@ -42,10 +42,9 @@ class CreateGroupViewController: UIViewController {
         if(GroupName.text == ""){
             return
         }
-        ref.child("Groups/\(GroupName.text!)/Users").setValue(        Auth.auth().currentUser?.uid)
-        ref.child("Groups/\(GroupName.text!)/AddCode").setValue(addCodeLabel.text)
-        
-        
+        ref.child("Groups/\(addCodeLabel.text!)/Users").setValue(Auth.auth().currentUser?.uid)
+        ref.child("Groups/\(addCodeLabel.text!)/GroupName").setValue(GroupName.text!)
+        ref.child("users/\(Auth.auth().currentUser!.uid)/Group").setValue(addCodeLabel.text!)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         
