@@ -70,13 +70,29 @@ class SignInViewController: UIViewController {
             * GROCERY DATA
             ************************************/
             let ref = Database.database().reference()
-            ref.child("Groceries/test-group").observeSingleEvent(of: .value, with: { (snapshot) in
-                let groceryList = snapshot.value as? [String:String] ?? [:]
-                print(groceryList)
-                for (name, desc) in groceryList{
-                    groceryMngr.addGrocery(name: name, desc: desc)
+            let userID = Auth.auth().currentUser?.uid
+            let usersRef = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let group = snapshot.value  as? String{
+                    ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
+                        let groceryList = snapshot.value as? [String:String] ?? [:]
+                        print(groceryList)
+                        for (name, desc) in groceryList{
+                            groceryMngr.addGrocery(name: name, desc: desc)
+                        }
+                    })
                 }
             })
+//            let group = (ref.child("users/\(userId)").queryOrdered(byChild: "Group") in{
+//                    print(group)
+//                }
+            
+//            ref.child("Groceries/WIBa7").observeSingleEvent(of: .value, with: { (snapshot) in
+//                let groceryList = snapshot.value as? [String:String] ?? [:]
+//                print(groceryList)
+//                for (name, desc) in groceryList{
+//                    groceryMngr.addGrocery(name: name, desc: desc)
+//                }
+//            })
             /***********************************
             * GO TO APP
             ************************************/

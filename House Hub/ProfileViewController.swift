@@ -26,6 +26,7 @@ class ProfileViewController: UIViewController{
         catch let signOutError as NSError {
             print("error signing out: %@", signOutError)
         }
+        groceryMngr.groceries.removeAll()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavController")
 
