@@ -42,6 +42,7 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     //delete from table
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        self.view.endEditing(true) //close keyboard
         if(editingStyle == UITableViewCell.EditingStyle.delete){
             choreMngr.chores.remove(at: indexPath.row)
             tblTasks.reloadData()
