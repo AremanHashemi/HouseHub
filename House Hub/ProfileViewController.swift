@@ -26,10 +26,17 @@ class ProfileViewController: UIViewController{
         catch let signOutError as NSError {
             print("error signing out: %@", signOutError)
         }
+        
+        /*************************************
+        *EMPTY LOCAL LISTS
+        **************************************/
         groceryMngr.groceries.removeAll()
+        
+        /*************************************
+        *GO TO LOG IN SCREEN
+        **************************************/
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavController")
-
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
         
     }

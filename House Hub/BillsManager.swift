@@ -12,14 +12,16 @@ var billsMngr: BillsManager = BillsManager()
 
 struct bill{
     var name = "Un-Named"
-    var desc = "Un-Described"
-    
+    var price = "0.00"
+    var split = "0"
+    var deadline = "NONE"
+    var username = "Un_Named"
 }
 
 class BillsManager: NSObject {
     var bills: [bill] = []
     
-    func addBill(name: String, desc: String){
-        bills.append(bill(name: name, desc: desc))
+    func addBill(name: String, price: String, split: String, deadline: String, username: String){
+        bills.append(bill(name: name, price: price, split: split, deadline: deadline, username: username))
     }
 }
