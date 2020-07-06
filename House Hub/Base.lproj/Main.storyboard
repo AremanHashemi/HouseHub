@@ -341,7 +341,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Join"/>
                                 <connections>
-                                    <action selector="JoinBtn:" destination="4Yg-sW-HNG" eventType="touchUpInside" id="Vkh-DF-tsg"/>
+                                    <action selector="joinBtn:" destination="4Yg-sW-HNG" eventType="touchUpInside" id="iVr-WI-zkY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -350,7 +350,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="CVG-F2-d6Y"/>
                     <connections>
-                        <outlet property="code" destination="7cF-cH-kUO" id="pGC-7z-bE6"/>
+                        <outlet property="joinCode" destination="7cF-cH-kUO" id="vMR-qb-wkZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zdz-hc-8BL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

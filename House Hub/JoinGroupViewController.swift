@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 class JoinGroupViewController: UIViewController {
 
+    
     @IBOutlet weak var joinCode: UITextField!
     
     override func viewDidLoad() {
@@ -19,18 +20,19 @@ class JoinGroupViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func JoinBtn(_ sender: Any) {
+    @IBAction func joinBtn(_ sender: Any) {
         //if successful
         //go to tab bar
-//        let ref = Database.database().reference()
-//        ref.child("Groups")
+        //let ref = Database.database().reference()
+        //ref.child("Groups")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
-        
+                
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
     }
+
     
     /*
     // MARK: - Navigation
