@@ -16,7 +16,7 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet var txtDesc: UITextField!
     
     /***********************************
-    * DO BEFORE SHOWING
+* DO BEFORE SHOWING
     ************************************/
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -25,8 +25,23 @@ class JoinGroupViewController: UIViewController {
         //go to tab bar
         //let ref = Database.database().reference()
         //ref.child("Groups")
+        if self.joinCode.text == ""{
+            return
+        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        let usersRef = ref.child("Groups").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild(self.joinCode.text!){
+                ref.child("users/\(userID!)/Group").setValue(self.joinCode.text!)
+                //Add current name to group
+            }else{
+                print("Please enter a valid code")
+                return
+            }
+        })
+        
                 
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
