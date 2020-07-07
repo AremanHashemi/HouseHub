@@ -41,7 +41,17 @@ class JoinGroupViewController: UIViewController {
                 return
             }
         })
-        
+        _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let group = snapshot.value  as? String{
+                ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    let groceryList = snapshot.value as? [String:String] ?? [:]
+                    print(groceryList)
+                    for (name, desc) in groceryList{
+                        groceryMngr.addGrocery(name: name, desc: desc)
+                    }
+                })
+            }
+        })
                 
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar

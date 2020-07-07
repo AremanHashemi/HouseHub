@@ -33,6 +33,9 @@ class SignInViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         
         textField.resignFirstResponder()
@@ -59,9 +62,6 @@ class SignInViewController: UIViewController {
             print("Please enter password.")
             return
         }
-        else if(Auth.auth().currentUser == nil){
-            invalidUser.text = "Invalid user"
-        }
         login()
     }
     
@@ -71,8 +71,8 @@ class SignInViewController: UIViewController {
             if let err = err {
                 print(err.localizedDescription)
             }
+            strongSelf.checkUser()
         }
-        self.checkUser()
     }
     
     func checkUser(){
@@ -83,7 +83,7 @@ class SignInViewController: UIViewController {
             ************************************/
             let ref = Database.database().reference()
             let userID = Auth.auth().currentUser?.uid
-            let usersRef = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
+            _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let group = snapshot.value  as? String{
                     ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
                         let groceryList = snapshot.value as? [String:String] ?? [:]
@@ -94,23 +94,14 @@ class SignInViewController: UIViewController {
                     })
                 }
             })
-//            let group = (ref.child("users/\(userId)").queryOrdered(byChild: "Group") in{
-//                    print(group)
-//                }
-            
-//            ref.child("Groceries/WIBa7").observeSingleEvent(of: .value, with: { (snapshot) in
-//                let groceryList = snapshot.value as? [String:String] ?? [:]
-//                print(groceryList)
-//                for (name, desc) in groceryList{
-//                    groceryMngr.addGrocery(name: name, desc: desc)
-//                }
-//            })
             /***********************************
             * GO TO APP
             ************************************/
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        }else{
+            //invalidUser.text = "Invalid user"
         }
 
     }
