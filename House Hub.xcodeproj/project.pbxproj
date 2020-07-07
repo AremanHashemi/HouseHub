@@ -31,6 +31,7 @@
 		5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */; };
 		83748EFC9D8A50EA1C259A72 /* Pods_House_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */; };
 		8B9D6B3624ACFD9F0024303D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */; };
+		D6461E9E24B52D1000DBE9BF /* Test in Resources */ = {isa = PBXBuildFile; fileRef = D6461E9D24B52D1000DBE9BF /* Test */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,7 @@
 		6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_House_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A47B23F7BD9307DBDDCC479 /* Pods-House Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-House Hub.debug.xcconfig"; path = "Target Support Files/Pods-House Hub/Pods-House Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D6461E9D24B52D1000DBE9BF /* Test */ = {isa = PBXFileReference; lastKnownFileType = text; path = Test; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 		5A1F430124A427EE00761B9B /* House Hub */ = {
 			isa = PBXGroup;
 			children = (
+				D6461E9C24B52C9C00DBE9BF /* Chat */,
 				5A1F430224A427EE00761B9B /* AppDelegate.swift */,
 				5A1F430424A427EE00761B9B /* SceneDelegate.swift */,
 				5AE9416824AC14920092DA4B /* SignInViewController.swift */,
@@ -194,6 +197,14 @@
 				7A47B23F7BD9307DBDDCC479 /* Pods-House Hub.debug.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D6461E9C24B52C9C00DBE9BF /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D6461E9D24B52D1000DBE9BF /* Test */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +318,7 @@
 				8B9D6B3624ACFD9F0024303D /* GoogleService-Info.plist in Resources */,
 				5A1F430E24A427F300761B9B /* Assets.xcassets in Resources */,
 				5A1F430C24A427EE00761B9B /* Main.storyboard in Resources */,
+				D6461E9E24B52D1000DBE9BF /* Test in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
