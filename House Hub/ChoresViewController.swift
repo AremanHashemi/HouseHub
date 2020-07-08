@@ -10,15 +10,41 @@ import UIKit
 
 class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
 
+    @IBOutlet weak var inputTextField: UITextField!
+    
+    private var datePicker: UIDatePicker?
     @IBOutlet var tblTasks: UITableView!//exclamation for null until used
     @IBOutlet var txtTask: UITextField!//chore name
     @IBOutlet var txtDesc: UITextField!//chore description
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .date
+        datePicker?.addTarget(self, action: #selector(ChoresViewController.dateChanged(datePicker:)), for: .valueChanged)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ChoresViewController.viewTapped(gestureRecognizer:)))
+        
+        view.addGestureRecognizer(tapGesture)
+        
+        inputTextField.inputView = datePicker
+        
+        
         // Do any additional setup after loading the view.
     }
-       
+    
+    @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
+        view.endEditing(true)
+    }
+    
+    @objc func dateChanged(datePicker: UIDatePicker){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        inputTextField.text = dateFormatter.string(from: datePicker.date)
+        view.endEditing(true)
+    }
     //button click
     @IBAction func btnAddTask_Click(_ sender: UIButton) {
         choreMngr.addChore(name: txtTask.text!, desc: txtDesc.text!)
