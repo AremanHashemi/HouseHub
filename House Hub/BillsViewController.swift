@@ -59,7 +59,7 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let price_per_person = price/split
         let price_per_person_txt = String(format: "%.2f", price_per_person) // rounded to 2 decimal places
         
-        billsMngr.addBill(name: txtBill.text!, price: txtPrice.text!, split: price_per_person_txt, deadline: deadline, username: "USER")
+        billsMngr.addBill(name: txtBill.text!, price: txtPrice.text!, split: price_per_person_txt, deadline: deadline, username: userMngr.getUserName())
         self.view.endEditing(true) //close keyboard
         txtBill.text = "" //make text fields blank
         txtPrice.text = ""

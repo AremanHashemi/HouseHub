@@ -30,6 +30,7 @@
 		5AE9416D24AC23C40092DA4B /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416C24AC23C40092DA4B /* JoinGroupViewController.swift */; };
 		5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */; };
 		5AE9417524B58A070092DA4B /* join_createViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9417424B58A060092DA4B /* join_createViewController.swift */; };
+		5AE9417724B674170092DA4B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9417624B674160092DA4B /* UserManager.swift */; };
 		83748EFC9D8A50EA1C259A72 /* Pods_House_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */; };
 		8B9D6B3624ACFD9F0024303D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		5AE9416C24AC23C40092DA4B /* JoinGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
 		5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		5AE9417424B58A060092DA4B /* join_createViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = join_createViewController.swift; sourceTree = "<group>"; };
+		5AE9417624B674160092DA4B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_House_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A47B23F7BD9307DBDDCC479 /* Pods-House Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-House Hub.debug.xcconfig"; path = "Target Support Files/Pods-House Hub/Pods-House Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				5A1F43F624A6B4D500761B9B /* BillsManager.swift */,
 				5A1F430824A427EE00761B9B /* GroceriesViewController.swift */,
 				5A1F43F424A6A34200761B9B /* GroceryManager.swift */,
+				5AE9417624B674160092DA4B /* UserManager.swift */,
 				5A1F430D24A427F300761B9B /* Assets.xcassets */,
 				8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */,
 				5A1F430F24A427F300761B9B /* LaunchScreen.storyboard */,
@@ -393,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AE9417724B674170092DA4B /* UserManager.swift in Sources */,
 				5A1F430924A427EE00761B9B /* GroceriesViewController.swift in Sources */,
 				5A1F430724A427EE00761B9B /* ChoresViewController.swift in Sources */,
 				5A1F433724A429D000761B9B /* ChoreManager.swift in Sources */,
