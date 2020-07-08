@@ -148,7 +148,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1392.753623188406" y="295.98214285714283"/>
+            <point key="canvasLocation" x="2302.898550724638" y="295.98214285714283"/>
         </scene>
         <!--Groceries-->
         <scene sceneID="ZJA-Sn-giD">
@@ -232,6 +232,14 @@
                                     <action selector="logoutBtn:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="jDv-QI-I2s"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGg-9t-RyN">
+                                <rect key="frame" x="164" y="515" width="87" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Leave Group"/>
+                                <connections>
+                                    <action selector="leaveGrpBtn:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="FXb-FH-JM8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="n1y-iP-xrS"/>
@@ -240,7 +248,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDM-u5-C94" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710.14492753623199" y="295.98214285714283"/>
+            <point key="canvasLocation" x="1620.289855072464" y="295.98214285714283"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="c9X-B0-Afc">
@@ -355,12 +363,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zdz-hc-8BL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1199" y="1028"/>
+            <point key="canvasLocation" x="-1007" y="1188"/>
         </scene>
-        <!--View Controller-->
+        <!--Join create View Controller-->
         <scene sceneID="oDp-BP-sga">
             <objects>
-                <viewController storyboardIdentifier="registerSuccess" id="eVK-ij-gWd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registerSuccess" id="eVK-ij-gWd" customClass="join_createViewController" customModule="House_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ub9-at-BB3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -381,6 +389,15 @@
                                     <segue destination="4Yg-sW-HNG" kind="show" id="ssT-Ib-Rbb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c18-Ti-SJw">
+                                <rect key="frame" x="184" y="336" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutBtn:" destination="STP-Dc-gy2" eventType="touchUpInside" id="cID-iS-NGe"/>
+                                    <action selector="logoutBtn:" destination="eVK-ij-gWd" eventType="touchUpInside" id="rqb-QU-r8c"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="AaZ-MF-LLM"/>
@@ -388,8 +405,9 @@
                     <navigationItem key="navigationItem" id="qxZ-8I-1JU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="el1-wc-y78" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="STP-Dc-gy2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-777" y="321"/>
+            <point key="canvasLocation" x="-696" y="493"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="esK-sQ-5gc">
@@ -688,7 +706,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsQ-VZ-L7W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-514.49275362318849" y="1027.9017857142858"/>
+            <point key="canvasLocation" x="-270" y="1188"/>
         </scene>
     </scenes>
     <resources>

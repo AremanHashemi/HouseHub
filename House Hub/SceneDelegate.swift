@@ -19,20 +19,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session ar`e new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        // add these lines
+        //view controller objects
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+        let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavController")
+        let join_create_grp = storyboard.instantiateViewController(identifier: "registerSuccess")
         
         // if user is logged in before
-        if let loggedUsername = UserDefaults.standard.string(forKey: "username") {
+        if UserDefaults.standard.string(forKey: "username") != nil {
             // instantiate the main tab bar controller and set it as root view controller
             // using the storyboard identifier we set earlier
-            let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+            //if in a group
             window?.rootViewController = tabBarController
+            //else
+            //window?.rootViewController = join_create_grp
+            
         } else {
             // if user isn't logged in
             // instantiate the navigation controller and set it as root view controller
             // using the storyboard identifier we set earlier
-            let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavController")
             window?.rootViewController = loginNavController
         }
     }

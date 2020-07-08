@@ -8,13 +8,28 @@
 
 import UIKit
 import FirebaseAuth
-
+import FirebaseDatabase
 
 class ProfileViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func leaveGrpBtn(_ sender: Any) {
+        let ref = Database.database().reference()
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("users/\(userID!)/Group").removeValue()
+        
+        /*************************************
+        *EMPTY LOCAL LISTS
+        **************************************/
+        groceryMngr.groceries.removeAll()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
     }
     
     @IBAction func logoutBtn(_ sender: Any) {
