@@ -85,6 +85,7 @@ class SignInViewController: UIViewController {
             let userID = Auth.auth().currentUser?.uid
             _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let group = snapshot.value  as? String{
+                    print("group: \(group)")
                     ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
                         let groceryList = snapshot.value as? [String:String] ?? [:]
                         print(groceryList)
@@ -92,14 +93,23 @@ class SignInViewController: UIViewController {
                             groceryMngr.addGrocery(name: name, desc: desc)
                         }
                     })
+                    /***********************************
+                    * GO TO APP
+                    ************************************/
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+                }
+                else{
+                    /*************************************
+                    *GO TO JOIN CREATE GROUP PAGE
+                    **************************************/
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let join_create_grp = storyboard.instantiateViewController(identifier: "registerSuccess")
+                                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(join_create_grp)
                 }
             })
-            /***********************************
-            * GO TO APP
-            ************************************/
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+
         }else{
             //invalidUser.text = "Invalid user"
         }

@@ -27,9 +27,12 @@ class ProfileViewController: UIViewController{
         **************************************/
         groceryMngr.groceries.removeAll()
         
+        /*************************************
+        *GO TO JOIN CREATE GROUP PAGE
+        **************************************/
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
-                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        let join_create_grp = storyboard.instantiateViewController(identifier: "registerSuccess")
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(join_create_grp)
     }
     
     @IBAction func logoutBtn(_ sender: Any) {
