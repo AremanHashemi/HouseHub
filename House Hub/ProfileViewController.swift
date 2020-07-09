@@ -36,6 +36,7 @@ class ProfileViewController: UIViewController{
     }
         
     @IBAction func logoutBtn(_ sender: Any) {
+        
           // ...
               // after user has successfully logged out
         do {
