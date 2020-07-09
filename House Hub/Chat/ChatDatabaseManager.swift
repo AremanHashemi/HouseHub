@@ -14,8 +14,8 @@ final class ChatDatabaseManager {
     private let database = Database.database().reference()
     
     
-    public enum DatabaseError: Error {
-        case failedToFetch
+    private func sendMessage(groupID: String, message: Message) {
+        
     }
 }
 

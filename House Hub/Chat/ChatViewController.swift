@@ -16,7 +16,6 @@ import InputBarAccessoryView
 
 struct Message: MessageType {
     var kind: MessageKind
-    
     var sender: SenderType
     var messageId: String
     var sentDate: Date
@@ -32,8 +31,8 @@ class ChatViewController: MessagesViewController {
     
     private var messages = [Message]()
     
-    private let selfSender = Sender(senderId: "1",
-                                    displayName: "Rowen Banton")
+    private let selfSender = Sender(senderId: userMngr.getUserId(),
+                                    displayName: userMngr.getUserName())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +55,7 @@ class ChatViewController: MessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
- //       messageInputBar.inputTextView.becomeFirstResponder()
+        messageInputBar.inputTextView.becomeFirstResponder()
     }
     
     // Need some way to return to the app since nav bar doesnt show up
@@ -65,10 +64,13 @@ class ChatViewController: MessagesViewController {
 //        present(vc, animated: true)
 //
 //    }
+
+
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        
         print("Sending: \(text)")
     }
 }
