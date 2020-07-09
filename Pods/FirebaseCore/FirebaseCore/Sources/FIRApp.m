@@ -122,7 +122,7 @@ static dispatch_once_t sFirebaseUserAgentOnceToken;
 + (void)configure {
   FIROptions *options = [FIROptions defaultOptions];
   if (!options) {
-      [NSException raise:kFirebaseCoreErrorDomain
+    [NSException raise:kFirebaseCoreErrorDomain
                 format:@"`[FIRApp configure];` (`FirebaseApp.configure()` in Swift) could not find "
                        @"a valid GoogleService-Info.plist in your project. Please download one "
                        @"from %@.",

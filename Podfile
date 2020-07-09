@@ -9,4 +9,11 @@ target 'House Hub' do
   pod 'Firebase/Database'
   pod 'Firebase/Analytics'
   pod 'FirebaseUI'
+
+  # Chat
+  pod 'MessageKit'
+  pod 'JGProgressHUD'
+
+
 end
+
