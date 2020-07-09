@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
 
@@ -48,6 +49,12 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     //button click
     @IBAction func btnAddTask_Click(_ sender: UIButton) {
         choreMngr.addChore(name: txtTask.text!, desc: txtDesc.text!)
+        let ref = Database.database().reference()
+        
+        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtTask.text!))/Description").setValue(txtDesc.text)
+        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtTask.text!))/Time").setValue(txtDesc.text)
+        
+        print(datePicker)
         self.view.endEditing(true) //close keyboard
         txtTask.text = "" //make text fields blank
         txtDesc.text = ""

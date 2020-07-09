@@ -103,7 +103,9 @@ class SignInViewController: UIViewController {
                     
                     print("Group ID: \(userMngr.getGroupId())")
                     
-                    ref.child("Groceries/\(userMngr.getGroupId())").observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    ref.child("Groceries/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
+                        groceryMngr.groceries.removeAll()
                         let groceryList = snapshot.value as? [String:String] ?? [:]
                         for (name, desc) in groceryList{
                             groceryMngr.addGrocery(name: name, desc: desc)

@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController{
         let join_create_grp = storyboard.instantiateViewController(identifier: "registerSuccess")
                     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(join_create_grp)
     }
-    
+        
     @IBAction func logoutBtn(_ sender: Any) {
           // ...
               // after user has successfully logged out

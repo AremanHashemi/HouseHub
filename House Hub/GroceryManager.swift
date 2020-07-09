@@ -20,8 +20,6 @@ struct grocery{
 
 class GroceryManager: NSObject {
     var groceries: [grocery] = []
- //   let group = ref.child("users/\(Auth.auth().currentUser!.uid)/").value(forKey: "Group")
-
     func addGrocery(name: String, desc: String){
         let userID = Auth.auth().currentUser?.uid
         let usersRef = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -30,14 +28,5 @@ class GroceryManager: NSObject {
             }
         })
         groceries.append(grocery(name: name, desc: desc))
-        //dbUpdate()
     }
 }
-
-//func dbUpdate() {
-//    _ = ref.observe(DataEventType.value, with: { (snapshot) in
-//      let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-//        print(postDict)
-//    })
-//}
-
