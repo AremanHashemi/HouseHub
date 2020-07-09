@@ -7,7 +7,8 @@
 //
 
 import UIKit
-class MessagesViewController: UIViewController{
+class xMessagesViewController: UIViewController{
+    // renamed because of naming conflict with MessageKit's MessagesViewController class
     
     override func viewDidLoad() {
         super.viewDidLoad()

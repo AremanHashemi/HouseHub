@@ -1,4 +1,8 @@
 //
+
+// CLEAN HH
+
+
 //  MessagesViewController.swift
 //  Task List
 //
@@ -34,6 +38,13 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .link
+        
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
+//                                                           style: .done,
+//                                                           target: self,
+//                                                           action: #selector(didClickBack))
+        
         // loadChat
         
         messagesCollectionView.messagesDataSource = self
@@ -45,8 +56,15 @@ class ChatViewController: MessagesViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        messageInputBar.inputTextView.becomeFirstResponder()
+ //       messageInputBar.inputTextView.becomeFirstResponder()
     }
+    
+    // Need some way to return to the app since nav bar doesnt show up
+//    @objc private func didClickBack() {
+//        let vc = GroceriesViewController()
+//        present(vc, animated: true)
+//
+//    }
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
