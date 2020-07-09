@@ -77,29 +77,55 @@ class SignInViewController: UIViewController {
     
     func checkUser(){
         if Auth.auth().currentUser != nil {
-            print(Auth.auth().currentUser?.uid)
+            
             /***********************************
             * GROCERY DATA
             ************************************/
             let ref = Database.database().reference()
-            let userID = Auth.auth().currentUser?.uid
-            _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            //USER ID
+            userMngr.setUserId(userId_in: (Auth.auth().currentUser!.uid))//sets user id for global user
+            print("USER ID: \(userMngr.getUserName())")
+            
+            //USER NAME
+            _ = ref.child("users").child(userMngr.getUserId()).child("user").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let username = snapshot.value  as? String{
+                    userMngr.setUserName(username_in: username)//sets username for global user
+                }
+                print("NAME: \(userMngr.getUserName())")
+            })
+            
+            //GROUP ID
+            _ = ref.child("users").child(userMngr.getUserId()).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let group = snapshot.value  as? String{
-                    ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    userMngr.setGroupId(groupId_in: group)//sets group id for global user
+                    
+                    print("Group ID: \(userMngr.getGroupId())")
+                    
+                    ref.child("Groceries/\(userMngr.getGroupId())").observeSingleEvent(of: .value, with: { (snapshot) in
                         let groceryList = snapshot.value as? [String:String] ?? [:]
-                        print(groceryList)
                         for (name, desc) in groceryList{
                             groceryMngr.addGrocery(name: name, desc: desc)
                         }
                     })
+                    /***********************************
+                    * GO TO APP
+                    ************************************/
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+                }
+                else{
+                    /*************************************
+                    *GO TO JOIN CREATE GROUP PAGE
+                    **************************************/
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let join_create_grp = storyboard.instantiateViewController(identifier: "registerSuccess")
+                                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(join_create_grp)
                 }
             })
-            /***********************************
-            * GO TO APP
-            ************************************/
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+
         }else{
             //invalidUser.text = "Invalid user"
         }

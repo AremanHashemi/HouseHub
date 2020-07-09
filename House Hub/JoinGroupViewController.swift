@@ -28,11 +28,10 @@ class JoinGroupViewController: UIViewController {
         if self.joinCode.text == ""{
             return
         }
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
-        let usersRef = ref.child("Groups").observeSingleEvent(of: .value, with: { (snapshot) in
+        let usersRef: Void = ref.child("Groups").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.joinCode.text!){
                 ref.child("users/\(userID!)/Group").setValue(self.joinCode.text!)
                 //Add current name to group
@@ -41,8 +40,10 @@ class JoinGroupViewController: UIViewController {
                 return
             }
         })
+
         _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
             if let group = snapshot.value  as? String{
+                print(group)
                 ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
                     let groceryList = snapshot.value as? [String:String] ?? [:]
                     print(groceryList)
@@ -55,6 +56,8 @@ class JoinGroupViewController: UIViewController {
                 
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
     }
 
