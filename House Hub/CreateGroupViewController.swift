@@ -48,9 +48,35 @@ class CreateGroupViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         
+        //============= Chat Init =============
+        let name = userMngr.getUserName()
+        let selfSender = Sender(senderId: userMngr.getUserId(),
+                                displayName: name)
+        let houseName = GroupName.text!
+        
+        let text = welcomeText(n: name, h: houseName)
+
+        let message = Message(kind: .text(text),
+                              sender: selfSender,
+                              messageId: chatMngr.createMessageId(),
+                              sentDate: Date())
+        
+//    chatMngr.createNewConversation(addCode: addCodeLabel.text!, firstMessage: message, completion: { success in
+//            if success {
+//                print("Message added to db")
+//            } else {
+//                print("Message add failed")
+//            }
+//        })
+        //======================================
+        
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+    }
+    
+    public func welcomeText(n: String, h: String) -> String {
+        return "\(n) has joined \(h)"
     }
     
     /*
