@@ -244,7 +244,7 @@
         <!--Profile-->
         <scene sceneID="6bH-Pp-wWl">
             <objects>
-                <viewController id="hLc-Fk-SHl" customClass="ProfileViewController" customModule="House_Hub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" id="hLc-Fk-SHl" customClass="ProfileViewController" customModule="House_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PsD-mt-C7P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -299,6 +299,9 @@
                                 <state key="normal" title="Change Username">
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="changeUserBtn:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="gsa-2a-JSg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qXP-fq-Vw3">
                                 <rect key="frame" x="121" y="526" width="172" height="39"/>
@@ -307,6 +310,9 @@
                                 <state key="normal" title="Change Password">
                                     <color key="titleColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="changePassBtn:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="zmV-UY-xry"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uba-We-Nx3">
                                 <rect key="frame" x="131" y="595" width="153" height="39"/>
@@ -339,6 +345,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDM-u5-C94" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1620.289855072464" y="295.98214285714283"/>
+        </scene>
+        <!--Change Username View Controller-->
+        <scene sceneID="9O6-CZ-5G4">
+            <objects>
+                <viewController storyboardIdentifier="ChangeUserVC" id="jDr-RS-dzQ" customClass="ChangeUsernameViewController" customModule="House_Hub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ArF-wV-qtT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nNF-98-Bb6">
+                                <rect key="frame" x="130" y="142" width="154" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haR-ca-9y1">
+                                <rect key="frame" x="192" y="198" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="editUserBtn:" destination="jDr-RS-dzQ" eventType="touchUpInside" id="x2a-AQ-v6G"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9P-De-8L6">
+                                <rect key="frame" x="54" y="79" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backBtn:" destination="jDr-RS-dzQ" eventType="touchUpInside" id="zy0-co-lB2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="1dm-KU-MrS"/>
+                    </view>
+                    <connections>
+                        <outlet property="newUserText" destination="nNF-98-Bb6" id="W6K-4m-G7q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ngT-0R-Cxw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1628.985507246377" y="1028.5714285714284"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="c9X-B0-Afc">
@@ -797,6 +845,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsQ-VZ-L7W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-270" y="1188"/>
+        </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="29R-DB-6dE">
+            <objects>
+                <viewController storyboardIdentifier="ChangePassVC" id="3Da-O3-4Li" customClass="ChangePasswordViewController" customModule="House_Hub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VGg-xG-E81">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ep-6Y-BcM">
+                                <rect key="frame" x="130" y="138" width="154" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GYT-5o-KnI">
+                                <rect key="frame" x="192" y="193" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <action selector="editBtn:" destination="3Da-O3-4Li" eventType="touchUpInside" id="ykW-df-yp7"/>
+                                    <action selector="editUserBtn:" destination="jDr-RS-dzQ" eventType="touchUpInside" id="cKA-7q-2lb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGD-Xo-dPy">
+                                <rect key="frame" x="47" y="78" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backBtn:" destination="jDr-RS-dzQ" eventType="touchUpInside" id="2nL-Qg-MjQ"/>
+                                    <action selector="backBtn:" destination="3Da-O3-4Li" eventType="touchUpInside" id="uPb-Ik-jZr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="BbI-6C-eb4"/>
+                    </view>
+                    <connections>
+                        <outlet property="newPassText" destination="6ep-6Y-BcM" id="d5j-Dw-38f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rBf-Tt-J1c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2333" y="1028"/>
         </scene>
     </scenes>
     <resources>

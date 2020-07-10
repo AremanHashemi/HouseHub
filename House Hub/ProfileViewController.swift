@@ -34,6 +34,17 @@ class ProfileViewController: UIViewController{
             }
         
     }
+    @IBAction func changeUserBtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "ChangeUserVC")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+    }
+    
+    @IBAction func changePassBtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "ChangePassVC")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+    }
     
     @IBAction func leaveGroupBtn(_ sender: Any) {
         let userID = Auth.auth().currentUser?.uid
