@@ -8,24 +8,45 @@
 
 import UIKit
 
-class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
+class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     
+    @IBOutlet var myImageView: UIImageView!
     @IBOutlet var tblFixes: UITableView!
-    @IBOutlet var txtFix: UITextField!
     @IBOutlet var txtDesc: UITextField!
     
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func insertImageBtn(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.allowsEditing = true
+        vc.delegate = self
+        self.present(vc, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+
+        if let image = info[.editedImage] as? UIImage{
+            myImageView.image = image
+        }
+        else {
+            print("No image found")
+            return
+        }
+    }
+    
     @IBAction func btnAddFix_Click(_ sender: UIButton) {
-        fixesMngr.addFix(name: txtFix.text!, desc: txtDesc.text!)
+        fixesMngr.addFix(image: myImageView.image!, desc: txtDesc.text!)
         self.view.endEditing(true) //close keyboard
-        txtFix.text = "" //make text fields blank
         txtDesc.text = ""
+        myImageView.image = nil
         
         tblFixes.reloadData()
     }
@@ -56,13 +77,22 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
        }
        
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-           let f_cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Deault")
-           
-           f_cell.textLabel!.text = fixesMngr.fixes[indexPath.row].name
-           f_cell.detailTextLabel?.text = fixesMngr.fixes[indexPath.row].desc
-           
-           return f_cell
+//            let f_cell = Bundle.main.loadNibNamed("FixitTableViewCell", owner: self, options: nil)?.first as! FixItTableViewCell
+//
+//            f_cell.mainImageView.image = fixesMngr.fixes[indexPath.row].image
+//            f_cell.mainLabel.text = fixesMngr.fixes[indexPath.row].desc
+        
+        let f_cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Deault")
+        
+        f_cell.imageView?.image = fixesMngr.fixes[indexPath.row].image
+        f_cell.detailTextLabel?.text = fixesMngr.fixes[indexPath.row].desc
+        
+            return f_cell
        }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 320
+    }
     
     
     

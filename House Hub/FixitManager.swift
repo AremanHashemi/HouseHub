@@ -11,15 +11,14 @@ import UIKit
 var fixesMngr: FixesManager = FixesManager()
 
 struct fix{
-    var name = "Un-Named"
+    var image: UIImage? = nil
     var desc = "Un-Described"
-    
 }
 
 class FixesManager: NSObject {
     var fixes: [fix] = []
     
-    func addFix(name: String, desc: String){
-        fixes.append(fix(name: name, desc: desc))
+    func addFix(image: UIImage, desc: String){
+        fixes.append(fix(image: image, desc: desc))
     }
 }

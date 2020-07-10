@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController{
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         ref.child("users/\(userID!)/Group").removeValue()
-        
+        userMngr.setGroupId(groupId_in: "")
         /*************************************
         *EMPTY LOCAL LISTS
         **************************************/
