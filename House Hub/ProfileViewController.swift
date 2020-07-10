@@ -12,13 +12,30 @@ import FirebaseDatabase
 
 class ProfileViewController: UIViewController{
     
+    @IBOutlet weak var profileName: UILabel!
+    @IBOutlet weak var groupCode: UILabel!
+    
+    let ref = Database.database().reference()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        let userID = Auth.auth().currentUser?.uid
+        ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let profName = value?["user"] as? String ?? ""
+            let gc = value?["Group"] as? String ?? ""
+            self.profileName.text = profName + "'s " + self.profileName.text!
+            self.groupCode.text = self.groupCode.text! + gc
+            // ...
+            }) { (error) in
+                print(error.localizedDescription)
+            }
+        
     }
     
-    @IBAction func leaveGrpBtn(_ sender: Any) {
-        let ref = Database.database().reference()
+    @IBAction func leaveGroupBtn(_ sender: Any) {
         let userID = Auth.auth().currentUser?.uid
         ref.child("users/\(userID!)/Group").removeValue()
         
@@ -59,5 +76,17 @@ class ProfileViewController: UIViewController{
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
         
     }
+    @IBAction func joinGroupButton(_ sender: Any) {
+        if(self.groupCode.text == "Group Code: "){
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "JoinVC")
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+        }
+
+    }
     
+    /*@IBAction func leaveGroupButton(_ sender: Any) {
+        self.groupCode.text = "Group Code: "
+        ref.child("users").child(Auth.auth().currentUser!.uid).child("Group").setValue("")
+    }*/
 }
