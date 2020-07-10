@@ -49,17 +49,25 @@ class CreateGroupViewController: UIViewController {
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         
         //============= Chat Init =============
-        let name = userMngr.getUserName()
-        let selfSender = Sender(senderId: userMngr.getUserId(),
-                                displayName: name)
-        let houseName = GroupName.text!
-        
-        let text = welcomeText(n: name, h: houseName)
+        _ = ref.child("users").child(userMngr.getUserId()).child("user").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let username = snapshot.value  as? String{
+                userMngr.setUserName(username_in: username)//sets username for global user
+            }
+            
+    
+        })
+        print("NAME: \(userMngr.getUserName())")
 
-        let message = Message(kind: .text(text),
-                              sender: selfSender,
-                              messageId: chatMngr.createMessageId(),
-                              sentDate: Date())
+//        let houseName = GroupName.text!
+//
+//        let text = welcomeText(n: username, h: houseName)
+//
+//        print("\(text)")
+//
+//        let message = Message(kind: .text(text),
+//                              sender: selfSender,
+//                              messageId: chatMngr.createMessageId(),
+//                              sentDate: Date())
         
 //    chatMngr.createNewConversation(addCode: addCodeLabel.text!, firstMessage: message, completion: { success in
 //            if success {

@@ -49,6 +49,8 @@ final class ChatDatabaseManager {
             break
         }
         
+        print("\(userMngr.getUserName())")
+        
         let collectionMessage: [String: Any] = [
             "id": firstMessage.messageId,
             "type": firstMessage.kind.messageKindString,
