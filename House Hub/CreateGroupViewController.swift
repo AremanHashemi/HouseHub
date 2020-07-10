@@ -49,33 +49,30 @@ class CreateGroupViewController: UIViewController {
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         
         //============= Chat Init =============
-        _ = ref.child("users").child(userMngr.getUserId()).child("user").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let username = snapshot.value  as? String{
-                userMngr.setUserName(username_in: username)//sets username for global user
-            }
-            
-    
-        })
-        print("NAME: \(userMngr.getUserName())")
+        let username = "testuser"
+ //       let testname = Auth.auth().currentUser?.displayName
 
-//        let houseName = GroupName.text!
-//
-//        let text = welcomeText(n: username, h: houseName)
-//
-//        print("\(text)")
-//
-//        let message = Message(kind: .text(text),
-//                              sender: selfSender,
-//                              messageId: chatMngr.createMessageId(),
-//                              sentDate: Date())
+        let houseName = GroupName.text!
         
-//    chatMngr.createNewConversation(addCode: addCodeLabel.text!, firstMessage: message, completion: { success in
-//            if success {
-//                print("Message added to db")
-//            } else {
-//                print("Message add failed")
-//            }
-//        })
+        let selfSender = Sender(senderId: Auth.auth().currentUser?.uid ?? username,
+                                displayName: username)
+        
+        let text = welcomeText(n: username, h: houseName)
+        
+        print("\(text)")
+        
+        let message = Message(kind: .text(text),
+                              sender: selfSender,
+                              messageId: chatMngr.createMessageId(),
+                              sentDate: Date())
+        
+        chatMngr.createNewConversation(addCode: addCodeLabel.text!, firstMessage: message, completion: { success in
+            if success {
+                print("Message added to db")
+            } else {
+                print("Message add failed")
+            }
+        })
         //======================================
         
         // This is to get the SceneDelegate object from your view controller

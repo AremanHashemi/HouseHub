@@ -57,18 +57,20 @@ class ChatViewController: MessagesViewController {
     
     private var messages = [Message]()
     
-    private let selfSender = Sender(senderId: userMngr.getUserId(),
-                                    displayName: userMngr.getUserName())
+
+    
+    private var selfSender: Sender {
+        let username = userMngr.getUserName()
+        let userID = userMngr.getUserId()
+        
+        return Sender(senderId: userID,
+               displayName: username)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .link
-        
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back",
-//                                                           style: .done,
-//                                                           target: self,
-//                                                           action: #selector(didClickBack))
         
         // loadChat
         
@@ -90,6 +92,42 @@ class ChatViewController: MessagesViewController {
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        
+//        guard let selfSender = self.selfSender as? Sender else {
+//            print("Sender is nil")
+//            return
+//        }
+        
+        let selfSender = self.selfSender
+
+        
+//        guard let addcode = userMngr.getGroupId() as? String else {
+//            print ("Add code empty")
+//            return
+//        }
+        
+        let addcode = userMngr.getGroupId()
+        
+        let name = selfSender.displayName
+        let uid = selfSender.senderId
+        print("Name: \(name)")
+        print("UID: \(uid)")
+        
+        
+        let message = Message(kind: .text(text),
+                              sender: selfSender,
+                              messageId: chatMngr.createMessageId(),
+                              sentDate: Date())
+        
+        chatMngr.sendMessage(addCode: addcode,
+                             newMessage: message,
+                             completion: { success in
+                                if success {
+                                    print("Message \"\(text)\" sent to group \(addcode)")
+                                } else {
+                                    print("Failed to send message")
+                                }
+        })
         
         print("Sending: \(text)")
     }
