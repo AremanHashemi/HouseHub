@@ -8,6 +8,11 @@
 
 import UIKit
 
+class FixItTableViewCell: UITableViewCell{
+    @IBOutlet var fixItImage: UIImageView!
+    @IBOutlet var fixItLabel: UILabel!
+}
+
 class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     
@@ -46,7 +51,7 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
         fixesMngr.addFix(image: myImageView.image!, desc: txtDesc.text!)
         self.view.endEditing(true) //close keyboard
         txtDesc.text = ""
-        myImageView.image = nil
+        myImageView.image = UIImage(named: "InsertImage")
         
         tblFixes.reloadData()
     }
@@ -77,24 +82,12 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
        }
        
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-//            let f_cell = Bundle.main.loadNibNamed("FixitTableViewCell", owner: self, options: nil)?.first as! FixItTableViewCell
-//
-//            f_cell.mainImageView.image = fixesMngr.fixes[indexPath.row].image
-//            f_cell.mainLabel.text = fixesMngr.fixes[indexPath.row].desc
         
-        let f_cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Deault")
-        
-        f_cell.imageView?.image = fixesMngr.fixes[indexPath.row].image
-        f_cell.detailTextLabel?.text = fixesMngr.fixes[indexPath.row].desc
+            let f_cell = tableView.dequeueReusableCell(withIdentifier: "FixItCell", for: indexPath) as! FixItTableViewCell
+
+            f_cell.fixItImage.image = fixesMngr.fixes[indexPath.row].image
+            f_cell.fixItLabel.text = fixesMngr.fixes[indexPath.row].desc
         
             return f_cell
        }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 320
-    }
-    
-    
-    
-
 }
