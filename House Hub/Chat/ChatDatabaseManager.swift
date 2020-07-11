@@ -23,6 +23,43 @@ final class ChatDatabaseManager {
         return formatter
     }()
     
+    public enum ChatDatabaseError: Error {
+        case failedToFetch
+    }
+    
+    public func loadMessages(houseId: String, completion: @escaping (Result<[Message], Error>) -> Void) {
+        ref.child("GroupChats/groupchat_989U1/messages").observe(.value, with: { (snapshot) in
+            guard let value = (snapshot.value  as? [[String: Any]]) else {
+                completion(.failure(ChatDatabaseError.failedToFetch))
+                return
+            }
+            
+            let messages: [Message] = value.compactMap({ dictionary in
+                guard let messageID = dictionary["id"] as? String,
+                    let content = dictionary["content"] as? String,
+                    let type = dictionary["type"] as? String,
+                    let dateString = dictionary["date"] as? String,
+                    let senderID = dictionary["senderId"] as? String,
+                    let senderName = dictionary["senderName"] as? String,
+                    let date = ChatDatabaseManager.dateFormatter.date(from: dateString) else {
+                        return nil
+                }
+                
+                let sender = Sender(senderId: senderID,
+                                    displayName: senderName)
+                
+                print("\(content)")
+                
+                return Message(kind: .text(content),
+                               sender: sender,
+                               messageId: messageID,
+                               sentDate: date)
+                
+            })
+            completion(.success(messages))
+        })
+    }
+    
     
     public func createNewConversation(addCode: String, firstMessage: Message, completion: @escaping (Bool) -> Void) {
         let dateString = Self.dateFormatter.string(from: firstMessage.sentDate)
@@ -57,6 +94,7 @@ final class ChatDatabaseManager {
             "content": message,
             "date": dateString,
             "senderId": userMngr.getUserId(),
+            "senderName": userMngr.getUserName()
         ]
         
         let value: [String: Any] = [

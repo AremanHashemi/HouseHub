@@ -44,7 +44,17 @@ class SignInViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        checkUser()
+        checkUser(completion: { success in
+            if success {
+                print("User logged in successfully")
+  //              let uid = userMngr.getUserId()
+ //               userMngr.setUserData(userid: uid)
+
+                
+            } else {
+                print("User not logged in")
+            }
+        })
     }
     
     @IBAction func signInButton(_ sender: Any) {
@@ -62,20 +72,23 @@ class SignInViewController: UIViewController {
             print("Please enter password.")
             return
         }
-        login()
+        
     }
     
     func login(){
         Auth.auth().signIn(withEmail: email.text!, password: password.text!) { [weak self] authResult, err in
-            guard let strongSelf = self else {return}
+            guard let strongSelf = self else {
+                return
+            }
             if let err = err {
                 print(err.localizedDescription)
             }
-            strongSelf.checkUser()
+            strongSelf.checkUser(completion: { success in })
         }
     }
     
-    func checkUser(){
+    func checkUser(completion: @escaping (Bool) -> Void){
+
         if Auth.auth().currentUser != nil {
             
             /***********************************
@@ -125,10 +138,33 @@ class SignInViewController: UIViewController {
                                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(join_create_grp)
                 }
             })
-
+            
+        
+            let addCode = userMngr.getGroupId()
+        ref.child("Groups/\(addCode)/GroupName").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _groupName = snapshot.value  as? String{
+                userMngr.setGroupName(groupname_in: _groupName)//sets username for global user
+        
+            }
+        })
+            print("GroupName: \(userMngr.getGroupName())")
+            
+            completion(true)
         }else{
             //invalidUser.text = "Invalid user"
+            completion(false)
         }
+        
+        userMngr.testInfo(name: "Sign in")
 
+    }
+    
+    func retrieveGroupName(addCode: String) {
+        ref.child("Groups/\(addCode)/GroupName").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let group_name = snapshot.value as? String {
+                userMngr.setGroupName(groupname_in: group_name)
+                print("name: \(group_name)")
+            }
+        })
     }
 }

@@ -31,7 +31,16 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
         inputTextField.inputView = datePicker
         
         
+ 
+        
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        userMngr.retGroupName(addCode: userMngr.getGroupId())
+        userMngr.testInfo(name: "CV")
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){

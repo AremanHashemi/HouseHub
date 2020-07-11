@@ -78,6 +78,8 @@ class SignUpViewController: UIViewController {
             let vc = storyboard.instantiateViewController(identifier: "registerSuccess")
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
         }
+        
+        userMngr.testInfo(name: "SignUp")
     }
     /*
     // MARK: - Navigation

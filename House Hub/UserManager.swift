@@ -64,4 +64,26 @@ class UserManager: NSObject {
     func getHouseMates() -> [String]{
         return housemates
     }
+    
+    
+    public func retGroupName(addCode: String) {
+        ref.child("Groups/\(addCode)/GroupName").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _groupName = snapshot.value  as? String{
+                userMngr.setGroupName(groupname_in: _groupName)//sets username for global user
+        
+            }
+        })
+    }
+    
+    // testing
+    func testInfo(name: String) {
+        print("----\(name)-----")
+        print("Name: \(userMngr.getUserName())")
+        print("UID: \(userMngr.getUserId())")
+        print("GName: \(self.groupname)")
+        print("GID: \(userMngr.getGroupId())")
+        print("Housemates: \(userMngr.getHouseMates())")
+        print("---------------")
+    }
+
 }
