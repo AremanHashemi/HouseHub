@@ -78,8 +78,18 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
-
-        }
+        let gid = userMngr.getGroupId()
+        chatMngr.loadMessages(houseId: gid, completion: { [weak self] result in
+            switch result {
+            case .success(_):
+                print("Got messages")
+            case .failure(let error):
+                print("failed to get convos: \(error)")
+            }
+            
+        })
+        
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

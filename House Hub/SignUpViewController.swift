@@ -77,9 +77,13 @@ class SignUpViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "registerSuccess")
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+            
+            userMngr.setUserName(username_in: self.user.text!)
+            
+            userMngr.testInfo(name: "Sign up")
         }
         
-        userMngr.testInfo(name: "SignUp")
+        
     }
     /*
     // MARK: - Navigation

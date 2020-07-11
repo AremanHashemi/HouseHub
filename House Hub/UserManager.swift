@@ -65,13 +65,12 @@ class UserManager: NSObject {
         return housemates
     }
     
-    
     public func retGroupName(addCode: String) {
         ref.child("Groups/\(addCode)/GroupName").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let _groupName = snapshot.value  as? String{
-                userMngr.setGroupName(groupname_in: _groupName)//sets username for global user
-        
-            }
+            let group_name = snapshot.value as? String
+            //userMngr.setGroupName(groupname_in: groupname!)
+            //                  print("Group Name: \(userMngr.getGroupName())")
+            self.groupname = group_name!
         })
     }
     

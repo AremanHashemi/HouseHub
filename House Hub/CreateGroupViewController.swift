@@ -48,8 +48,12 @@ class CreateGroupViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         
+        // SET ALL VALUE ON CREATRGROUP
+        userMngr.setGroupName(groupname_in: GroupName.text!)
+        userMngr.setGroupId(groupId_in: addCodeLabel.text!)
+        
         //============= Chat Init =============
-        let username = "testuser"
+        let username = userMngr.getUserName()
  //       let testname = Auth.auth().currentUser?.displayName
 
         let houseName = GroupName.text!

@@ -28,11 +28,14 @@ final class ChatDatabaseManager {
     }
     
     public func loadMessages(houseId: String, completion: @escaping (Result<[Message], Error>) -> Void) {
-        ref.child("GroupChats/groupchat_989U1/messages").observe(.value, with: { (snapshot) in
+        ref.child("GroupChats/groupchat_MKFOP/messages").observe(.value, with: { (snapshot) in
+            print("Here1")
             guard let value = (snapshot.value  as? [[String: Any]]) else {
                 completion(.failure(ChatDatabaseError.failedToFetch))
                 return
             }
+            
+            print("Here2")
             
             let messages: [Message] = value.compactMap({ dictionary in
                 guard let messageID = dictionary["id"] as? String,
@@ -48,7 +51,7 @@ final class ChatDatabaseManager {
                 let sender = Sender(senderId: senderID,
                                     displayName: senderName)
                 
-                print("\(content)")
+                print("MESSAGE RETRIEVED: \(content)")
                 
                 return Message(kind: .text(content),
                                sender: sender,
@@ -94,7 +97,7 @@ final class ChatDatabaseManager {
             "content": message,
             "date": dateString,
             "senderId": userMngr.getUserId(),
-            "senderName": userMngr.getUserName()
+            "senderName": firstMessage.sender.displayName
         ]
         
         let value: [String: Any] = [
@@ -158,6 +161,7 @@ final class ChatDatabaseManager {
                 "content": message,
                 "date": dateString,
                 "senderId": userMngr.getUserId(),
+                "senderName": newMessage.sender.displayName
             ]
             
             currentMessages.append(newMessageEntry)
