@@ -31,15 +31,25 @@ class JoinGroupViewController: UIViewController {
 
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
+        userMngr.setUserId(userId_in: userID!)
         let usersRef: Void = ref.child("Groups").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.joinCode.text!){
                 ref.child("users/\(userID!)/Group").setValue(self.joinCode.text!)
+                print("JoinCode: \(self.joinCode.text!)")
+                userMngr.setGroupId(groupId_in: self.joinCode.text!)
+                userMngr.retGroupName(addCode: self.joinCode.text!)
+    //            print("Gname: \(userMngr.getGroupName())")
                 //Add current name to group
             }else{
                 print("Please enter a valid code")
                 return
             }
+            
+            
         })
+        
+    
+        
 
         _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
             if let group = snapshot.value  as? String{

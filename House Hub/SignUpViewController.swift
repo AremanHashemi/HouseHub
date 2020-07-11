@@ -79,8 +79,6 @@ class SignUpViewController: UIViewController {
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
             
             userMngr.setUserName(username_in: self.user.text!)
-            
-            userMngr.testInfo(name: "Sign up")
         }
         
         
