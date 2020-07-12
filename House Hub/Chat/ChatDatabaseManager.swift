@@ -181,44 +181,12 @@ final class ChatDatabaseManager {
         let msgIdentifier = "\(uid)_\(dateString)"
         return msgIdentifier
     }
-    
-//    //============= Chat Init =============
-//    let username = userMngr.getUserName()
-//    //       let testname = Auth.auth().currentUser?.displayName
-//    let houseName = GroupName.text!
-//
-//    let selfSender = Sender(senderId: Auth.auth().currentUser?.uid ?? username,
-//                            displayName: username)
-//
-//    let text = "AUTO: \(username) has joined \(houseName)"
-//
-//
-//    let message = Message(kind: .text(text),
-//                          sender: selfSender,
-//                          messageId: chatMngr.createMessageId(),
-//                          sentDate: Date())
-//
-//    chatMngr.createNewConversation(addCode: addCodeLabel.text!, firstMessage: message, completion: { success in
-//        if success {
-//            print("Message added to db")
-//        } else {
-//            print("Message add failed")
-//        }
-//    })
-//    //======================================
 
     public func sendCreateGroupMessage(addCode: String) {
         let name = userMngr.getUserName()
         let userid = userMngr.getUserId()
         let gname = userMngr.getGroupName()
         let content = "AUTO: \(name) has created \(gname)"
-
-        print("---------")
-        print(name)
-        print(userid)
-        print(content)
-        print(addCode)
-        
         
         let sender = Sender(senderId: userid,
                             displayName: name)

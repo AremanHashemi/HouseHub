@@ -79,7 +79,9 @@ class SignUpViewController: UIViewController {
             let vc = storyboard.instantiateViewController(identifier: "registerSuccess")
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
         
+            // Set UserManager username
             userMngr.setUserName(username_in: self.user.text!)
+            // Send Join message
             userMngr.setUserId(userId_in: Auth.auth().currentUser!.uid)
         }
     }

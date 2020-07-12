@@ -49,9 +49,12 @@ class ProfileViewController: UIViewController{
     @IBAction func leaveGroupBtn(_ sender: Any) {
         let userID = Auth.auth().currentUser?.uid
         
-        // for chat msg
+        /*************************************
+        *SEND LEAVE MESSAGE
+        **************************************/
         let gid = userMngr.getGroupId()
         chatMngr.sendLeaveGroupMessage(addCode: gid)
+        
         
         ref.child("users/\(userID!)/Group").removeValue()
         

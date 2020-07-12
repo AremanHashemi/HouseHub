@@ -48,37 +48,19 @@ class CreateGroupViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         
-        // SET ALL VALUES IN USER MNGR
-        // SET ALL VALUE ON CREATRGROUP
+        /*************************************
+        *ADD USERINFO TO  UserManager
+        **************************************/
         userMngr.setGroupName(groupname_in: GroupName.text!)
         userMngr.setGroupId(groupId_in: addCodeLabel.text!)
         
+        
+        /*************************************
+        *SEND CREATE MESSAGE
+        **************************************/
         chatMngr.sendCreateGroupMessage(addCode: addCodeLabel.text!)
         
-//        //============= Chat Init =============
-//        let username = userMngr.getUserName()
-//        //       let testname = Auth.auth().currentUser?.displayName
-//        let houseName = GroupName.text!
-//
-//        let selfSender = Sender(senderId: Auth.auth().currentUser?.uid ?? username,
-//                                displayName: username)
-//
-//        let text = "AUTO: \(username) has joined \(houseName)"
-//
-//
-//        let message = Message(kind: .text(text),
-//                              sender: selfSender,
-//                              messageId: chatMngr.createMessageId(),
-//                              sentDate: Date())
-//
-//        chatMngr.createNewConversation(addCode: addCodeLabel.text!, firstMessage: message, completion: { success in
-//            if success {
-//                print("Message added to db")
-//            } else {
-//                print("Message add failed")
-//            }
-//        })
-        //======================================
+
         
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar

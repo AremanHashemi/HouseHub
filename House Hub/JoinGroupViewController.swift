@@ -64,26 +64,10 @@ class JoinGroupViewController: UIViewController {
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
     
-        //======Chat Init=======
-//        let name = userMngr.getUserName()
-//        let userid = userMngr.getUserId()
-//        let ac = userMngr.getGroupId()
-//        let content = "AUTO: \(name) has joined \(userMngr.getGroupName())"
-//        let sender = Sender(senderId: userid,
-//                            displayName: name)
-//
-//        let message = Message(kind: .text(content),
-//                              sender: sender,
-//                              messageId: chatMngr.createMessageId(),
-//                              sentDate: Date())
-//
-//        chatMngr.sendMessage(addCode: ac, newMessage: message, completion: { success in
-//            if success {
-//                print("Join message sent")
-//            } else {
-//                print("Failed to notify joining member")
-//            }
-//        })
+
+        /*************************************
+        *SEND JOIN MESSAGE
+        **************************************/
         let ac = userMngr.getGroupId()
         chatMngr.sendJoinGroupMessage(addCode: ac)
     }
