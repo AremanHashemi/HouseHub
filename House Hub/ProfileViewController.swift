@@ -48,6 +48,11 @@ class ProfileViewController: UIViewController{
     
     @IBAction func leaveGroupBtn(_ sender: Any) {
         let userID = Auth.auth().currentUser?.uid
+        
+        // for chat msg
+        let gid = userMngr.getGroupId()
+        chatMngr.sendLeaveGroupMessage(addCode: gid)
+        
         ref.child("users/\(userID!)/Group").removeValue()
         
         /*************************************
@@ -61,6 +66,7 @@ class ProfileViewController: UIViewController{
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let join_create_grp = storyboard.instantiateViewController(identifier: "registerSuccess")
                     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(join_create_grp)
+   
     }
         
     @IBAction func logoutBtn(_ sender: Any) {
