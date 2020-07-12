@@ -48,9 +48,12 @@ class JoinGroupViewController: UIViewController {
             
         })
         
+<<<<<<< HEAD
     
         
 
+=======
+>>>>>>> ChatNewNew
         _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
             if let group = snapshot.value  as? String{
                 print(group)

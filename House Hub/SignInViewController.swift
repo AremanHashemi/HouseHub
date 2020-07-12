@@ -104,6 +104,12 @@ class SignInViewController: UIViewController {
 
                     userMngr.retGroupName(addCode: group)
                     
+<<<<<<< HEAD
+=======
+                    print("Group ID: \(userMngr.getGroupId())")
+                    
+                    
+>>>>>>> ChatNewNew
                     ref.child("Groceries/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
                         groceryMngr.groceries.removeAll()
                         let groceryList = snapshot.value as? [String:String] ?? [:]
