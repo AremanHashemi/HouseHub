@@ -92,7 +92,7 @@ class SignInViewController: UIViewController {
                 if let username = snapshot.value  as? String{
                     userMngr.setUserName(username_in: username)//sets username for global user
                 }
-                print("NAME: \(userMngr.getUserName())")
+        //        print("NAME: \(userMngr.getUserName())")
             })
             
             //GROUP ID
@@ -101,8 +101,8 @@ class SignInViewController: UIViewController {
                     
                     userMngr.setGroupId(groupId_in: group)//sets group id for global user
                     
-                    print("Group ID: \(userMngr.getGroupId())")
-                    
+             //       print("Group ID: \(userMngr.getGroupId())")
+                    userMngr.retGroupName(addCode: group)
                     
                     ref.child("Groceries/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
                         groceryMngr.groceries.removeAll()
@@ -131,6 +131,5 @@ class SignInViewController: UIViewController {
         }else{
             //invalidUser.text = "Invalid user"
         }
-
     }
 }

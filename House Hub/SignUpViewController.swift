@@ -73,10 +73,14 @@ class SignUpViewController: UIViewController {
             let ref = Database.database().reference()
             let values = [ "user" : self.user.text, "email" : self.email.text]
             ref.child("users").child(Auth.auth().currentUser!.uid).setValue(values)
+        
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "registerSuccess")
             (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+        
+            userMngr.setUserName(username_in: self.user.text!)
+            userMngr.setUserId(userId_in: Auth.auth().currentUser!.uid)
         }
     }
     /*
