@@ -21,7 +21,21 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        tblGroceries.reloadData()
+        ref.child("Groceries/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
+            groceryMngr.groceries.removeAll()
+            print("Grocceries getting updated")
+            print(userMngr.getGroupId())
+            print("Snapshot =", snapshot)
+            //groceryMngr.groceries.removeAll()
+            let groceryList = snapshot.value as? [String:String] ?? [:]
+            let sortedGroceryList = groceryList.sorted(by: <)
+            for (name, desc) in sortedGroceryList{
+                print(name, desc)
+                groceryMngr.addGrocery(name: name, desc: desc)
+            }
+            self.tblGroceries.reloadData()
+        })
+        self.tblGroceries.reloadData()
     }
 
     /***********************************
@@ -67,6 +81,10 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
             groceryMngr.groceries.remove(at: indexPath.row)
             tblGroceries.reloadData()
         }
+    }
+    
+    func refresh2 (){
+        self.tblGroceries.reloadData()
     }
     
     /***********************************
