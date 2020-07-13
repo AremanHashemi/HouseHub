@@ -113,33 +113,77 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cPh-XE-3Ib">
-                                <rect key="frame" x="20" y="92" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="umq-68-k7F">
-                                <rect key="frame" x="20" y="134" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GXA-0O-hzW">
-                                <rect key="frame" x="0.0" y="218" width="414" height="595"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="340" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GXA-0O-hzW">
+                                <rect key="frame" x="0.0" y="413" width="414" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FixItCell" rowHeight="335" id="ICg-Vj-whB" customClass="FixItTableViewCell" customModule="House_Hub" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="335"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ICg-Vj-whB" id="hac-dU-TkZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="335"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38U-iU-gnq">
+                                                    <rect key="frame" x="0.0" y="-9" width="414" height="353"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWo-Br-9jy">
+                                                            <rect key="frame" x="20" y="268" width="374" height="65"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gno-15-xN5">
+                                                            <rect key="frame" x="20" y="20" width="374" height="240"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="414" id="5wa-B4-Xwz"/>
+                                                        <constraint firstAttribute="height" constant="353" id="8k1-YF-5yM"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="fixItImage" destination="gno-15-xN5" id="AY3-CW-B9S"/>
+                                            <outlet property="fixItLabel" destination="aWo-Br-9jy" id="ebs-ir-2ou"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="EqH-Xe-QFU" id="UMl-dn-Ly0"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OYg-Wl-eTg">
-                                <rect key="frame" x="190" y="175" width="35" height="35"/>
+                                <rect key="frame" x="190" y="370" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
                                     <action selector="btnAddFix_Click:" destination="EqH-Xe-QFU" eventType="touchUpInside" id="9S7-jM-7yD"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="umq-68-k7F">
+                                <rect key="frame" x="20" y="328" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="InsertImage" translatesAutoresizingMaskIntoConstraints="NO" id="Tdc-Zw-HAJ">
+                                <rect key="frame" x="20" y="92" width="374" height="228"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IQO-09-XSd">
+                                <rect key="frame" x="20" y="92" width="374" height="228"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <connections>
+                                    <action selector="insertImageBtn:" destination="EqH-Xe-QFU" eventType="touchUpInside" id="kph-uD-fwZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -148,14 +192,14 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="fixit" image="wrench" catalog="system" id="L3C-We-UTr"/>
                     <connections>
+                        <outlet property="myImageView" destination="Tdc-Zw-HAJ" id="FGZ-7h-zuv"/>
                         <outlet property="tblFixes" destination="GXA-0O-hzW" id="87H-Tb-vI2"/>
                         <outlet property="txtDesc" destination="umq-68-k7F" id="0Ub-UX-FC2"/>
-                        <outlet property="txtFix" destination="cPh-XE-3Ib" id="t8W-0w-tcB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SqA-NX-i6R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1488" y="-1116"/>
+            <point key="canvasLocation" x="1486.9565217391305" y="-1116.2946428571429"/>
         </scene>
         <!--Messaging-->
         <scene sceneID="wg7-f3-ORb">
@@ -180,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2302.898550724638" y="295.98214285714283"/>
+            <point key="canvasLocation" x="1367" y="296"/>
         </scene>
         <!--Groceries-->
         <scene sceneID="ZJA-Sn-giD">
@@ -344,7 +388,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YDM-u5-C94" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1620.289855072464" y="295.98214285714283"/>
+            <point key="canvasLocation" x="672" y="296"/>
         </scene>
         <!--Change Username View Controller-->
         <scene sceneID="9O6-CZ-5G4">
@@ -892,6 +936,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="InsertImage" width="112.5" height="112.5"/>
         <image name="bag.badge.plus" catalog="system" width="128" height="122"/>
         <image name="bell" catalog="system" width="128" height="124"/>
         <image name="house" catalog="system" width="128" height="110"/>

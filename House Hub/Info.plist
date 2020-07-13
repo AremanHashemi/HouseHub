@@ -47,6 +47,10 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>What needs to be fixed?</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take a Picture</string>
 	<key>UIStatusBarTintParameters</key>
 	<dict>
 		<key>UINavigationBar</key>
