@@ -13,6 +13,7 @@ import InputBarAccessoryView
 
 class ChatViewController: MessagesViewController {
     
+    
     private var messages = [Message]()
     
     private var selfSender: Sender {
@@ -35,13 +36,20 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
         
+    
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         messageInputBar.inputTextView.becomeFirstResponder()
+        self.messagesCollectionView.scrollToBottom()
         let gid = userMngr.getGroupId()
         listenForMessages(id: gid, shouldScrollToBottom: true)
+        
+        self.messagesCollectionView.scrollToBottom()
+
+        
     }
     
     private func listenForMessages(id: String, shouldScrollToBottom: Bool) {
@@ -49,6 +57,24 @@ class ChatViewController: MessagesViewController {
             switch result {
             case .success(let messages):
                 print("Got messages")
+                guard !messages.isEmpty else {
+                    print("Messages are empty")
+                    return
+                }
+                
+                self?.messages = messages
+                
+                
+                DispatchQueue.main.async {
+                    self?.messagesCollectionView.reloadDataAndKeepOffset()
+                    print("Success")
+                    
+                    if shouldScrollToBottom {
+                        self?.messagesCollectionView.scrollToBottom()
+                    }
+                
+                }
+                
             case .failure(let error):
                 print("failed to get messages: \(error)")
             }
@@ -86,12 +112,14 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
                              completion: { success in
                                 if success {
                                     print("Message \"\(text)\" sent to group \(addcode)")
+                                    
                                 } else {
                                     print("Failed to send message")
                                 }
         })
         
         print("Sending: \(text)")
+        self.messageInputBar.inputTextView.text = nil
     }
 }
 
@@ -106,6 +134,24 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
 
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
+    }
+    
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        let sender = message.sender
+        if sender.senderId == selfSender.senderId {
+            return .link
+        }
+
+        return .secondarySystemBackground
+    }
+    
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        
+        let sender = message.sender
+        
+        if sender.senderId == selfSender.senderId {
+            avatarView.set
+        }
     }
     
 }

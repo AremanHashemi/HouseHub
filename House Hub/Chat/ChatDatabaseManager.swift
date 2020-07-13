@@ -6,6 +6,7 @@
 //
 import Foundation
 import FirebaseDatabase
+import MessageKit
 
 var chatMngr: ChatDatabaseManager = ChatDatabaseManager()
 
@@ -26,7 +27,7 @@ final class ChatDatabaseManager {
     }
     
     public func loadMessages(houseId: String, completion: @escaping (Result<[Message], Error>) -> Void) {
-        let convoid = "groupchat_9PEPf"
+        let convoid = "groupchat_\(houseId)"
         ref.child("Groupchats/\(convoid)/messages").observe(.value, with: { snapshot in
             guard let value = (snapshot.value  as? [[String: Any]]) else {
                 completion(.failure(ChatDatabaseError.failedToFetch))
@@ -242,3 +243,41 @@ final class ChatDatabaseManager {
         })
     }
 }
+
+struct Message: MessageType {
+    public var kind: MessageKind
+    public var sender: SenderType
+    public var messageId: String
+    public var sentDate: Date
+}
+
+extension MessageKind {
+    var messageKindString: String {
+        switch self {
+        case .text(_):
+            return "text"
+        case .attributedText(_):
+            return "attributed_text"
+        case .photo(_):
+            return "photo"
+        case .video(_):
+            return "video"
+        case .location(_):
+            return "location"
+        case .emoji(_):
+            return "emoji"
+        case .audio(_):
+            return "audio"
+        case .contact(_):
+            return "contact"
+        case .custom(_):
+            return "customc"
+        }
+    }
+}
+
+struct Sender: SenderType {
+    public var senderId: String
+    public var displayName: String
+}
+
