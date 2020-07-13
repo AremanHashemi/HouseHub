@@ -26,22 +26,20 @@ final class ChatDatabaseManager {
     }
     
     public func loadMessages(houseId: String, completion: @escaping (Result<[Message], Error>) -> Void) {
-        ref.child("GroupChats/groupchat_MKFOP/messages").observe(.value, with: { (snapshot) in
-            print("Here1")
+        let convoid = "groupchat_9PEPf"
+        ref.child("Groupchats/\(convoid)/messages").observe(.value, with: { snapshot in
             guard let value = (snapshot.value  as? [[String: Any]]) else {
                 completion(.failure(ChatDatabaseError.failedToFetch))
                 return
             }
             
-            print("Here2")
-            
             let messages: [Message] = value.compactMap({ dictionary in
-                guard let messageID = dictionary["id"] as? String,
-                    let content = dictionary["content"] as? String,
-                    let type = dictionary["type"] as? String,
+                guard let content = dictionary["content"] as? String,
+                    let messageId = dictionary["id"] as? String,
                     let dateString = dictionary["date"] as? String,
                     let senderID = dictionary["senderId"] as? String,
                     let senderName = dictionary["senderName"] as? String,
+
                     let date = ChatDatabaseManager.dateFormatter.date(from: dateString) else {
                         return nil
                 }
@@ -49,13 +47,10 @@ final class ChatDatabaseManager {
                 let sender = Sender(senderId: senderID,
                                     displayName: senderName)
                 
-                print("MESSAGE RETRIEVED: \(content)")
-                
                 return Message(kind: .text(content),
                                sender: sender,
-                               messageId: messageID,
+                               messageId: messageId,
                                sentDate: date)
-                
             })
             completion(.success(messages))
         })
