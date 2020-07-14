@@ -17,6 +17,8 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet var txtSplit: UITextField!
     
     private var datePicker: UIDatePicker?
+    @IBOutlet var txtTotalBillsAmount: UILabel!
+    var bills_total = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,7 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func btnAddBill_Click(_ sender: UIButton) {
         var split = 1.0//no split
+        var count_decimal = 0
   
         if ((txtBill.text == "") || (txtPrice.text == "")) {//price is required and name of bill is required
             return
@@ -53,7 +56,15 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             deadline = txtDeadline.text!
             //print(deadline)
         }
-
+        
+        for char in txtPrice.text! {//check that theres at most 1 "."
+            if (char == "."){
+                count_decimal += 1
+                if(count_decimal > 1){
+                    return
+                }
+            }
+        }
         
         let price = Double(txtPrice.text!)!
         let price_per_person = price/split
@@ -66,6 +77,9 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         txtDeadline.text = ""
         txtSplit.text = ""
         
+        bills_total += Double(price_per_person_txt) ?? 0
+        bills_total = (bills_total*100).rounded()/100 //round to 2 decimal places
+        txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
         tblBills.reloadData()
     }
     
@@ -84,7 +98,10 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //delete from table
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if(editingStyle == UITableViewCell.EditingStyle.delete){
+            bills_total -= Double(billsMngr.bills[indexPath.row].split) ?? 0
+            bills_total = (bills_total*100).rounded()/100  //round to 2 decimal places
             billsMngr.bills.remove(at: indexPath.row)
+            txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
             tblBills.reloadData()
         }
     }
