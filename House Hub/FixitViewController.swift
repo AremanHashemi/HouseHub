@@ -16,6 +16,7 @@ class FixItTableViewCell: UITableViewCell{
 class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
     
     
+    @IBOutlet var addFixView: UIView!
     @IBOutlet var myImageView: UIImageView!
     @IBOutlet var tblFixes: UITableView!
     @IBOutlet var txtDesc: UITextField!
@@ -25,6 +26,10 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        addFixView.layer.cornerRadius = 8.0
+        addFixView.layer.masksToBounds = true
+        addFixView.layer.borderColor = UIColor.black.cgColor
+        addFixView.layer.borderWidth = 1.0
     }
     
     @IBAction func insertImageBtn(_ sender: Any) {

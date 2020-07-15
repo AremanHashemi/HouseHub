@@ -19,6 +19,6 @@ class FixesManager: NSObject {
     var fixes: [fix] = []
     
     func addFix(image: UIImage, desc: String){
-        fixes.append(fix(image: image, desc: desc))
+        fixes.insert(fix(image: image, desc: desc), at: 0)
     }
 }
