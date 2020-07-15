@@ -48,6 +48,20 @@ class CreateGroupViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         
+        /*************************************
+        *ADD USERINFO TO  UserManager
+        **************************************/
+        userMngr.setGroupName(groupname_in: GroupName.text!)
+        userMngr.setGroupId(groupId_in: addCodeLabel.text!)
+        
+        
+        /*************************************
+        *SEND CREATE MESSAGE
+        **************************************/
+        chatMngr.sendCreateGroupMessage(addCode: addCodeLabel.text!)
+        
+
+        
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)

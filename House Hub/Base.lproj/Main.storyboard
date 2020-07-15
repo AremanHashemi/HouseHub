@@ -212,26 +212,18 @@
             </objects>
             <point key="canvasLocation" x="1486.9565217391305" y="-1116.2946428571429"/>
         </scene>
-        <!--Messaging-->
+        <!--House Chat-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="MessagesViewController" customModule="House_Hub" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="ChatViewController" customModule="House_Hub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Messages" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xc4-cU-wBs">
-                                <rect key="frame" x="124" y="44" width="167" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Messaging" image="message" catalog="system" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" title="House Chat" id="mzS-1q-mGt"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -862,6 +854,7 @@
                         <segue destination="ebV-IN-Rcf" kind="relationship" relationship="viewControllers" id="ix8-55-hTt"/>
                         <segue destination="EqH-Xe-QFU" kind="relationship" relationship="viewControllers" id="zkS-ST-CXf"/>
                         <segue destination="hLc-Fk-SHl" kind="relationship" relationship="viewControllers" id="jLt-4P-Bu0"/>
+                        <segue destination="jPG-xF-esX" kind="relationship" relationship="viewControllers" id="E30-xh-WfZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1142,6 +1135,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rBf-Tt-J1c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2330.434782608696" y="1027.9017857142858"/>
+        </scene>
+        <!--Messaging-->
+        <scene sceneID="RKo-mG-1dm">
+            <objects>
+                <navigationController id="jPG-xF-esX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Messaging" image="message" catalog="system" id="xel-1S-Nsy"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="UZF-3O-VXb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="eeW-qf-mYn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ccj-7r-4Ig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2438" y="-443"/>
         </scene>
     </scenes>
     <resources>

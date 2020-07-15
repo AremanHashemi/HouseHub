@@ -32,6 +32,11 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
         view.endEditing(true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        userMngr.testInfo(name: "CVC")
+    }
+    
     @objc func dateChanged(datePicker: UIDatePicker){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/dd/yy"
