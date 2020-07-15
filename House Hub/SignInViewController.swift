@@ -22,8 +22,8 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        LoginImage.layer.masksToBounds = true
-              LoginImage.layer.cornerRadius = LoginImage.bounds.width / 2
+//        LoginImage.layer.masksToBounds = true
+            //  LoginImage.layer.cornerRadius = LoginImage.bounds.width / 2
 
         // Do any additional setup after loading the view.
     }
@@ -92,13 +92,14 @@ class SignInViewController: UIViewController {
                 if let username = snapshot.value  as? String{
                     userMngr.setUserName(username_in: username)//sets username for global user
                 }
-                print("NAME: \(userMngr.getUserName())")
+        //        print("NAME: \(userMngr.getUserName())")
             })
             
             //GROUP ID
             _ = ref.child("users").child(userMngr.getUserId()).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let group = snapshot.value  as? String{
                     userMngr.setGroupId(groupId_in: group)//sets group id for global user
+
                     print("Group ID: \(userMngr.getGroupId())")
 //                    ref.child("Groceries/\(userMngr.getGroupId())").observeSingleEvent(of: .value, with: { (snapshot2) in
 //                        //groceryMngr.groceries.removeAll()
@@ -109,6 +110,7 @@ class SignInViewController: UIViewController {
 //                            print(name,desc)
 //                        }
 //                    })
+
                     /***********************************
                     * GO TO APP
                     ************************************/
@@ -129,6 +131,5 @@ class SignInViewController: UIViewController {
         }else{
             //invalidUser.text = "Invalid user"
         }
-
     }
 }
