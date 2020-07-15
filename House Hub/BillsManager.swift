@@ -23,5 +23,7 @@ class BillsManager: NSObject {
     
     func addBill(name: String, price: String, split: String, deadline: String, username: String){
         bills.append(bill(name: name, price: price, split: split, deadline: deadline, username: username))
+        let list = [price, split, deadline, username]
+        ref.child("Bills/\(userMngr.getGroupId())/\(name)").setValue(list)
     }
 }

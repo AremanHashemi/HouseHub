@@ -27,6 +27,38 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         datePicker?.datePickerMode = .date
         datePicker?.addTarget(self, action: #selector(BillsViewController.dateChanged(datePicker:)), for: .valueChanged)
         txtDeadline.inputView = datePicker
+        
+        // Do any additional setup after loading the view.
+        ref.child("Bills/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
+            billsMngr.bills.removeAll()
+            self.bills_total = 0
+            //groceryMngr.groceries.removeAll()
+    //            if snapshot.value is NSNull{
+    //                print("Empty")
+    //                return
+    //            }
+            let postDict = snapshot.value as? NSDictionary ?? [:]
+            for (name, value1) in postDict{
+                let name:String = name as! String
+                let value = value1 as? [String] ?? nil
+                let price:String = value![0]
+                let split:String = value![1]
+                let deadline:String = value![2]
+                let username:String = value![3]
+                print(name, price, split, deadline, username , " =========")
+                billsMngr.addBill(name: name, price: price, split: split, deadline: deadline, username: username)
+                self.bills_total += (Double(split)!)
+            }
+            self.bills_total = (self.bills_total*100).rounded()/100 //round to 2 decimal places
+            self.txtTotalBillsAmount.text = String(format: "$%.2f", self.bills_total)
+            self.tblBills.reloadData()
+
+            
+            
+            self.tblBills.reloadData()
+        })
+        self.tblBills.reloadData()
+        
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){
