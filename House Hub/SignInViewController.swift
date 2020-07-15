@@ -22,8 +22,8 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        LoginImage.layer.masksToBounds = true
-              LoginImage.layer.cornerRadius = LoginImage.bounds.width / 2
+//        LoginImage.layer.masksToBounds = true
+            //  LoginImage.layer.cornerRadius = LoginImage.bounds.width / 2
 
         // Do any additional setup after loading the view.
     }
