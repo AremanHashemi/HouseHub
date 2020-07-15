@@ -127,16 +127,21 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return true
     }
     
-    //delete from table
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
-        if(editingStyle == UITableViewCell.EditingStyle.delete){
-            bills_total -= Double(billsMngr.bills[indexPath.row].split) ?? 0
-            bills_total = (bills_total*100).rounded()/100  //round to 2 decimal places
-            billsMngr.bills.remove(at: indexPath.row)
-            txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
-            tblBills.reloadData()
-        }
-    }
+     //delete from table
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+         if(editingStyle == UITableViewCell.EditingStyle.delete){
+             let BillsRef = ref.child("Bills/\(userMngr.getGroupId())/\(billsMngr.bills[indexPath.row].name)")
+             BillsRef.removeValue { error, _ in
+                 print(error)
+             }
+             billsMngr.bills.remove(at: indexPath.row)
+ //            bills_total -= Double(billsMngr.bills[indexPath.row].split) ?? 0
+ //            bills_total = (bills_total*100).rounded()/100  //round to 2 decimal places
+ //            billsMngr.bills.remove(at: indexPath.row)
+ //            txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
+             tblBills.reloadData()
+         }
+     }
     
     //UItableview data source
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
