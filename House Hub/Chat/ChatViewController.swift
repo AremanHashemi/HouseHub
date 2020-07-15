@@ -47,8 +47,8 @@ class ChatViewController: MessagesViewController {
         let gid = userMngr.getGroupId()
         listenForMessages(id: gid, shouldScrollToBottom: true)
         
-        self.messagesCollectionView.scrollToBottom()
-
+    //    self.messagesCollectionView.scrollToBottom()
+        self.messagesCollectionView.scrollToBottom(animated: false)
         
     }
     
