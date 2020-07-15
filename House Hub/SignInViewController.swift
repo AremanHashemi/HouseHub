@@ -22,8 +22,8 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        LoginImage.layer.masksToBounds = true
-              LoginImage.layer.cornerRadius = LoginImage.bounds.width / 2
+//        LoginImage.layer.masksToBounds = true
+            //  LoginImage.layer.cornerRadius = LoginImage.bounds.width / 2
 
         // Do any additional setup after loading the view.
     }
@@ -98,19 +98,17 @@ class SignInViewController: UIViewController {
             //GROUP ID
             _ = ref.child("users").child(userMngr.getUserId()).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let group = snapshot.value  as? String{
-                    
                     userMngr.setGroupId(groupId_in: group)//sets group id for global user
-                    
                     print("Group ID: \(userMngr.getGroupId())")
-                    
-                    
-                    ref.child("Groceries/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
-                        groceryMngr.groceries.removeAll()
-                        let groceryList = snapshot.value as? [String:String] ?? [:]
-                        for (name, desc) in groceryList{
-                            groceryMngr.addGrocery(name: name, desc: desc)
-                        }
-                    })
+//                    ref.child("Groceries/\(userMngr.getGroupId())").observeSingleEvent(of: .value, with: { (snapshot2) in
+//                        //groceryMngr.groceries.removeAll()
+//                        let groceryList = snapshot.value as? [String: String] ?? [:]
+//                        print(groceryList)
+//                        for (name, desc) in groceryList{
+//                            groceryMngr.addGrocery(name: name, desc: desc)
+//                            print(name,desc)
+//                        }
+//                    })
                     /***********************************
                     * GO TO APP
                     ************************************/

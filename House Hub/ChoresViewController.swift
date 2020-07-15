@@ -10,29 +10,22 @@ import UIKit
 import FirebaseDatabase
 
 class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
-
-    @IBOutlet weak var inputTextField: UITextField!
+    
+    @IBOutlet var tblTasks: UITableView!//exclamation for null until used
+    @IBOutlet var txtChoreName: UITextField!
+    @IBOutlet var txtAssignto: UITextField!
+    @IBOutlet var txtDeadline: UITextField!
     
     private var datePicker: UIDatePicker?
-    @IBOutlet var tblTasks: UITableView!//exclamation for null until used
-    @IBOutlet var txtTask: UITextField!//chore name
-    @IBOutlet var txtDesc: UITextField!//chore description
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Do any additional setup after loading the view.
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
-        datePicker?.addTarget(self, action: #selector(ChoresViewController.dateChanged(datePicker:)), for: .valueChanged)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ChoresViewController.viewTapped(gestureRecognizer:)))
-        
-        view.addGestureRecognizer(tapGesture)
-        
-        inputTextField.inputView = datePicker
-        
-        
-        // Do any additional setup after loading the view.
+        datePicker?.addTarget(self, action: #selector(BillsViewController.dateChanged(datePicker:)), for: .valueChanged)
+        txtDeadline.inputView = datePicker
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
@@ -41,23 +34,33 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @objc func dateChanged(datePicker: UIDatePicker){
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
+        dateFormatter.dateFormat = "M/dd/yy"
         
-        inputTextField.text = dateFormatter.string(from: datePicker.date)
+        txtDeadline.text = dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
     }
     //button click
     @IBAction func btnAddTask_Click(_ sender: UIButton) {
-        choreMngr.addChore(name: txtTask.text!, desc: txtDesc.text!)
-        let ref = Database.database().reference()
+        var deadline = ""
+        if let field = txtDeadline.text, field.isEmpty {
+          deadline = "NONE"
+           // print(deadline)
+        } else {
+            deadline = txtDeadline.text!
+            //print(deadline)
+        }
         
-        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtTask.text!))/Description").setValue(txtDesc.text)
-        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtTask.text!))/Time").setValue(txtDesc.text)
+        choreMngr.addChore(choreName: txtChoreName.text!, chorePerson: txtAssignto.text!, deadline: deadline, username: userMngr.getUserName())
         
-        print(datePicker)
-        self.view.endEditing(true) //close keyboard
-        txtTask.text = "" //make text fields blank
-        txtDesc.text = ""
+        
+//        let ref = Database.database().reference()
+//
+//        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtChoreName.text!))/AssignedTo").setValue(txtAssignto.text)
+//        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtChoreName.text!))/Deadline").setValue(txtDeadline.text)
+        
+        txtChoreName.text = "" //make text fields blank
+        txtAssignto.text = ""
+        txtDeadline.text = ""
         
         tblTasks.reloadData()
     }
@@ -89,9 +92,42 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let c_cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Deault")
+         c_cell.textLabel?.numberOfLines = 0;
         
-        c_cell.textLabel!.text = choreMngr.chores[indexPath.row].name
-        c_cell.detailTextLabel?.text = choreMngr.chores[indexPath.row].desc
+        let cell_text = choreMngr.chores[indexPath.row].choreName + " \nAssigned To: " + choreMngr.chores[indexPath.row].chorePerson + " \nDeadline: " + choreMngr.chores[indexPath.row].deadline
+        
+        c_cell.textLabel!.text = cell_text
+        c_cell.detailTextLabel?.text = "Added by " + choreMngr.chores[indexPath.row].username
+        
+        if(choreMngr.chores[indexPath.row].deadline != "NONE"){
+            
+            /**********************************
+             *DUE DATE
+             *********************************/
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "M/dd/yy"
+            let date = dateFormatter.date(from: choreMngr.chores[indexPath.row].deadline)
+           
+            /*********************************
+             *TODAYS DATE
+             ********************************/
+            let currentDateTime = Date()
+            let today = dateFormatter.string(from: currentDateTime)
+            let today_date = dateFormatter.date(from: today)
+
+            if((date! < today_date!)){//compare dates green if not due yet red if overdue yellow if due today
+                c_cell.backgroundColor = UIColor.systemRed
+            }
+            else if((date! == today_date!)){
+                c_cell.backgroundColor = UIColor.systemYellow
+            }
+            else{
+                c_cell.backgroundColor = UIColor.systemGreen
+            }
+        }
+        else{
+            c_cell.backgroundColor = UIColor.systemGreen
+        }
         
         return c_cell
     }

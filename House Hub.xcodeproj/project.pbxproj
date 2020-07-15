@@ -29,12 +29,12 @@
 		5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */; };
 		5AE9417524B58A070092DA4B /* join_createViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9417424B58A060092DA4B /* join_createViewController.swift */; };
 		5AE9417724B674170092DA4B /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9417624B674160092DA4B /* UserManager.swift */; };
+		5AE9418324BD3FDF0092DA4B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE9418224BD3FDF0092DA4B /* TabBarController.swift */; };
 		83748EFC9D8A50EA1C259A72 /* Pods_House_Hub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */; };
 		8B9D6B3624ACFD9F0024303D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */; };
 		CD42C18724B907F700D43698 /* ChangeUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42C18624B907F700D43698 /* ChangeUsername.swift */; };
 		CD42C18824B9086900D43698 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A1F430A24A427EE00761B9B /* Main.storyboard */; };
 		CD42C18A24B911CE00D43698 /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42C18924B911CE00D43698 /* ChangePassword.swift */; };
-		CD42C18C24B91F3200D43698 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD42C18B24B91F3200D43698 /* MessagesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,12 +84,12 @@
 		5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		5AE9417424B58A060092DA4B /* join_createViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = join_createViewController.swift; sourceTree = "<group>"; };
 		5AE9417624B674160092DA4B /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		5AE9418224BD3FDF0092DA4B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		6EFF2B08A1A941A0F278013B /* Pods_House_Hub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_House_Hub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A47B23F7BD9307DBDDCC479 /* Pods-House Hub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-House Hub.debug.xcconfig"; path = "Target Support Files/Pods-House Hub/Pods-House Hub.debug.xcconfig"; sourceTree = "<group>"; };
 		8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CD42C18624B907F700D43698 /* ChangeUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUsername.swift; sourceTree = "<group>"; };
 		CD42C18924B911CE00D43698 /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
-		CD42C18B24B91F3200D43698 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessagesViewController.swift; path = ../../../.Trash/MessagesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +146,7 @@
 			children = (
 				5A1F430224A427EE00761B9B /* AppDelegate.swift */,
 				5A1F430424A427EE00761B9B /* SceneDelegate.swift */,
+				5AE9418224BD3FDF0092DA4B /* TabBarController.swift */,
 				5AE9416824AC14920092DA4B /* SignInViewController.swift */,
 				5AE9417424B58A060092DA4B /* join_createViewController.swift */,
 				5AE9416A24AC23A20092DA4B /* CreateGroupViewController.swift */,
@@ -154,16 +155,15 @@
 				5A1F43FE24A6D7DB00761B9B /* ProfileViewController.swift */,
 				CD42C18624B907F700D43698 /* ChangeUsername.swift */,
 				CD42C18924B911CE00D43698 /* ChangePassword.swift */,
-				CD42C18B24B91F3200D43698 /* MessagesViewController.swift */,
-				5A1F430624A427EE00761B9B /* ChoresViewController.swift */,
-				5A1F43FA24A6CF4500761B9B /* FixitViewController.swift */,
 				5A1F430A24A427EE00761B9B /* Main.storyboard */,
-				5A1F43F824A6CE8300761B9B /* FixitManager.swift */,
 				5A1F433624A429D000761B9B /* ChoreManager.swift */,
-				5A1F43F224A6A21000761B9B /* BillsViewController.swift */,
+				5A1F430624A427EE00761B9B /* ChoresViewController.swift */,
+				5A1F43F824A6CE8300761B9B /* FixitManager.swift */,
+				5A1F43FA24A6CF4500761B9B /* FixitViewController.swift */,
 				5A1F43F624A6B4D500761B9B /* BillsManager.swift */,
-				5A1F430824A427EE00761B9B /* GroceriesViewController.swift */,
+				5A1F43F224A6A21000761B9B /* BillsViewController.swift */,
 				5A1F43F424A6A34200761B9B /* GroceryManager.swift */,
+				5A1F430824A427EE00761B9B /* GroceriesViewController.swift */,
 				5AE9417624B674160092DA4B /* UserManager.swift */,
 				5A1F430D24A427F300761B9B /* Assets.xcassets */,
 				8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */,
@@ -412,10 +412,10 @@
 				5AE9416924AC14920092DA4B /* SignInViewController.swift in Sources */,
 				CD42C18A24B911CE00D43698 /* ChangePassword.swift in Sources */,
 				5A1F430324A427EE00761B9B /* AppDelegate.swift in Sources */,
-				CD42C18C24B91F3200D43698 /* MessagesViewController.swift in Sources */,
 				5A1F43FF24A6D7DB00761B9B /* ProfileViewController.swift in Sources */,
 				5AE9416B24AC23A20092DA4B /* CreateGroupViewController.swift in Sources */,
 				5A1F430524A427EE00761B9B /* SceneDelegate.swift in Sources */,
+				5AE9418324BD3FDF0092DA4B /* TabBarController.swift in Sources */,
 				5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */,
 				5A1F43FB24A6CF4500761B9B /* FixitViewController.swift in Sources */,
 				5A1F43F724A6B4D600761B9B /* BillsManager.swift in Sources */,
