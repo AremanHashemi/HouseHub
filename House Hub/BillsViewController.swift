@@ -17,6 +17,8 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet var txtSplit: UITextField!
     
     private var datePicker: UIDatePicker?
+    @IBOutlet var txtTotalBillsAmount: UILabel!
+    var bills_total = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,38 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         datePicker?.datePickerMode = .date
         datePicker?.addTarget(self, action: #selector(BillsViewController.dateChanged(datePicker:)), for: .valueChanged)
         txtDeadline.inputView = datePicker
+        
+        // Do any additional setup after loading the view.
+        ref.child("Bills/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
+            billsMngr.bills.removeAll()
+            self.bills_total = 0
+            //groceryMngr.groceries.removeAll()
+    //            if snapshot.value is NSNull{
+    //                print("Empty")
+    //                return
+    //            }
+            let postDict = snapshot.value as? NSDictionary ?? [:]
+            for (name, value1) in postDict{
+                let name:String = name as! String
+                let value = value1 as? [String] ?? nil
+                let price:String = value![0]
+                let split:String = value![1]
+                let deadline:String = value![2]
+                let username:String = value![3]
+                print(name, price, split, deadline, username , " =========")
+                billsMngr.addBill(name: name, price: price, split: split, deadline: deadline, username: username)
+                self.bills_total += (Double(split)!)
+            }
+            self.bills_total = (self.bills_total*100).rounded()/100 //round to 2 decimal places
+            self.txtTotalBillsAmount.text = String(format: "$%.2f", self.bills_total)
+            self.tblBills.reloadData()
+
+            
+            
+            self.tblBills.reloadData()
+        })
+        self.tblBills.reloadData()
+        
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){
@@ -37,6 +71,7 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func btnAddBill_Click(_ sender: UIButton) {
         var split = 1.0//no split
+        var count_decimal = 0
   
         if ((txtBill.text == "") || (txtPrice.text == "")) {//price is required and name of bill is required
             return
@@ -53,7 +88,15 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             deadline = txtDeadline.text!
             //print(deadline)
         }
-
+        
+        for char in txtPrice.text! {//check that theres at most 1 "."
+            if (char == "."){
+                count_decimal += 1
+                if(count_decimal > 1){
+                    return
+                }
+            }
+        }
         
         let price = Double(txtPrice.text!)!
         let price_per_person = price/split
@@ -66,6 +109,9 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         txtDeadline.text = ""
         txtSplit.text = ""
         
+        bills_total += Double(price_per_person_txt) ?? 0
+        bills_total = (bills_total*100).rounded()/100 //round to 2 decimal places
+        txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
         tblBills.reloadData()
     }
     
@@ -81,13 +127,21 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return true
     }
     
-    //delete from table
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
-        if(editingStyle == UITableViewCell.EditingStyle.delete){
-            billsMngr.bills.remove(at: indexPath.row)
-            tblBills.reloadData()
-        }
-    }
+     //delete from table
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+         if(editingStyle == UITableViewCell.EditingStyle.delete){
+             let BillsRef = ref.child("Bills/\(userMngr.getGroupId())/\(billsMngr.bills[indexPath.row].name)")
+             BillsRef.removeValue { error, _ in
+                 print(error)
+             }
+             billsMngr.bills.remove(at: indexPath.row)
+ //            bills_total -= Double(billsMngr.bills[indexPath.row].split) ?? 0
+ //            bills_total = (bills_total*100).rounded()/100  //round to 2 decimal places
+ //            billsMngr.bills.remove(at: indexPath.row)
+ //            txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
+             tblBills.reloadData()
+         }
+     }
     
     //UItableview data source
        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{

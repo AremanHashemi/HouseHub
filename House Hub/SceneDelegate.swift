@@ -25,7 +25,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavController")
-        let join_create_grp = storyboard.instantiateViewController(identifier: "registerSuccess")
         
         // if user is logged in before
         if UserDefaults.standard.string(forKey: "username") != nil {
