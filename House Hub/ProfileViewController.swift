@@ -10,10 +10,12 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-class ProfileViewController: UIViewController{
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     
     @IBOutlet weak var profileName: UILabel!
     @IBOutlet weak var groupCode: UILabel!
+    @IBOutlet weak var groupName: UILabel!
+    @IBOutlet weak var pfp: UIImageView!
     
     let ref = Database.database().reference()
     
@@ -27,13 +29,42 @@ class ProfileViewController: UIViewController{
             let profName = value?["user"] as? String ?? ""
             let gc = value?["Group"] as? String ?? ""
             self.profileName.text = profName + "'s " + self.profileName.text!
-            self.groupCode.text = self.groupCode.text! + gc
+            self.groupCode.text = self.groupCode.text! + " " + gc
             // ...
             }) { (error) in
                 print(error.localizedDescription)
             }
         
+        ref.child("Groups").child(userMngr.getGroupId()).observeSingleEvent(of: .value, with: { (snapshot) in
+        // Get user value
+        let value = snapshot.value as? NSDictionary
+        let gn = value?["GroupName"] as? String ?? ""
+        self.groupName.text = gn
+        // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
+    @IBAction func addPfp(_ sender: Any) {
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.allowsEditing = true
+        vc.delegate = self
+        self.present(vc, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+
+        if let image = info[.editedImage] as? UIImage{
+            pfp.image = image
+        }
+        else {
+            print("No image found")
+            return
+        }
+    }
+    
     @IBAction func changeUserBtn(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(identifier: "ChangeUserVC")
@@ -96,17 +127,10 @@ class ProfileViewController: UIViewController{
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
         
     }
-    @IBAction func joinGroupButton(_ sender: Any) {
-        if(self.groupCode.text == "Group Code: "){
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "JoinVC")
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
-        }
-
-    }
     
-    /*@IBAction func leaveGroupButton(_ sender: Any) {
-        self.groupCode.text = "Group Code: "
-        ref.child("users").child(Auth.auth().currentUser!.uid).child("Group").setValue("")
-    }*/
+    @IBAction func backBtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "TabBarController")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+    }
 }
