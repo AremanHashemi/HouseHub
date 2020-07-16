@@ -26,10 +26,10 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-//        addFixView.layer.cornerRadius = 8.0
-//        addFixView.layer.masksToBounds = true
-//        addFixView.layer.borderColor = UIColor.black.cgColor
-//        addFixView.layer.borderWidth = 1.0
+        addFixView.layer.cornerRadius = 8.0
+        addFixView.layer.masksToBounds = true
+        addFixView.layer.borderColor = UIColor.black.cgColor
+        addFixView.layer.borderWidth = 1.0
     }
     
     @IBAction func insertImageBtn(_ sender: Any) {
