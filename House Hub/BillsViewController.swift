@@ -109,10 +109,10 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         txtDeadline.text = ""
         txtSplit.text = ""
         
-        bills_total += Double(price_per_person_txt) ?? 0
-        bills_total = (bills_total*100).rounded()/100 //round to 2 decimal places
-        txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
-        tblBills.reloadData()
+//        bills_total += Double(price_per_person_txt) ?? 0
+//        bills_total = (bills_total*100).rounded()/100 //round to 2 decimal places
+//        txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
+//        tblBills.reloadData()
     }
     
     //IOS touch fcns
@@ -129,18 +129,14 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
      //delete from table
      func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
-         if(editingStyle == UITableViewCell.EditingStyle.delete){
-             let BillsRef = ref.child("Bills/\(userMngr.getGroupId())/\(billsMngr.bills[indexPath.row].name)")
-             BillsRef.removeValue { error, _ in
-                 print(error)
-             }
-             billsMngr.bills.remove(at: indexPath.row)
- //            bills_total -= Double(billsMngr.bills[indexPath.row].split) ?? 0
- //            bills_total = (bills_total*100).rounded()/100  //round to 2 decimal places
- //            billsMngr.bills.remove(at: indexPath.row)
- //            txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
-             tblBills.reloadData()
-         }
+          if(editingStyle == UITableViewCell.EditingStyle.delete){
+                     let BillsRef = ref.child("Bills/\(userMngr.getGroupId())/\(billsMngr.bills[indexPath.row].name)")
+                     BillsRef.removeValue { error, _ in
+                         print(error)
+                     }
+                     billsMngr.bills.remove(at: indexPath.row)
+                     tblBills.reloadData()
+                 }
      }
     
     //UItableview data source

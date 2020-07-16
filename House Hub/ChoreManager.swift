@@ -22,5 +22,7 @@ class ChoreManager: NSObject {
     
     func addChore(choreName: String, chorePerson: String, deadline: String, username: String){
         chores.append(chore(choreName: choreName, chorePerson: chorePerson, deadline: deadline, username: username))
+        let list = [chorePerson, deadline, username]
+        ref.child("Chores/\(userMngr.getGroupId())/\(choreName)").setValue(list)
     }
 }

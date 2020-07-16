@@ -78,13 +78,12 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
     ************************************/
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if(editingStyle == UITableViewCell.EditingStyle.delete){
+            print("Groceries/\(userMngr.getGroupId())/\(groceryMngr.groceries[indexPath.row].name)")
+            let groceryRef = ref.child("Groceries/\(userMngr.getGroupId())/\(groceryMngr.groceries[indexPath.row].name)")
+            groceryRef.removeValue()
             groceryMngr.groceries.remove(at: indexPath.row)
             tblGroceries.reloadData()
         }
-    }
-    
-    func refresh2 (){
-        self.tblGroceries.reloadData()
     }
     
     /***********************************

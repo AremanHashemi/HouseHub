@@ -20,13 +20,27 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
         datePicker?.addTarget(self, action: #selector(BillsViewController.dateChanged(datePicker:)), for: .valueChanged)
         txtDeadline.inputView = datePicker
+        ref.child("Chores/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
+            choreMngr.chores.removeAll()
+            let postDict = snapshot.value as? NSDictionary ?? [:]
+            for (name, value1) in postDict{
+                let name:String = name as! String
+                let value = value1 as? [String] ?? nil
+                let chorePerson:String = value![0]
+                let deadline:String = value![1]
+                let username:String = value![2]
+                choreMngr.addChore(choreName: name, chorePerson: chorePerson, deadline: deadline, username: username)
+            }
+                self.tblTasks.reloadData()
+        })
+        self.tblTasks.reloadData()
     }
+    
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
         view.endEditing(true)
@@ -85,8 +99,11 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         self.view.endEditing(true) //close keyboard
         if(editingStyle == UITableViewCell.EditingStyle.delete){
+            let ChoresRef = ref.child("Chores/\(userMngr.getGroupId())/\(choreMngr.chores[indexPath.row].choreName)")
+            ChoresRef.removeValue()
             choreMngr.chores.remove(at: indexPath.row)
             tblTasks.reloadData()
+
         }
     }
     
