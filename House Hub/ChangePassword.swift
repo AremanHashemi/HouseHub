@@ -12,7 +12,10 @@ import FirebaseDatabase
 class ChangePasswordViewController: UIViewController {
 
     
+    @IBOutlet weak var currEmail: UITextField!
+    @IBOutlet weak var currPass: UITextField!
     @IBOutlet weak var newPassText: UITextField!
+    @IBOutlet weak var errorMsg: UILabel!
     let ref = Database.database().reference()
 
     override func viewDidLoad() {
@@ -28,9 +31,31 @@ class ChangePasswordViewController: UIViewController {
     }
     
     @IBAction func editBtn(_ sender: Any) {
-        if(newPassText.text == ""){
+        if(newPassText.text == "" || currEmail.text == "" || currPass.text == ""){
             return
         }
+        let user = Auth.auth().currentUser
+        var credential: AuthCredential = EmailAuthProvider.credential(withEmail: currEmail.text!, password: currPass.text!)
+
+        // Prompt the user to re-provide their sign-in credentials
+
+        user?.reauthenticate(with: credential, completion: { (result, error) in
+           if let err = error {
+              //..read error message
+            self.errorMsg.text = "Invalid info!"
+            return
+           } else {
+              //.. go on
+            Auth.auth().currentUser?.updatePassword(to: self.newPassText.text!) { (error) in
+              // ...
+                print("success")
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(identifier: "ProfileVC")
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+            }
+           }
+        })
+        
         /*let user = Auth.auth().currentUser
         var credential: AuthCredential
 
@@ -46,8 +71,6 @@ class ChangePasswordViewController: UIViewController {
             }
           }
         }*/
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "ProfileVC")
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+        
     }
 }
