@@ -13,6 +13,7 @@ var fixesMngr: FixesManager = FixesManager()
 
 struct fix{
     var id = "NONE"
+    var date = "NONE"
     var url = "NONE"
     var desc = "Un-Described"
 }
@@ -20,7 +21,7 @@ struct fix{
 class FixesManager: NSObject {
     var fixes: [fix] = []
     
-    func addFix(id: String, url: String, desc: String){
-        fixes.insert(fix(id: id, url: url, desc: desc), at: 0)
+    func addFix(id: String, date: String, url: String, desc: String){
+        fixes.insert(fix(id: id, date: date, url: url, desc: desc), at: 0)
     }
 }

@@ -49,9 +49,10 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let desc:String = value![0]
                     let date:String = value![1]
                     let url:String = value![2]
-                    print(desc, " =========")
-                    fixesMngr.addFix(id: id, url: url, desc: desc)
+                    fixesMngr.addFix(id: id, date: date, url: url, desc: desc)
                 }
+                print("sorting pictures")
+                fixesMngr.fixes.sort(by: { $0.date > $1.date })
                 self.tblFixes.reloadData()
 
                 
