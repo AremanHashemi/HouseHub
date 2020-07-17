@@ -9,8 +9,13 @@
 import UIKit
 import FirebaseStorage
 import FirebaseDatabase
+import Kingfisher
 
 class FixItTableViewCell: UITableViewCell{
+    override func awakeFromNib() {
+          super.awakeFromNib()
+      }
+    
     @IBOutlet var fixItImage: UIImageView!
     @IBOutlet var fixItLabel: UILabel!
 }
@@ -28,10 +33,32 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        myImageView.image = UIImage(named: "InsertImage")//replaces picture with default
         addFixView.layer.cornerRadius = 8.0
         addFixView.layer.masksToBounds = true
         addFixView.layer.borderColor = UIColor.black.cgColor
         addFixView.layer.borderWidth = 1.0
+        /****************************************************/
+            ref.child("Fixit/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
+                fixesMngr.fixes.removeAll()
+                
+                let postDict = snapshot.value as? NSDictionary ?? [:]
+                for (id, value1) in postDict{
+                    let id:String = id as! String
+                    let value = value1 as? [String] ?? nil
+                    let desc:String = value![0]
+                    let date:String = value![1]
+                    let url:String = value![2]
+                    print(desc, " =========")
+                    fixesMngr.addFix(url: url, desc: desc)
+                }
+                self.tblFixes.reloadData()
+
+                
+                
+                self.tblFixes.reloadData()
+            })
+            self.tblFixes.reloadData()
     }
     
     @IBAction func insertImageBtn(_ sender: Any) {
@@ -55,8 +82,17 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func btnAddFix_Click(_ sender: UIButton) {
+        if txtDesc.text == "" {
+            return
+        }
         
-        let image = myImageView.image! //image
+        let defaultIMG = UIImage(named: "InsertImage")
+        
+        if defaultIMG?.isEqual(myImageView.image) ?? true {
+            print("image not changed")
+            return
+        }
+        
         let desc = txtDesc.text!       //description field
         let imageID = UUID().uuidString //id for image
 
@@ -75,19 +111,15 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //set url for image
             let imageURL = downloadURL.absoluteString
             //ADD TO DB
-            let list = ["desc" : desc, "dateAdded" : dateAdded, "imageURL" : imageURL]
+            let list = [desc, dateAdded, imageURL]
             ref.child("Fixit/\(userMngr.getGroupId())/\(imageID)").setValue(list)
         }
-        
-        fixesMngr.addFix(image: image, desc: desc)
         //all information saved
         
         
         self.view.endEditing(true) //close keyboard
         txtDesc.text = ""
         myImageView.image = UIImage(named: "InsertImage")//replaces picture with default
-        
-        tblFixes.reloadData()
     }
     
     //IOS touch fcns
@@ -119,7 +151,12 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
             let f_cell = tableView.dequeueReusableCell(withIdentifier: "FixItCell", for: indexPath) as! FixItTableViewCell
 
-            f_cell.fixItImage.image = fixesMngr.fixes[indexPath.row].image
+           // let imageURL = fixesMngr.fixes[indexPath.row].url
+        
+            let fix = fixesMngr.fixes[indexPath.row]
+            let imageURL = URL(string: fix.url)
+            f_cell.fixItImage.kf.setImage(with: imageURL)
+            
             f_cell.fixItLabel.text = fixesMngr.fixes[indexPath.row].desc
         
             return f_cell

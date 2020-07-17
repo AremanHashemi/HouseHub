@@ -12,14 +12,14 @@ import FirebaseStorage
 var fixesMngr: FixesManager = FixesManager()
 
 struct fix{
-    var image: UIImage? = nil
+    var url = "NONE"
     var desc = "Un-Described"
 }
 
 class FixesManager: NSObject {
     var fixes: [fix] = []
     
-    func addFix(image: UIImage, desc: String){
-        fixes.insert(fix(image: image, desc: desc), at: 0)
+    func addFix(url: String, desc: String){
+        fixes.insert(fix(url: url, desc: desc), at: 0)
     }
 }
