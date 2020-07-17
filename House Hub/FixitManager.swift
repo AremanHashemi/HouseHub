@@ -12,6 +12,7 @@ import FirebaseStorage
 var fixesMngr: FixesManager = FixesManager()
 
 struct fix{
+    var id = "NONE"
     var url = "NONE"
     var desc = "Un-Described"
 }
@@ -19,7 +20,7 @@ struct fix{
 class FixesManager: NSObject {
     var fixes: [fix] = []
     
-    func addFix(url: String, desc: String){
-        fixes.insert(fix(url: url, desc: desc), at: 0)
+    func addFix(id: String, url: String, desc: String){
+        fixes.insert(fix(id: id, url: url, desc: desc), at: 0)
     }
 }

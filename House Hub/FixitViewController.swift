@@ -50,7 +50,7 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let date:String = value![1]
                     let url:String = value![2]
                     print(desc, " =========")
-                    fixesMngr.addFix(url: url, desc: desc)
+                    fixesMngr.addFix(id: id, url: url, desc: desc)
                 }
                 self.tblFixes.reloadData()
 
@@ -136,10 +136,27 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //delete from table
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
-        if(editingStyle == UITableViewCell.EditingStyle.delete){
+        if((editingStyle == UITableViewCell.EditingStyle.delete) && (fixesMngr.fixes.count > 0)){
+            
+            let imageRef = Storage.storage().reference().child("Fixit/\(userMngr.getGroupId())/\(fixesMngr.fixes[indexPath.row].id)")
+            let fixesRef = ref.child("Fixit/\(userMngr.getGroupId())/\(fixesMngr.fixes[indexPath.row].id)")
+            // Delete the file
+            imageRef.delete { error in
+              if let error = error {
+                print(error)
+              } else {
+                print("image deleted")
+              }
+            }
+            fixesRef.removeValue { error, _ in
+                print(error)
+            }
+            
+            
+            
             fixesMngr.fixes.remove(at: indexPath.row)
-            tblFixes.reloadData()
         }
+        tblFixes.reloadData()
     }
     
     //UItableview data source
