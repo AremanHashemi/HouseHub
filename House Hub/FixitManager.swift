@@ -14,16 +14,12 @@ var fixesMngr: FixesManager = FixesManager()
 struct fix{
     var image: UIImage? = nil
     var desc = "Un-Described"
-    var imageID = "NONE"
-    var dateAdded = ""
 }
 
 class FixesManager: NSObject {
     var fixes: [fix] = []
     
-    func addFix(image: UIImage, desc: String, imageID: String, dateAdded: String){
-        fixes.insert(fix(image: image, desc: desc, imageID: imageID, dateAdded: dateAdded), at: 0)
-        let list = ["desc" : desc, "dateAdded" : dateAdded]
-        ref.child("Fixit/\(userMngr.getGroupId())/\(imageID)").setValue(list)
+    func addFix(image: UIImage, desc: String){
+        fixes.insert(fix(image: image, desc: desc), at: 0)
     }
 }

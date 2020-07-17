@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseStorage
+import FirebaseDatabase
 
 class FixItTableViewCell: UITableViewCell{
     @IBOutlet var fixItImage: UIImageView!
@@ -54,17 +56,33 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func btnAddFix_Click(_ sender: UIButton) {
         
+        let image = myImageView.image! //image
+        let desc = txtDesc.text!       //description field
         let imageID = UUID().uuidString //id for image
-        PostService.createFix(for: myImageView.image!, imageID: imageID)//store and generate url for image
 
         //date for when image was added
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd hh:mm:ss"
         let currentDateTime = Date()
         let dateAdded = df.string(from: currentDateTime)
+
+        //store image in storage and info in db on Firebase (calls Storage Service function in storage service class [see file])
+        let imageRef = Storage.storage().reference().child("Fixit/\(userMngr.getGroupId())/\(imageID)")
+        StorageService.uploadImage(myImageView.image!, at: imageRef) { (downloadURL) in //imageview
+            guard let downloadURL = downloadURL else {
+                return
+            }
+            //set url for image
+            let imageURL = downloadURL.absoluteString
+            //ADD TO DB
+            let list = ["desc" : desc, "dateAdded" : dateAdded, "imageURL" : imageURL]
+            ref.child("Fixit/\(userMngr.getGroupId())/\(imageID)").setValue(list)
+        }
+        
+        fixesMngr.addFix(image: image, desc: desc)
         //all information saved
         
-        fixesMngr.addFix(image: myImageView.image!, desc: txtDesc.text!, imageID: imageID, dateAdded: dateAdded)
+        
         self.view.endEditing(true) //close keyboard
         txtDesc.text = ""
         myImageView.image = UIImage(named: "InsertImage")//replaces picture with default

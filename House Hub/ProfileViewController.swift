@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     
@@ -55,9 +56,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
     
     @IBAction func uploadPicture(_ sender: Any) {
         let imageID = UUID().uuidString //id for image
-        PostService.createProfile(for: pfp.image!, imageID: imageID)//store and generate url for image, //will need to remove also at some point from here
-        ref.child("users").child(Auth.auth().currentUser!.uid).child("photoId").setValue(imageID)
         userMngr.setPhotoId(photoId_in: imageID)
+        
+        //store image in storage and info in db on Firebase (calls Storage Service function in storage service class [see file])
+               let imageRef = Storage.storage().reference().child("Fixit/\(userMngr.getGroupId())/\(imageID)")
+               StorageService.uploadImage(pfp.image!, at: imageRef) { (downloadURL) in //imageview
+                   guard let downloadURL = downloadURL else {
+                       return
+                   }
+                   //set url for image
+                   let imageURL = downloadURL.absoluteString
+                   userMngr.setPhotoUrl(photoUrl_in: imageURL)
+                   //ADD TO DB
+                   self.ref.child("users").child(Auth.auth().currentUser!.uid).child("photoURL").setValue(imageURL)
+                self.ref.child("users").child(Auth.auth().currentUser!.uid).child("photoID").setValue(imageID)
+               }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
