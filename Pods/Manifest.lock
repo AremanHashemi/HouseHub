@@ -419,6 +419,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
+  - Firebase/Storage
   - FirebaseUI
   - MessageKit
 
@@ -487,6 +488,6 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
 
-PODFILE CHECKSUM: 537153780ce1b6d9473936f8182b99b91734a0fc
+PODFILE CHECKSUM: 8d99c6ebea2767c6a55c063fe09446be025665f6
 
 COCOAPODS: 1.9.3

@@ -17,6 +17,7 @@ class UserManager: NSObject {
     private var userId = ""
     private var groupname = ""
     private var groupId = ""
+    private var photoId = ""
     private var housemates: [String] = []
     
     /***********************************
@@ -36,6 +37,9 @@ class UserManager: NSObject {
     
     func setGroupId(groupId_in: String){
         groupId = groupId_in
+    }
+    func setPhotoId(photoId_in: String){
+        photoId = photoId_in
     }
     
     func setHouseMates(housemates_in: [String]){
@@ -59,6 +63,10 @@ class UserManager: NSObject {
     
     func getGroupName() -> String{
         return groupname
+    }
+    
+    func getPhotoId() -> String{
+        return photoId
     }
     
     func getHouseMates() -> [String]{

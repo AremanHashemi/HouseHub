@@ -8,6 +8,7 @@ target 'House Hub' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Analytics'
+  pod 'Firebase/Storage'
   pod 'FirebaseUI'
 
   pod 'MessageKit'

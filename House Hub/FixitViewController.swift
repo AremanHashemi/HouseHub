@@ -53,10 +53,21 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func btnAddFix_Click(_ sender: UIButton) {
-        fixesMngr.addFix(image: myImageView.image!, desc: txtDesc.text!)
+        
+        let imageID = UUID().uuidString //id for image
+        PostService.createFix(for: myImageView.image!, imageID: imageID)//store and generate url for image
+
+        //date for when image was added
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        let currentDateTime = Date()
+        let dateAdded = df.string(from: currentDateTime)
+        //all information saved
+        
+        fixesMngr.addFix(image: myImageView.image!, desc: txtDesc.text!, imageID: imageID, dateAdded: dateAdded)
         self.view.endEditing(true) //close keyboard
         txtDesc.text = ""
-        myImageView.image = UIImage(named: "InsertImage")
+        myImageView.image = UIImage(named: "InsertImage")//replaces picture with default
         
         tblFixes.reloadData()
     }

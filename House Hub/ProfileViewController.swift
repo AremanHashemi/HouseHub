@@ -53,6 +53,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         self.present(vc, animated: true)
     }
     
+    @IBAction func uploadPicture(_ sender: Any) {
+        let imageID = UUID().uuidString //id for image
+        PostService.createProfile(for: pfp.image!, imageID: imageID)//store and generate url for image, //will need to remove also at some point from here
+        ref.child("users").child(Auth.auth().currentUser!.uid).child("photoId").setValue(imageID)
+        userMngr.setPhotoId(photoId_in: imageID)
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
 
