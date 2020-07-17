@@ -366,9 +366,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7pR-WM-BNA">
-                                <rect key="frame" x="133" y="385" width="150" height="30"/>
+                                <rect key="frame" x="191" y="385" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Upload Profile Picture"/>
+                                <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="uploadPicture:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="Y3j-hg-Dns"/>
                                 </connections>
