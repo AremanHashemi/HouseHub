@@ -48,6 +48,7 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+   //     print("=\(userMngr.getGroupName())")
         userMngr.testInfo(name: "CVC")
     }
     

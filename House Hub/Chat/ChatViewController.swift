@@ -43,13 +43,8 @@ class ChatViewController: MessagesViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         messageInputBar.inputTextView.becomeFirstResponder()
-        self.messagesCollectionView.scrollToBottom()
         let gid = userMngr.getGroupId()
         listenForMessages(id: gid, shouldScrollToBottom: true)
-        
-    //    self.messagesCollectionView.scrollToBottom()
-        self.messagesCollectionView.scrollToBottom(animated: false)
-        
     }
     
     private func listenForMessages(id: String, shouldScrollToBottom: Bool) {
@@ -67,7 +62,6 @@ class ChatViewController: MessagesViewController {
                 
                 DispatchQueue.main.async {
                     self?.messagesCollectionView.reloadDataAndKeepOffset()
-                    print("Success")
                     
                     if shouldScrollToBottom {
                         self?.messagesCollectionView.scrollToBottom()

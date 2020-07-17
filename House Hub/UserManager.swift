@@ -84,20 +84,26 @@ class UserManager: NSObject {
     }
     
     public func retGroupName(addCode: String) {
+        var gname = "test"
         ref.child("Groups/\(addCode)/GroupName").observeSingleEvent(of: .value, with: { (snapshot) in
             let group_name = snapshot.value as? String
+            gname = group_name!
+     //       print("gname inside: \(group_name!)")
             self.groupname = group_name!
+   //         print("retGN: \(self.getGroupName())")
         })
+        
+  //      print("Setting gname to: \(gname)")
+        self.setGroupName(groupname_in: gname)
     }
     
     // testing
-    func testInfo(name: String) {
+    public func testInfo(name: String) {
         print("----\(name)-----")
         print("Name: \(userMngr.getUserName())")
         print("UID: \(userMngr.getUserId())")
-        print("GName: \(self.groupname)")
+        print("GName: \(userMngr.getGroupName())")
         print("GID: \(userMngr.getGroupId())")
-        print("Housemates: \(userMngr.getHouseMates())")
         print("---------------")
     }
 }

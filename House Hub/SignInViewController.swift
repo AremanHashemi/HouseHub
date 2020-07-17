@@ -100,7 +100,11 @@ class SignInViewController: UIViewController {
                 if let group = snapshot.value  as? String{
                     userMngr.setGroupId(groupId_in: group)//sets group id for global user
 
-                    print("Group ID: \(userMngr.getGroupId())")
+                    let gid = userMngr.getGroupId()
+                    print("gid: \(gid)")
+                    userMngr.retGroupName(addCode: gid)
+                    print("gname: \(userMngr.getGroupName())")
+                    
 //                    ref.child("Groceries/\(userMngr.getGroupId())").observeSingleEvent(of: .value, with: { (snapshot2) in
 //                        //groceryMngr.groceries.removeAll()
 //                        let groceryList = snapshot.value as? [String: String] ?? [:]
