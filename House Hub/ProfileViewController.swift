@@ -59,7 +59,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         userMngr.setPhotoId(photoId_in: imageID)
         
         //store image in storage and info in db on Firebase (calls Storage Service function in storage service class [see file])
-               let imageRef = Storage.storage().reference().child("Fixit/\(userMngr.getGroupId())/\(imageID)")
+               let imageRef = Storage.storage().reference().child("Users/\(userMngr.getUserId())/\(imageID)")
                StorageService.uploadImage(pfp.image!, at: imageRef) { (downloadURL) in //imageview
                    guard let downloadURL = downloadURL else {
                        return
