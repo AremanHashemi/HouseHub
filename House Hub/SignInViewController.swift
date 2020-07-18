@@ -87,13 +87,29 @@ class SignInViewController: UIViewController {
             userMngr.setUserId(userId_in: (Auth.auth().currentUser!.uid))//sets user id for global user
             print("USER ID: \(userMngr.getUserName())")
             
-            //USER NAME
-            _ = ref.child("users").child(userMngr.getUserId()).child("user").observeSingleEvent(of: .value, with: { (snapshot) in
-                if let username = snapshot.value  as? String{
-                    userMngr.setUserName(username_in: username)//sets username for global user
+            //Photo ID
+            _ = ref.child("users").child(userMngr.getUserId()).child("photoID").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let photoID = snapshot.value  as? String{
+                    userMngr.setPhotoId(photoId_in: photoID)//sets username for global user
                 }
-        //        print("NAME: \(userMngr.getUserName())")
+                //print("photoID: \(userMngr.getPhotoId())")
             })
+            
+            //Photo URL
+            _ = ref.child("users").child(userMngr.getUserId()).child("photoURL").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let photoURL = snapshot.value  as? String{
+                    userMngr.setPhotoUrl(photoUrl_in: photoURL)//sets username for global user
+                }
+                //print("photoURL: \(userMngr.getPhotoUrl())")
+            })
+            
+                //USER NAME
+                _ = ref.child("users").child(userMngr.getUserId()).child("user").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let username = snapshot.value  as? String{
+                        userMngr.setUserName(username_in: username)//sets username for global user
+                    }
+            //        print("NAME: \(userMngr.getUserName())")
+                })
             
             //GROUP ID
             _ = ref.child("users").child(userMngr.getUserId()).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -105,15 +121,8 @@ class SignInViewController: UIViewController {
                     userMngr.retGroupName(addCode: gid)
                     print("gname: \(userMngr.getGroupName())")
                     
-//                    ref.child("Groceries/\(userMngr.getGroupId())").observeSingleEvent(of: .value, with: { (snapshot2) in
-//                        //groceryMngr.groceries.removeAll()
-//                        let groceryList = snapshot.value as? [String: String] ?? [:]
-//                        print(groceryList)
-//                        for (name, desc) in groceryList{
-//                            groceryMngr.addGrocery(name: name, desc: desc)
-//                            print(name,desc)
-//                        }
-//                    })
+                
+                
 
                     /***********************************
                     * GO TO APP

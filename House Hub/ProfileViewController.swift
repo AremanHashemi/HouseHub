@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import Kingfisher
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     
@@ -23,13 +24,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        pfp.image = UIImage(named: "profilePic")
+        pfp.kf.setImage(with: userMngr.getPhotoUrl())
+        
+      //  pfp.image = UIImage(named: "profilePic")
         pfp.layer.cornerRadius = pfp.frame.height/2
-        pfp.layer.masksToBounds = true
-        pfp.layer.borderColor = UIColor.black.cgColor
-        pfp.layer.borderWidth = 0.1
-        
-        
+
         let userID = Auth.auth().currentUser?.uid
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
@@ -52,6 +51,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         }) { (error) in
             print(error.localizedDescription)
         }
+        
     }
     @IBAction func addPfp(_ sender: Any) {
         let vc = UIImagePickerController()
