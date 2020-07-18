@@ -380,18 +380,6 @@
                                     <action selector="backBtn:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="PFt-SR-NLI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugu-z3-diK">
-                                <rect key="frame" x="137" y="268" width="159" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Add Profile Picture">
-                                    <color key="titleColor" red="0.58431372550000005" green="0.67843137249999996" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="addPfp:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="043-TD-FSm"/>
-                                    <action selector="btnAddFix_Click:" destination="EqH-Xe-QFU" eventType="touchUpInside" id="wHm-CR-dpN"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83z-Lb-dvj">
                                 <rect key="frame" x="99" y="500" width="228" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -402,6 +390,28 @@
                                 </state>
                                 <connections>
                                     <action selector="changeUserBtn:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="gsa-2a-JSg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugu-z3-diK">
+                                <rect key="frame" x="44" y="256" width="159" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Add New Photo">
+                                    <color key="titleColor" red="0.58431372550000005" green="0.67843137249999996" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addPfp:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="043-TD-FSm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vh9-SI-H3d">
+                                <rect key="frame" x="211" y="256" width="159" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Save New Photo">
+                                    <color key="titleColor" red="0.58431372550000005" green="0.67843137249999996" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="uploadPicture:" destination="hLc-Fk-SHl" eventType="touchUpInside" id="xD1-pT-AVV"/>
                                 </connections>
                             </button>
                         </subviews>
