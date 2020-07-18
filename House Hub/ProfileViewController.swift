@@ -24,9 +24,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //load profile picture
         pfp.kf.setImage(with: userMngr.getPhotoUrl())
-        
-      //  pfp.image = UIImage(named: "profilePic")
+
         pfp.layer.cornerRadius = pfp.frame.height/2
 
         let userID = Auth.auth().currentUser?.uid
@@ -65,8 +65,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         let storageRef = Storage.storage().reference().child("Users/\(userMngr.getUserId())/\(userMngr.getPhotoId())")
        // Delete the file from storage
        storageRef.delete { error in
-         if let error = error {
-           print(error)
+        if error != nil {
+           print("nothing deleted")
          } else {
            print("image deleted")
          }
@@ -87,6 +87,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
                    //ADD TO DB
                    self.ref.child("users").child(Auth.auth().currentUser!.uid).child("photoURL").setValue(imageURL)
                 self.ref.child("users").child(Auth.auth().currentUser!.uid).child("photoID").setValue(imageID)
+                print("profile uploaded")
                }
     }
     
