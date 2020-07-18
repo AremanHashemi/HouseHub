@@ -28,15 +28,16 @@ class JoinGroupViewController: UIViewController {
         if self.joinCode.text == ""{
             return
         }
-
+        let addCode = self.joinCode.text!
         let ref = Database.database().reference()
         let userID = Auth.auth().currentUser?.uid
         userMngr.setUserId(userId_in: userID!)
         let usersRef: Void = ref.child("Groups").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.joinCode.text!){
                 ref.child("users/\(userID!)/Group").setValue(self.joinCode.text!)
-                userMngr.setGroupId(groupId_in: self.joinCode.text!)
-                userMngr.retGroupName(addCode: self.joinCode.text!)
+                userMngr.setGroupId(groupId_in: addCode)
+                userMngr.retGroupName(addCode: addCode)
+                
 
                 //Add current name to group
             }else{
@@ -68,7 +69,7 @@ class JoinGroupViewController: UIViewController {
         /*************************************
         *SEND JOIN MESSAGE
         **************************************/
-        let ac = userMngr.getGroupId()
+        let ac = addCode
         chatMngr.sendJoinGroupMessage(addCode: ac)
     }
 

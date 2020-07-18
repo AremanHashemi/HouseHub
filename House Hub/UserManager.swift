@@ -17,6 +17,8 @@ class UserManager: NSObject {
     private var userId = ""
     private var groupname = ""
     private var groupId = ""
+    private var photoId = ""
+    private var photoUrl = ""
     private var housemates: [String] = []
     
     /***********************************
@@ -36,6 +38,14 @@ class UserManager: NSObject {
     
     func setGroupId(groupId_in: String){
         groupId = groupId_in
+    }
+    
+    func setPhotoId(photoId_in: String){
+        photoId = photoId_in
+    }
+    
+    func setPhotoUrl(photoUrl_in: String){
+        photoUrl = photoUrl_in
     }
     
     func setHouseMates(housemates_in: [String]){
@@ -61,25 +71,39 @@ class UserManager: NSObject {
         return groupname
     }
     
+    func getPhotoId() -> String{
+        return photoId
+    }
+    
+    func getPhotoUrl() -> String{
+        return photoUrl
+    }
+    
     func getHouseMates() -> [String]{
         return housemates
     }
     
     public func retGroupName(addCode: String) {
+        var gname = "test"
         ref.child("Groups/\(addCode)/GroupName").observeSingleEvent(of: .value, with: { (snapshot) in
             let group_name = snapshot.value as? String
+            gname = group_name!
+     //       print("gname inside: \(group_name!)")
             self.groupname = group_name!
+   //         print("retGN: \(self.getGroupName())")
         })
+        
+  //      print("Setting gname to: \(gname)")
+        self.setGroupName(groupname_in: gname)
     }
     
     // testing
-    func testInfo(name: String) {
+    public func testInfo(name: String) {
         print("----\(name)-----")
         print("Name: \(userMngr.getUserName())")
         print("UID: \(userMngr.getUserId())")
-        print("GName: \(self.groupname)")
+        print("GName: \(userMngr.getGroupName())")
         print("GID: \(userMngr.getGroupId())")
-        print("Housemates: \(userMngr.getHouseMates())")
         print("---------------")
     }
 }
