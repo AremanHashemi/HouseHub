@@ -42,7 +42,11 @@ class CreateGroupViewController: UIViewController {
         if(GroupName.text == ""){
             return
         }
-        ref.child("Groups/\(addCodeLabel.text!)/Users").setValue(Auth.auth().currentUser?.uid)
+        
+        var members = [String]()
+        members.append(Auth.auth().currentUser!.uid)
+        
+        ref.child("Groups/\(addCodeLabel.text!)/Users").setValue(members)
         ref.child("Groups/\(addCodeLabel.text!)/GroupName").setValue(GroupName.text!)
         ref.child("users/\(Auth.auth().currentUser!.uid)/Group").setValue(addCodeLabel.text!)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

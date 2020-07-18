@@ -35,7 +35,26 @@ class JoinGroupViewController: UIViewController {
         let usersRef: Void = ref.child("Groups").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(self.joinCode.text!){
                 ref.child("users/\(userID!)/Group").setValue(self.joinCode.text!)
+                
                 userMngr.setGroupId(groupId_in: addCode)
+                
+                // add user to house
+                ref.child("Groups/\(addCode)/Users").observeSingleEvent(of: .value, with: { [weak self] snapshot in
+                    
+                    guard var currentMembers = snapshot.value as? [String] else {
+                        print("Couldn't get housemates")
+                        return
+                    }
+                    
+                    currentMembers.append(userID!)
+                    
+                    ref.child("Groups/\(addCode)/Users").setValue(currentMembers)
+                    
+                    
+                })
+                
+                
+                
                 userMngr.retGroupName(addCode: addCode)
                 
 

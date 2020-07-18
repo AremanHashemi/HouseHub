@@ -12,13 +12,14 @@ import FirebaseDatabase
 
 var userMngr: UserManager = UserManager()
 
+
 class UserManager: NSObject {
     private var username = ""
     private var userId = ""
     private var groupname = ""
     private var groupId = ""
     private var photoId = ""
-    private var photoUrl = ""
+    private var photoUrl = "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2F5Q7O5AjA8GgEyHmJsQO0qJbmzf13%2FEE02E776-05A7-4594-8612-416D5B27F19B?alt=media&token=6ee7c42b-94f1-4ebd-8938-99833b57318b"
     private var housemates: [String] = []
     
     /***********************************
@@ -80,6 +81,10 @@ class UserManager: NSObject {
         return url
     }
     
+    func getUrlString() -> String {
+        return photoUrl
+    }
+    
     func getHouseMates() -> [String]{
         return housemates
     }
@@ -107,4 +112,13 @@ class UserManager: NSObject {
         print("GID: \(userMngr.getGroupId())")
         print("---------------")
     }
+}
+
+struct User {
+    public var name: String
+    public var photoUrl: URL
+}
+
+struct HouseMembers {
+    public var members = [User]()
 }

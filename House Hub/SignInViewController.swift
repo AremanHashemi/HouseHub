@@ -120,6 +120,7 @@ class SignInViewController: UIViewController {
                     print("gid: \(gid)")
                     userMngr.retGroupName(addCode: gid)
                     print("gname: \(userMngr.getGroupName())")
+                    userMngr.setPhotoId(photoId_in: "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2F5Q7O5AjA8GgEyHmJsQO0qJbmzf13%2FEE02E776-05A7-4594-8612-416D5B27F19B?alt=media&token=6ee7c42b-94f1-4ebd-8938-99833b57318b")
                     
                 
                 

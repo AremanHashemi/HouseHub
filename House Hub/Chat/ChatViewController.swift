@@ -10,18 +10,23 @@
 import UIKit
 import MessageKit
 import InputBarAccessoryView
+import SDWebImage
 
 class ChatViewController: MessagesViewController {
     
     
     private var messages = [Message]()
     
+    private var myURL: URL?
+    
     private var selfSender: Sender {
         let username = "Me"
         let userID = userMngr.getUserId()
+        let url = userMngr.getPhotoUrl()
         
         return Sender(senderId: userID,
-               displayName: username)
+                      displayName: username,
+                      photoURL: url)
     }
     
     override func viewDidLoad() {
@@ -137,6 +142,19 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
         }
 
         return .secondarySystemBackground
+    }
+    
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        
+        let sender = message.sender
+        
+        if sender.senderId == selfSender.senderId {
+            myURL = selfSender.photoURL
+            avatarView.sd_setImage(with: myURL, completed: nil)
+        } else {
+            
+         //   avatarView.sd_setImage(with: url, completed: nil)
+        }
     }
     
     

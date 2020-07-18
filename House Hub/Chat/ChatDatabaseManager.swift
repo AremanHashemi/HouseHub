@@ -14,6 +14,8 @@ final class ChatDatabaseManager {
     
     private let ref = Database.database().reference()
     
+
+    
     public static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -40,13 +42,17 @@ final class ChatDatabaseManager {
                     let dateString = dictionary["date"] as? String,
                     let senderID = dictionary["senderId"] as? String,
                     let senderName = dictionary["senderName"] as? String,
+                    let senderUrl = dictionary["senderUrl"] as? String,
 
                     let date = ChatDatabaseManager.dateFormatter.date(from: dateString) else {
                         return nil
                 }
                 
+                let url = URL(string: senderUrl)!
+                
                 let sender = Sender(senderId: senderID,
-                                    displayName: senderName)
+                                    displayName: senderName,
+                                    photoURL: url)
                 
                 return Message(kind: .text(content),
                                sender: sender,
@@ -91,7 +97,8 @@ final class ChatDatabaseManager {
             "content": message,
             "date": dateString,
             "senderId": userMngr.getUserId(),
-            "senderName": firstMessage.sender.displayName
+            "senderName": firstMessage.sender.displayName,
+            "senderUrl": userMngr.getUrlString()
         ]
         
         let value: [String: Any] = [
@@ -155,7 +162,8 @@ final class ChatDatabaseManager {
                 "content": message,
                 "date": dateString,
                 "senderId": userMngr.getUserId(),
-                "senderName": newMessage.sender.displayName
+                "senderName": newMessage.sender.displayName,
+                "senderUrl": userMngr.getUrlString()
             ]
             
             currentMessages.append(newMessageEntry)
@@ -182,10 +190,12 @@ final class ChatDatabaseManager {
         let name = userMngr.getUserName()
         let userid = userMngr.getUserId()
         let gname = userMngr.getGroupName()
+        let url = userMngr.getPhotoUrl()
         let content = "AUTO: \(name) has created \(gname)"
         
         let sender = Sender(senderId: userid,
-                            displayName: name)
+                            displayName: name,
+                            photoURL: url)
         
         let message = Message(kind: .text(content),
                               sender: sender,
@@ -204,9 +214,11 @@ final class ChatDatabaseManager {
     public func sendJoinGroupMessage(addCode: String) {
         let name = userMngr.getUserName()
         let userid = userMngr.getUserId()
+        let url = userMngr.getPhotoUrl()
         let content = "AUTO: \(name) has joined \(userMngr.getGroupName())"
         let sender = Sender(senderId: userid,
-                            displayName: name)
+                            displayName: name,
+                            photoURL: url)
         
         let message = Message(kind: .text(content),
                               sender: sender,
@@ -226,8 +238,10 @@ final class ChatDatabaseManager {
         let name = userMngr.getUserName()
         let userid = userMngr.getUserId()
         let content = "AUTO: \(name) has left \(userMngr.getGroupName())"
+        let url = userMngr.getPhotoUrl()
         let sender = Sender(senderId: userid,
-                            displayName: name)
+                            displayName: name,
+                            photoURL: url)
         
         let message = Message(kind: .text(content),
                               sender: sender,
@@ -279,5 +293,6 @@ extension MessageKind {
 struct Sender: SenderType {
     public var senderId: String
     public var displayName: String
+    public var photoURL: URL
 }
 

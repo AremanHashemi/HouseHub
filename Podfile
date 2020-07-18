@@ -12,5 +12,6 @@ target 'House Hub' do
   pod 'FirebaseUI'
   pod 'Kingfisher'
   pod 'MessageKit'
+  pod 'SDWebImage'
 
 end
