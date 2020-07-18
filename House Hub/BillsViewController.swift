@@ -171,17 +171,17 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let today_date = dateFormatter.date(from: today)
 
             if((date! < today_date!)){//compare dates green if not due yet red if overdue yellow if due today
-                b_cell.backgroundColor = UIColor.systemRed
+                b_cell.backgroundColor = UIColor(red: 1, green: 0.6588, blue: 0.6588, alpha: 0.5)
             }
             else if((date! == today_date!)){
-                b_cell.backgroundColor = UIColor.systemYellow
+                b_cell.backgroundColor = UIColor(red: 0.9922, green: 1, blue: 0.6588, alpha: 0.5)
             }
             else{
-                b_cell.backgroundColor = UIColor.systemGreen
+                b_cell.backgroundColor = UIColor(red: 0.7137, green: 1, blue: 0.6588, alpha: 0.5)
             }
         }
         else{
-            b_cell.backgroundColor = UIColor.systemGreen
+            b_cell.backgroundColor = UIColor(red: 0.7137, green: 1, blue: 0.6588, alpha: 0.5)
         }
            return b_cell
        }

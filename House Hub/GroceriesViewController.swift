@@ -98,7 +98,8 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
         
         g_cell.textLabel!.text = groceryMngr.groceries[indexPath.row].name
         g_cell.detailTextLabel?.text = groceryMngr.groceries[indexPath.row].desc
-        
+        g_cell.backgroundColor = UIColor(red: 0.9406759143, green: 0.9559720159, blue: 0.9371087551, alpha: 1)
+
         return g_cell
     }
     

@@ -75,8 +75,9 @@ class UserManager: NSObject {
         return photoId
     }
     
-    func getPhotoUrl() -> String{
-        return photoUrl
+    func getPhotoUrl() -> URL{
+        let url = URL(string: photoUrl)!
+        return url
     }
     
     func getHouseMates() -> [String]{
