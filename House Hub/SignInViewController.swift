@@ -100,7 +100,7 @@ class SignInViewController: UIViewController {
                 if let photoURL = snapshot.value  as? String{
                     userMngr.setPhotoUrl(photoUrl_in: photoURL)//sets username for global user
                 }
-                //print("photoURL: \(userMngr.getPhotoUrl())")
+                print("photoURL: \(userMngr.getPhotoUrl())")
             })
             
                 //USER NAME

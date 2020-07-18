@@ -18,8 +18,8 @@ class UserManager: NSObject {
     private var userId = ""
     private var groupname = ""
     private var groupId = ""
-    private var photoId = ""
-    private var photoUrl = "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2F5Q7O5AjA8GgEyHmJsQO0qJbmzf13%2FEE02E776-05A7-4594-8612-416D5B27F19B?alt=media&token=6ee7c42b-94f1-4ebd-8938-99833b57318b"
+    private var photoId = "default"
+    private var photoUrl = "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0"
     private var housemates: [String] = []
     
     /***********************************

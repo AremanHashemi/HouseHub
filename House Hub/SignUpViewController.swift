@@ -75,7 +75,6 @@ class SignUpViewController: UIViewController {
                            "email" : self.email.text]
             
             ref.child("users").child(Auth.auth().currentUser!.uid).setValue(values)
-        
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "registerSuccess")
