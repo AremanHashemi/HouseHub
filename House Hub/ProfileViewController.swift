@@ -62,6 +62,16 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
     }
     
     @IBAction func uploadPicture(_ sender: Any) {
+        let storageRef = Storage.storage().reference().child("Users/\(userMngr.getUserId())/\(userMngr.getPhotoId())")
+       // Delete the file from storage
+       storageRef.delete { error in
+         if let error = error {
+           print(error)
+         } else {
+           print("image deleted")
+         }
+       }
+        
         let imageID = UUID().uuidString //id for image
         userMngr.setPhotoId(photoId_in: imageID)
         
