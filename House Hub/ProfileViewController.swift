@@ -23,6 +23,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        pfp.image = UIImage(named: "profilePic")
+//        pfp.layer.cornerRadius = image.frame.size.width / 2
+        pfp.layer.masksToBounds = true
+        pfp.layer.borderColor = UIColor.black.cgColor
+        pfp.layer.borderWidth = 1.0
+        
+        
         let userID = Auth.auth().currentUser?.uid
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value

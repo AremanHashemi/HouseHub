@@ -138,23 +138,20 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let today = dateFormatter.string(from: currentDateTime)
             let today_date = dateFormatter.date(from: today)
 
+
             if((date! < today_date!)){//compare dates green if not due yet red if overdue yellow if due today
-                c_cell.backgroundColor = UIColor.systemRed
+                c_cell.backgroundColor = UIColor(red: 1, green: 0.6588, blue: 0.6588, alpha: 0.5)
             }
             else if((date! == today_date!)){
-                c_cell.backgroundColor = UIColor.systemYellow
+                c_cell.backgroundColor = UIColor(red: 0.9922, green: 1, blue: 0.6588, alpha: 0.5)
             }
             else{
-                c_cell.backgroundColor = UIColor.systemGreen
+                c_cell.backgroundColor = UIColor(red: 0.7137, green: 1, blue: 0.6588, alpha: 0.5)
             }
         }
         else{
-            c_cell.backgroundColor = UIColor.systemGreen
+            c_cell.backgroundColor = UIColor(red: 0.7137, green: 1, blue: 0.6588, alpha: 0.5)
         }
-        
-        return c_cell
-    }
-
-
+           return c_cell
+       }
 }
-

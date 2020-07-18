@@ -34,10 +34,10 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         myImageView.image = UIImage(named: "InsertImage")//replaces picture with default
-        addFixView.layer.cornerRadius = 8.0
-        addFixView.layer.masksToBounds = true
-        addFixView.layer.borderColor = UIColor.black.cgColor
-        addFixView.layer.borderWidth = 1.0
+//        addFixView.layer.cornerRadius = 8.0
+//        addFixView.layer.masksToBounds = true
+//        addFixView.layer.borderColor = UIColor.black.cgColor
+//        addFixView.layer.borderWidth = 1.0
         /****************************************************/
             ref.child("Fixit/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
                 fixesMngr.fixes.removeAll()
