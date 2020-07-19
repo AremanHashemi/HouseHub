@@ -117,11 +117,32 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
     
     @IBAction func leaveGroupBtn(_ sender: Any) {
         let userID = Auth.auth().currentUser?.uid
+        let gid = userMngr.getGroupId()
+        /*************************************
+        *REMOVE USER FROM GROUP
+        **************************************/
+        ref.child("Groups/\(gid)/Users").observeSingleEvent(of: .value, with: { snapshot in
+            guard var currentMembers = snapshot.value as? [String] else {
+                print("Couldn't get housemates")
+                return
+            }
+            
+            var i = 0
+            for id in currentMembers {
+                if id == userID {
+                    currentMembers.remove(at: i)
+                    break
+                }
+                i += 1
+            }
+            print(currentMembers)
+            self.ref.child("Groups/\(gid)/Users").setValue(currentMembers)
+        })
         
         /*************************************
         *SEND LEAVE MESSAGE
         **************************************/
-        let gid = userMngr.getGroupId()
+
         chatMngr.sendLeaveGroupMessage(addCode: gid)
         
         

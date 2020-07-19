@@ -12,6 +12,7 @@ import FirebaseDatabase
 
 var userMngr: UserManager = UserManager()
 
+
 class UserManager: NSObject {
     private var username = ""
     private var userId = ""
@@ -80,6 +81,10 @@ class UserManager: NSObject {
         return url
     }
     
+    func getUrlString() -> String {
+        return photoUrl
+    }
+    
     func getHouseMates() -> [String]{
         return housemates
     }
@@ -107,4 +112,13 @@ class UserManager: NSObject {
         print("GID: \(userMngr.getGroupId())")
         print("---------------")
     }
+}
+
+struct User {
+    public var name: String
+    public var photoUrl: URL
+}
+
+struct HouseMembers {
+    public var members = [User]()
 }
