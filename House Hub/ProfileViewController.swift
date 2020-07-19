@@ -115,6 +115,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
     }
     
+    @IBAction func deleteAccountBtn(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(identifier: "DeleteAccountVC")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
+    }
+    
     @IBAction func leaveGroupBtn(_ sender: Any) {
         let userID = Auth.auth().currentUser?.uid
         
@@ -142,7 +148,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
                     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(join_create_grp)
    
     }
-        
+    
     @IBAction func logoutBtn(_ sender: Any) {
         
           // ...
