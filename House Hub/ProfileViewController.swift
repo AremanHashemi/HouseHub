@@ -152,7 +152,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         *EMPTY LOCAL LISTS
         **************************************/
         groceryMngr.groceries.removeAll()
-        
+        choreMngr.chores.removeAll()
+        billsMngr.bills.removeAll()
+        fixesMngr.fixes.removeAll()
         /*************************************
         *GO TO JOIN CREATE GROUP PAGE
         **************************************/
@@ -173,10 +175,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
             print("error signing out: %@", signOutError)
         }
         
-        /*************************************
-        *EMPTY LOCAL LISTS
-        **************************************/
+        /********************************************
+        *EMPTY LOCAL LISTS AND RESET INFO TO DEFAULT
+        *********************************************/
         groceryMngr.groceries.removeAll()
+        choreMngr.chores.removeAll()
+        billsMngr.bills.removeAll()
+        fixesMngr.fixes.removeAll()
+        userMngr.setUserId(userId_in: "")
+        userMngr.setGroupId(groupId_in: "")
+        userMngr.setUserName(username_in: "")
+        userMngr.setGroupName(groupname_in: "")
+        userMngr.setHouseMates(housemates_in: [])
+        userMngr.setPhotoId(photoId_in: "default")
+        userMngr.setPhotoUrl(photoUrl_in: "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0")
         
         /*************************************
         *GO TO LOG IN SCREEN
