@@ -46,23 +46,23 @@ class JoinGroupViewController: UIViewController {
             }
         })
         
-        _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let group = snapshot.value  as? String{
-                print(group)
-                ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
-                    let groceryList = snapshot.value as? [String:String] ?? [:]
-                    print(groceryList)
-                    for (name, desc) in groceryList{
-                        groceryMngr.addGrocery(name: name, desc: desc)
-                    }
-                })
-            }
-        })
+//        _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let group = snapshot.value  as? String{
+//                print(group)
+//                ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
+//                    let groceryList = snapshot.value as? [String:String] ?? [:]
+//                    print(groceryList)
+//                    for (name, desc) in groceryList{
+//                        groceryMngr.addGrocery(name: name, desc: desc)
+//                    }
+//                })
+//            }
+//        })
                 
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
+        let tabBarController = storyboard.instantiateViewController(identifier: "JoinGroupSuccess")
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
     
 

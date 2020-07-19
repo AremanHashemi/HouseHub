@@ -131,7 +131,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         *EMPTY LOCAL LISTS
         **************************************/
         groceryMngr.groceries.removeAll()
-        
+        choreMngr.chores.removeAll()
+        billsMngr.bills.removeAll()
+        fixesMngr.fixes.removeAll()
         /*************************************
         *GO TO JOIN CREATE GROUP PAGE
         **************************************/

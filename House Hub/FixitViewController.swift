@@ -168,14 +168,14 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
             let f_cell = tableView.dequeueReusableCell(withIdentifier: "FixItCell", for: indexPath) as! FixItTableViewCell
-
+            f_cell.backgroundColor = UIColor.red
            // let imageURL = fixesMngr.fixes[indexPath.row].url
         
             let fix = fixesMngr.fixes[indexPath.row]
             let imageURL = URL(string: fix.url)
             f_cell.fixItImage.kf.setImage(with: imageURL)
-            
             f_cell.fixItLabel.text = fixesMngr.fixes[indexPath.row].desc
+            
         
             return f_cell
        }
