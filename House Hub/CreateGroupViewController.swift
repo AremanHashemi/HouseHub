@@ -43,10 +43,10 @@ class CreateGroupViewController: UIViewController {
             return
         }
         
-        var members = [String]()
-        members.append(Auth.auth().currentUser!.uid)
         
-        ref.child("Groups/\(addCodeLabel.text!)/Users").setValue(members)
+        ref.child("Groups/\(addCodeLabel.text!)/Users/\(userMngr.getUserId())").setValue(userMngr.getUserName())
+        userMngr.setGroupId(groupId_in: addCodeLabel.text!)
+
         ref.child("Groups/\(addCodeLabel.text!)/GroupName").setValue(GroupName.text!)
         ref.child("users/\(Auth.auth().currentUser!.uid)/Group").setValue(addCodeLabel.text!)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

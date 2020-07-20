@@ -83,6 +83,7 @@ class SignInViewController: UIViewController {
             ************************************/
             let ref = Database.database().reference()
             
+            
             //USER ID
             userMngr.setUserId(userId_in: (Auth.auth().currentUser!.uid))//sets user id for global user
             print("USER ID: \(userMngr.getUserName())")
