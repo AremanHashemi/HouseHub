@@ -17,10 +17,11 @@ class UserManager: NSObject {
     private var username = ""
     private var userId = ""
     private var groupname = ""
+    private var memberId = ""
     private var groupId = ""
     private var photoId = "default"
     private var photoUrl = "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0"
-    private var housemates: [String] = []
+    public var housemates: [String: String] = [:]
     
     /***********************************
     * SETTERS
@@ -36,6 +37,10 @@ class UserManager: NSObject {
     func setGroupName(groupname_in: String){
         groupname = groupname_in
     }
+   
+    func setmemberId(memberId_in: String){
+        userId = memberId_in
+    }
     
     func setGroupId(groupId_in: String){
         groupId = groupId_in
@@ -49,8 +54,8 @@ class UserManager: NSObject {
         photoUrl = photoUrl_in
     }
     
-    func setHouseMates(housemates_in: [String]){
-        //set housemates here
+    func setHouseMates(housemates_in: [String:String]){
+        housemates = housemates_in
     }
     
     /***********************************
@@ -66,6 +71,10 @@ class UserManager: NSObject {
     
     func getGroupId() -> String{
         return groupId
+    }
+    
+    func getmemberId() -> String{
+        return memberId
     }
     
     func getGroupName() -> String{
@@ -85,7 +94,7 @@ class UserManager: NSObject {
         return photoUrl
     }
     
-    func getHouseMates() -> [String]{
+    func getHouseMates() -> [String:String]{
         return housemates
     }
     

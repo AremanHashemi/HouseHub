@@ -127,23 +127,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         /*************************************
         *REMOVE USER FROM GROUP
         **************************************/
-        ref.child("Groups/\(gid)/Users").observeSingleEvent(of: .value, with: { snapshot in
-            guard var currentMembers = snapshot.value as? [String] else {
-                print("Couldn't get housemates")
-                return
-            }
-            
-            var i = 0
-            for id in currentMembers {
-                if id == userID {
-                    currentMembers.remove(at: i)
-                    break
-                }
-                i += 1
-            }
-            print(currentMembers)
-            self.ref.child("Groups/\(gid)/Users").setValue(currentMembers)
-        })
+
+        ref.child("Groups/\(gid)/Users/\(userMngr.getUserId())").removeValue()
         
         /*************************************
         *SEND LEAVE MESSAGE
@@ -161,6 +146,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         choreMngr.chores.removeAll()
         billsMngr.bills.removeAll()
         fixesMngr.fixes.removeAll()
+        userMngr.housemates.removeAll()
         /*************************************
         *GO TO JOIN CREATE GROUP PAGE
         **************************************/
@@ -192,9 +178,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         userMngr.setGroupId(groupId_in: "")
         userMngr.setUserName(username_in: "")
         userMngr.setGroupName(groupname_in: "")
-        userMngr.setHouseMates(housemates_in: [])
         userMngr.setPhotoId(photoId_in: "default")
         userMngr.setPhotoUrl(photoUrl_in: "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0")
+        userMngr.housemates.removeAll()
         
         /*************************************
         *GO TO LOG IN SCREEN
