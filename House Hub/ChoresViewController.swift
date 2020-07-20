@@ -41,7 +41,7 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.tblTasks.reloadData()
         
         let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
-        myRef.observeSingleEvent(of: .value, with: { (snapshot) in
+        myRef.observe(.value, with: { (snapshot) in
 
             if !snapshot.exists() {
                 // handle data not found
