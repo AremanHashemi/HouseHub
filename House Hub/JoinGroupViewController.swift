@@ -33,56 +33,24 @@ class JoinGroupViewController: UIViewController {
         let userID = Auth.auth().currentUser?.uid
         userMngr.setUserId(userId_in: userID!)
         let usersRef: Void = ref.child("Groups").observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.hasChild(self.joinCode.text!){
+            if snapshot.hasChild(addCode){
                 ref.child("users/\(userID!)/Group").setValue(self.joinCode.text!)
-                
+               
+                ref.child("Groups/\(addCode)/Users/\(userMngr.getUserId())").setValue(userMngr.getUserName())
                 userMngr.setGroupId(groupId_in: addCode)
-                
-                // add user to house
-                ref.child("Groups/\(addCode)/Users").observeSingleEvent(of: .value, with: { [weak self] snapshot in
-                    
-                    guard var currentMembers = snapshot.value as? [String] else {
-                        print("Couldn't get housemates")
-                        return
-                    }
-                    
-                    currentMembers.append(userID!)
-                    
-                    ref.child("Groups/\(addCode)/Users").setValue(currentMembers)
-                    
-                    
-                })
-                
-                
-                
                 userMngr.retGroupName(addCode: addCode)
-                
-
                 //Add current name to group
             }else{
                 print("Please enter a valid code")
                 return
             }
         })
-        
-//        _ = ref.child("users").child(userID!).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let group = snapshot.value  as? String{
-//                print(group)
-//                ref.child("Groceries/\(group)").observeSingleEvent(of: .value, with: { (snapshot) in
-//                    let groceryList = snapshot.value as? [String:String] ?? [:]
-//                    print(groceryList)
-//                    for (name, desc) in groceryList{
-//                        groceryMngr.addGrocery(name: name, desc: desc)
-//                    }
-//                })
-//            }
-//        })
-                
+         
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabBarController = storyboard.instantiateViewController(identifier: "JoinGroupSuccess")
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
+        let jgs = storyboard.instantiateViewController(identifier: "JoinGroupSuccess")
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(jgs)
     
 
         /*************************************
