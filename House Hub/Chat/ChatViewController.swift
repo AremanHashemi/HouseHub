@@ -21,7 +21,7 @@ class ChatViewController: MessagesViewController {
     private var myURL: URL?
     
     private var selfSender: Sender {
-        let username = "Me"
+        let username = userMngr.getUserName()
         let userID = userMngr.getUserId()
         let url = userMngr.getPhotoUrl()
         
@@ -142,6 +142,8 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
     }
 }
 
+
+/// Set up Chat Display
 extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     func currentSender() -> SenderType {
         return selfSender
@@ -181,21 +183,23 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
                 } else {
                     avatarView.sd_setImage(with: self.defaultURL, completed: nil)
                 }
-                
             })
         }
     }
     
+    // Show name in chat
     func messageHeaderView(for indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageReusableView {
         let header = messagesCollectionView.dequeueReusableHeaderView(HeaderReusableView.self, for: indexPath)
         let displayHeader = shouldDisplayHeader(index: indexPath.section)
         if (displayHeader) {
+            let name = messages[indexPath.section].sender.displayName
             let message = messageForItem(at: indexPath, in: messagesCollectionView)
-            header.setup(with: message.sender.displayName)
+            header.setup(with: name)
         }
         return header
     }
     
+    // Configure header size in chat
     func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
         let displayHeader = shouldDisplayHeader(index: section)
         if (displayHeader) {

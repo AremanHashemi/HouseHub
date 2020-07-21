@@ -122,12 +122,3 @@ class UserManager: NSObject {
         print("---------------")
     }
 }
-
-struct User {
-    public var name: String
-    public var photoUrl: URL
-}
-
-struct HouseMembers {
-    public var members = [User]()
-}

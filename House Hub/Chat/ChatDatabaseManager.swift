@@ -15,7 +15,6 @@ final class ChatDatabaseManager {
     private let ref = Database.database().reference()
     
 
-    
     public static var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -28,6 +27,8 @@ final class ChatDatabaseManager {
         case failedToFetch
     }
     
+    
+    // PULL ALL MESSAGES FROM DB
     public func loadMessages(houseId: String, completion: @escaping (Result<[Message], Error>) -> Void) {
         let convoid = "groupchat_\(houseId)"
         ref.child("Groupchats/\(convoid)/messages").observe(.value, with: { snapshot in
@@ -109,7 +110,6 @@ final class ChatDatabaseManager {
     
         let header = "groupchat_\(addCode)"
         print("Adding convo \(header)")
-        //        ref.child("users/\(Auth.auth().currentUser!.uid)/Group").setValue(addCodeLabel.text!)
    
         ref.child("Groupchats/\(header)").setValue(value, withCompletionBlock: { error, _ in
             guard error == nil else {
