@@ -21,7 +21,7 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //get housemates
+        //get housemates list
         let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
             myRef.observe(.value, with: { (snapshot) in
              housematesMngr.housemates.removeAll()
@@ -58,6 +58,11 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
         txtDeadline.inputView = datePicker
         ref.child("Chores/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
             choreMngr.chores.removeAll()
+            
+            if !snapshot.exists() {//dont do anything if there isnt data
+                return
+            }
+            
             let postDict = snapshot.value as? NSDictionary ?? [:]
             for (name, value1) in postDict{
                 let name:String = name as! String
@@ -102,13 +107,7 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         choreMngr.addChore(choreName: txtChoreName.text!, chorePerson: txtAssignto.text!, deadline: deadline, username: userMngr.getUserName())
-        
-        
-//        let ref = Database.database().reference()
-//
-//        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtChoreName.text!))/AssignedTo").setValue(txtAssignto.text)
-//        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtChoreName.text!))/Deadline").setValue(txtDeadline.text)
-        
+
         txtChoreName.text = "" //make text fields blank
         txtAssignto.text = ""
         txtDeadline.text = ""

@@ -18,7 +18,6 @@ class HouseMatesTableViewCell: UITableViewCell{
     
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var userNamelbl: UILabel!
-    
 }
 
 class HousematesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
@@ -49,9 +48,7 @@ class HousematesViewController: UIViewController, UITableViewDelegate, UITableVi
             h_cell.profilePic.kf.setImage(with: imageURL)
             h_cell.profilePic.layer.cornerRadius = h_cell.profilePic.frame.height/2
             h_cell.userNamelbl.text = housematesMngr.housemates[indexPath.row].name
-            
-        
-        
+
             return h_cell
        }
 }

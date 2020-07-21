@@ -82,6 +82,9 @@ class SignInViewController: UIViewController {
             
             //Photo ID
             _ = ref.child("users").child(userMngr.getUserId()).child("photoID").observeSingleEvent(of: .value, with: { (snapshot) in
+                if !snapshot.exists() {//dont do anything if there isnt data
+                    return
+                }
                 if let photoID = snapshot.value  as? String{
                     userMngr.setPhotoId(photoId_in: photoID)//sets username for global user
                 }
@@ -90,6 +93,9 @@ class SignInViewController: UIViewController {
             
             //Photo URL
             _ = ref.child("users").child(userMngr.getUserId()).child("photoURL").observeSingleEvent(of: .value, with: { (snapshot) in
+                if !snapshot.exists() {//dont do anything if there isnt data
+                    return
+                }
                 if let photoURL = snapshot.value  as? String{
                     userMngr.setPhotoUrl(photoUrl_in: photoURL)//sets username for global user
                 }
@@ -98,6 +104,9 @@ class SignInViewController: UIViewController {
             
                 //USER NAME
                 _ = ref.child("users").child(userMngr.getUserId()).child("user").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if !snapshot.exists() {//dont do anything if there isnt data
+                        return
+                    }
                     if let username = snapshot.value  as? String{
                         userMngr.setUserName(username_in: username)//sets username for global user
                     }
@@ -106,6 +115,9 @@ class SignInViewController: UIViewController {
             
             //GROUP ID
             _ = ref.child("users").child(userMngr.getUserId()).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
+                if !snapshot.exists() {//dont do anything if there isnt data
+                    return
+                }
                 if let group = snapshot.value  as? String{//user is in a group
                     userMngr.setGroupId(groupId_in: group)//sets group id for global user
 

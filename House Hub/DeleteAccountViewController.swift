@@ -14,7 +14,6 @@ import Kingfisher
 
 class DeleteAccountViewController: UIViewController {
     
-    
     @IBOutlet weak var currPass: UITextField!
     @IBOutlet weak var currEmail: UITextField!
     @IBOutlet weak var errorMsg: UILabel!
@@ -41,7 +40,6 @@ class DeleteAccountViewController: UIViewController {
             var credential: AuthCredential = EmailAuthProvider.credential(withEmail: currEmail.text!, password: currPass.text!)
 
             // Prompt the user to re-provide their sign-in credentials
-
             user?.reauthenticate(with: credential, completion: { (result, error) in
                if let err = error {
                   //..read error message

@@ -32,6 +32,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         let userID = Auth.auth().currentUser?.uid
         ref.child("users").child(userID!).observeSingleEvent(of: .value, with: { (snapshot) in
             // Get user value
+            if !snapshot.exists() {//dont do anything if there isnt data
+                return
+            }
+            
             let value = snapshot.value as? NSDictionary
             let profName = value?["user"] as? String ?? ""
             let gc = value?["Group"] as? String ?? ""
@@ -66,9 +70,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
        // Delete the file from storage
        storageRef.delete { error in
         if error != nil {
-           print("nothing deleted")
+           print("no profile picture deleted")
          } else {
-           print("image deleted")
+           print("profile picture deleted")
          }
        }
         
