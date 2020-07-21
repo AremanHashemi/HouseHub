@@ -40,9 +40,10 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
+        messagesCollectionView.register(HeaderReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader)
         messageInputBar.delegate = self
         
-    
+        
         
     }
     
@@ -51,6 +52,8 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.becomeFirstResponder()
         let gid = userMngr.getGroupId()
         listenForMessages(id: gid, shouldScrollToBottom: true)
+        
+
     }
     
     private func listenForMessages(id: String, shouldScrollToBottom: Bool) {
@@ -72,7 +75,7 @@ class ChatViewController: MessagesViewController {
                     if shouldScrollToBottom {
                         self?.messagesCollectionView.scrollToBottom()
                     }
-                
+                    
                 }
                 
             case .failure(let error):
@@ -82,8 +85,8 @@ class ChatViewController: MessagesViewController {
         })
     }
     
-
-
+    
+    
 }
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
@@ -91,7 +94,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         
         
         let selfSender = self.selfSender
-
+        
         
         
         let addcode = userMngr.getGroupId()
@@ -121,17 +124,33 @@ extension ChatViewController: InputBarAccessoryViewDelegate {
         print("Sending: \(text)")
         self.messageInputBar.inputTextView.text = nil
     }
+    
+    func shouldDisplayHeader(index: Int) -> Bool {
+        var shouldDisplayHeader = false
+        if(index == 0) {
+            shouldDisplayHeader = true
+        } else {
+            let prevMsg = messages[index - 1]
+            let prevId = prevMsg.sender.senderId
+            if messages[index].sender.senderId != prevId {
+                shouldDisplayHeader = true
+            } else {
+                shouldDisplayHeader = false
+            }
+        }
+        return shouldDisplayHeader
+    }
 }
 
 extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     func currentSender() -> SenderType {
         return selfSender
     }
-
+    
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
         return messages[indexPath.section]
     }
-
+    
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
     }
@@ -140,8 +159,8 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
         let sender = message.sender
         if sender.senderId == selfSender.senderId {
             return .link
-        }
-
+        } 
+        
         return .secondarySystemBackground
     }
     
@@ -164,6 +183,25 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
                 }
                 
             })
+        }
+    }
+    
+    func messageHeaderView(for indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageReusableView {
+        let header = messagesCollectionView.dequeueReusableHeaderView(HeaderReusableView.self, for: indexPath)
+        let displayHeader = shouldDisplayHeader(index: indexPath.section)
+        if (displayHeader) {
+            let message = messageForItem(at: indexPath, in: messagesCollectionView)
+            header.setup(with: message.sender.displayName)
+        }
+        return header
+    }
+    
+    func headerViewSize(for section: Int, in messagesCollectionView: MessagesCollectionView) -> CGSize {
+        let displayHeader = shouldDisplayHeader(index: section)
+        if (displayHeader) {
+            return CGSize(width: messagesCollectionView.bounds.width, height: HeaderReusableView.height)
+        } else {
+            return .zero
         }
     }
     
