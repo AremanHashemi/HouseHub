@@ -102,9 +102,14 @@ class UserManager: NSObject {
         var gname = "test"
         ref.child("Groups/\(addCode)/GroupName").observeSingleEvent(of: .value, with: { (snapshot) in
             let group_name = snapshot.value as? String
+            gname = group_name!
+     //       print("gname inside: \(group_name!)")
             self.groupname = group_name!
-            userMngr.setGroupName(groupname_in: group_name!)
+   //         print("retGN: \(self.getGroupName())")
         })
+        
+  //      print("Setting gname to: \(gname)")
+        self.setGroupName(groupname_in: gname)
     }
     
     // testing
@@ -115,45 +120,6 @@ class UserManager: NSObject {
         print("GName: \(userMngr.getGroupName())")
         print("GID: \(userMngr.getGroupId())")
         print("---------------")
-    }
-    
-    public func buildHouse(addCode: String) {
-        ref.child("Groups/\(addCode)/Users").observeSingleEvent(of: .value, with: { snapshot in
-            guard let users = snapshot.value as? [String] else {
-                print("Couldn't get housemates")
-                return
-            }
-            
-            print("Housemates: \(users)")
-            
-            for uid in users {
-                userMngr.buildHousemate(id: uid)
-            }
-            
-        })
-    }
-    
-    public func buildHousemate(id: String) {
-        print("id: \(id)")
-        
-        ref.child("users").child(id).child("photoURL").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let photoURL = snapshot.value  as? String {
-                print("URL: \(photoURL)")
-            } else {
-                print("Couldn't get url")
-            }
-        })
-        
-        ref.child("users/\(id)/user").observeSingleEvent(of: .value, with: { snapshot in
-            guard let name = snapshot.value as? String else {
-                print("Couldn't get housemate name")
-                return
-            }
-            
-            print("Name: \(name)")
-            
-        })
-    
     }
 }
 
