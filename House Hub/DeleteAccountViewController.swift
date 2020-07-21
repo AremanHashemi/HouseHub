@@ -14,7 +14,6 @@ import Kingfisher
 
 class DeleteAccountViewController: UIViewController {
     
-    
     @IBOutlet weak var currPass: UITextField!
     @IBOutlet weak var currEmail: UITextField!
     @IBOutlet weak var errorMsg: UILabel!
@@ -41,7 +40,6 @@ class DeleteAccountViewController: UIViewController {
             var credential: AuthCredential = EmailAuthProvider.credential(withEmail: currEmail.text!, password: currPass.text!)
 
             // Prompt the user to re-provide their sign-in credentials
-
             user?.reauthenticate(with: credential, completion: { (result, error) in
                if let err = error {
                   //..read error message
@@ -69,9 +67,22 @@ class DeleteAccountViewController: UIViewController {
                         print("image deleted")
                       }
                     }
+                    
+                    let numHousemates = housematesMngr.housemates.count
+                           if(numHousemates == 1){
+                            self.ref.child("Groups/\(gid)").removeValue()
+                            self.ref.child("Bills/\(gid)").removeValue()
+                            self.ref.child("Chores/\(gid)").removeValue()
+                            self.ref.child("Fixit/\(gid)").removeValue()
+                            self.ref.child("Groceries/\(gid)").removeValue()
+                            self.ref.child("Groupchats/groupchat_\(gid)").removeValue()
+                           }
+                           else{
+                            self.ref.child("Groups/\(gid)/Users/\(userMngr.getUserId())").removeValue()
+                               chatMngr.sendLeaveGroupMessage(addCode: gid)//send leave message
+                           }
+                    //remove user id from db
                     self.ref.child("users/\(userMngr.getUserId())").removeValue()
-                    //delete from housemates list here
-                    self.ref.child("Groups/\(gid)/Users/\(userMngr.getUserId())").removeValue()
                     /********************************************
                     *EMPTY LOCAL LISTS AND RESET INFO TO DEFAULT
                     *********************************************/

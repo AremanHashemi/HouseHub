@@ -21,12 +21,51 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //get housemates list
+        let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
+            myRef.observe(.value, with: { (snapshot) in
+             housematesMngr.housemates.removeAll()
+             
+            if !snapshot.exists() {//dont do anything if there isnt data
+                return
+            }
+                
+             let groupData = snapshot.value as! [String: Any]
+             let userDictionary = groupData["Users"] as! [String: String]
+             
+             //iterates through the housemates dictionary id is the user id and the "key", name is the username and the "value"
+             for (id, name) in userDictionary {
+                 _ = ref.child("users").child(id).child("photoURL").observe(.value, with: { (snapshot) in
+                    
+                    if housematesMngr.housemates.contains(where: { $0.id == id }) {
+                        housematesMngr.housemates.removeAll(where: { $0.id == id })
+                    }
+                    
+                     if !snapshot.exists() {
+                         let url = "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0"
+                        housematesMngr.addHousemate(id: id, name: name, url: url)
+                        print("no url")
+                     }
+                     if let url = snapshot.value  as? String{
+                        housematesMngr.addHousemate(id: id, name: name, url: url)
+                     }
+                    housematesMngr.housemates.sort(by: { $0.name < $1.name })
+                 })
+             }
+         })
+        
+        
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
         datePicker?.addTarget(self, action: #selector(BillsViewController.dateChanged(datePicker:)), for: .valueChanged)
         txtDeadline.inputView = datePicker
         ref.child("Chores/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
             choreMngr.chores.removeAll()
+            
+            if !snapshot.exists() {//dont do anything if there isnt data
+                return
+            }
+            
             let postDict = snapshot.value as? NSDictionary ?? [:]
             for (name, value1) in postDict{
                 let name:String = name as! String
@@ -39,24 +78,6 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.tblTasks.reloadData()
         })
         self.tblTasks.reloadData()
-        
-        let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
-        myRef.observe(.value, with: { (snapshot) in
-
-            if !snapshot.exists() {
-                // handle data not found
-                return
-            }
-
-            // data found
-            let myData = snapshot.value as! [String: Any]    // the key is almost always a String
-            print(myData)
-            let userDictionary = myData["Users"] as! [String: String]
-            userMngr.setHouseMates(housemates_in: userDictionary)
-            for (iD, name) in userDictionary {
-                print("name: \(name) id: \(iD)")
-            }
-        })
     }
     
     
@@ -89,13 +110,7 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         choreMngr.addChore(choreName: txtChoreName.text!, chorePerson: txtAssignto.text!, deadline: deadline, username: userMngr.getUserName())
-        
-        
-//        let ref = Database.database().reference()
-//
-//        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtChoreName.text!))/AssignedTo").setValue(txtAssignto.text)
-//        ref.child("Chores/\(userMngr.getGroupId())/\(String(describing: txtChoreName.text!))/Deadline").setValue(txtDeadline.text)
-        
+
         txtChoreName.text = "" //make text fields blank
         txtAssignto.text = ""
         txtDeadline.text = ""

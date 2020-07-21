@@ -48,29 +48,12 @@ class ChangePasswordViewController: UIViewController {
               //.. go on
             Auth.auth().currentUser?.updatePassword(to: self.newPassText.text!) { (error) in
               // ...
-                print("success")
+                //print("success")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(identifier: "ProfileVC")
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)
             }
            }
         })
-        
-        /*let user = Auth.auth().currentUser
-        var credential: AuthCredential
-
-        // Prompt the user to re-provide their sign-in credentials
-
-        user?.reauthenticate(with: credential) { error in
-          if let error = error {
-            // An error happened.
-          } else {
-            // User re-authenticated.
-            Auth.auth().currentUser?.updatePassword(to: newPassText.text!) { (error) in
-              // ...
-            }
-          }
-        }*/
-        
     }
 }

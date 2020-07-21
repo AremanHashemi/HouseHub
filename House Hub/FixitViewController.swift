@@ -34,13 +34,13 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         myImageView.image = UIImage(named: "InsertImage")//replaces picture with default
-//        addFixView.layer.cornerRadius = 8.0
-//        addFixView.layer.masksToBounds = true
-//        addFixView.layer.borderColor = UIColor.black.cgColor
-//        addFixView.layer.borderWidth = 1.0
         /****************************************************/
             ref.child("Fixit/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
                 fixesMngr.fixes.removeAll()
+                
+                if !snapshot.exists() {//dont do anything if there isnt data
+                    return
+                }
                 
                 let postDict = snapshot.value as? NSDictionary ?? [:]
                 for (id, value1) in postDict{
@@ -168,8 +168,6 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
             let f_cell = tableView.dequeueReusableCell(withIdentifier: "FixItCell", for: indexPath) as! FixItTableViewCell
-            f_cell.backgroundColor = UIColor.red
-           // let imageURL = fixesMngr.fixes[indexPath.row].url
         
             let fix = fixesMngr.fixes[indexPath.row]
             let imageURL = URL(string: fix.url)
