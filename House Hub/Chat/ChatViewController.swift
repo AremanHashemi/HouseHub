@@ -14,6 +14,7 @@ import SDWebImage
 
 class ChatViewController: MessagesViewController {
     
+    let defaultURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0")!
     
     private var messages = [Message]()
     
@@ -152,8 +153,17 @@ extension ChatViewController: MessagesDataSource, MessagesLayoutDelegate, Messag
             myURL = selfSender.photoURL
             avatarView.sd_setImage(with: myURL, completed: nil)
         } else {
-            
-         //   avatarView.sd_setImage(with: url, completed: nil)
+            let id = sender.senderId
+            ref.child("users/\(id)/photoURL").observeSingleEvent(of: .value, with: { snapshot in
+                let url = snapshot.value as? String
+                if url != nil {
+                    let otherURL = URL(string: url!)
+                    avatarView.sd_setImage(with: otherURL, completed: nil)
+                } else {
+                    avatarView.sd_setImage(with: self.defaultURL, completed: nil)
+                }
+                
+            })
         }
     }
     
