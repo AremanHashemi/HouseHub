@@ -39,24 +39,6 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.tblTasks.reloadData()
         })
         self.tblTasks.reloadData()
-        
-        let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
-        myRef.observe(.value, with: { (snapshot) in
-
-            if !snapshot.exists() {
-                // handle data not found
-                return
-            }
-
-            // data found
-            let myData = snapshot.value as! [String: Any]    // the key is almost always a String
-            print(myData)
-            let userDictionary = myData["Users"] as! [String: String]
-            userMngr.setHouseMates(housemates_in: userDictionary)
-            for (iD, name) in userDictionary {
-                print("name: \(name) id: \(iD)")
-            }
-        })
     }
     
     
