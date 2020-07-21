@@ -154,7 +154,15 @@
 		5A1F430124A427EE00761B9B /* House Hub */ = {
 			isa = PBXGroup;
 			children = (
+				5A1F431224A427F300761B9B /* Info.plist */,
+				8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */,
+				D69A9BD524C4E11E00578540 /* StoryBoards */,
+				D69A9BD424C4E0F300578540 /* XCodeGenerated */,
+				D69A9BD324C4E0AF00578540 /* Utilities */,
+				D69A9BCE24C4E01100578540 /* ViewControllers */,
+				D69A9BCD24C4E00200578540 /* Managers */,
 				D6099EF024BA953E00E1050C /* Chat */,
+<<<<<<< HEAD
 				5A1F430224A427EE00761B9B /* AppDelegate.swift */,
 				5A1F430424A427EE00761B9B /* SceneDelegate.swift */,
 				5AE9418224BD3FDF0092DA4B /* TabBarController.swift */,
@@ -179,10 +187,9 @@
 				5A1F430824A427EE00761B9B /* GroceriesViewController.swift */,
 				5AE9417624B674160092DA4B /* UserManager.swift */,
 				D3FB78CB24C13F3200FA34C8 /* StorageService.swift */,
+=======
+>>>>>>> RowenS3pt3
 				5A1F430D24A427F300761B9B /* Assets.xcassets */,
-				8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */,
-				5A1F430F24A427F300761B9B /* LaunchScreen.storyboard */,
-				5A1F431224A427F300761B9B /* Info.plist */,
 			);
 			path = "House Hub";
 			sourceTree = "<group>";
@@ -229,6 +236,88 @@
 				D6099EF324BA957100E1050C /* ChatViewController.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		D69A9BCD24C4E00200578540 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				5A1F43F424A6A34200761B9B /* GroceryManager.swift */,
+				5A1F43F824A6CE8300761B9B /* FixitManager.swift */,
+				5A1F43F624A6B4D500761B9B /* BillsManager.swift */,
+				5A1F433624A429D000761B9B /* ChoreManager.swift */,
+				5AE9417624B674160092DA4B /* UserManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D69A9BCE24C4E01100578540 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D69A9BD224C4E08600578540 /* TabBar */,
+				D69A9BD024C4E04900578540 /* SignInSignUp */,
+				D69A9BCF24C4E02500578540 /* JoinCreateLeave */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D69A9BCF24C4E02500578540 /* JoinCreateLeave */ = {
+			isa = PBXGroup;
+			children = (
+				5AE9417424B58A060092DA4B /* join_createViewController.swift */,
+				5AE9416C24AC23C40092DA4B /* JoinGroupViewController.swift */,
+				5AE9416A24AC23A20092DA4B /* CreateGroupViewController.swift */,
+			);
+			path = JoinCreateLeave;
+			sourceTree = "<group>";
+		};
+		D69A9BD024C4E04900578540 /* SignInSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				5AE9416E24AC23F30092DA4B /* SignUpViewController.swift */,
+				5AE9416824AC14920092DA4B /* SignInViewController.swift */,
+			);
+			path = SignInSignUp;
+			sourceTree = "<group>";
+		};
+		D69A9BD224C4E08600578540 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				5A1F43FE24A6D7DB00761B9B /* ProfileViewController.swift */,
+				5AE9418224BD3FDF0092DA4B /* TabBarController.swift */,
+				5A1F43F224A6A21000761B9B /* BillsViewController.swift */,
+				5A1F43FA24A6CF4500761B9B /* FixitViewController.swift */,
+				5A1F430824A427EE00761B9B /* GroceriesViewController.swift */,
+				5A1F430624A427EE00761B9B /* ChoresViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		D69A9BD324C4E0AF00578540 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D3FB78CB24C13F3200FA34C8 /* StorageService.swift */,
+				CD42C18624B907F700D43698 /* ChangeUsername.swift */,
+				CD42C18924B911CE00D43698 /* ChangePassword.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		D69A9BD424C4E0F300578540 /* XCodeGenerated */ = {
+			isa = PBXGroup;
+			children = (
+				5A1F430224A427EE00761B9B /* AppDelegate.swift */,
+				5A1F430424A427EE00761B9B /* SceneDelegate.swift */,
+			);
+			path = XCodeGenerated;
+			sourceTree = "<group>";
+		};
+		D69A9BD524C4E11E00578540 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				5A1F430F24A427F300761B9B /* LaunchScreen.storyboard */,
+				5A1F430A24A427EE00761B9B /* Main.storyboard */,
+			);
+			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

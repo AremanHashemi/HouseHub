@@ -57,6 +57,7 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print("name: \(name) id: \(iD)")
             }
         })
+        
     }
     
     
@@ -66,8 +67,11 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-   //     print("=\(userMngr.getGroupName())")
+        
         userMngr.testInfo(name: "CVC")
+        let id = userMngr.getGroupId()
+        userMngr.buildHouse(addCode: id)
+        userMngr.buildHousemate(id: userMngr.getUserId())
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){
