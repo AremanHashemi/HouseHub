@@ -87,14 +87,12 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-   //     print("=\(userMngr.getGroupName())")
         userMngr.testInfo(name: "CVC")
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/dd/yy"
-        
         txtDeadline.text = dateFormatter.string(from: datePicker.date)
         view.endEditing(true)
     }
@@ -103,10 +101,8 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var deadline = ""
         if let field = txtDeadline.text, field.isEmpty {
           deadline = "NONE"
-           // print(deadline)
         } else {
             deadline = txtDeadline.text!
-            //print(deadline)
         }
         
         choreMngr.addChore(choreName: txtChoreName.text!, chorePerson: txtAssignto.text!, deadline: deadline, username: userMngr.getUserName())
@@ -170,7 +166,6 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let currentDateTime = Date()
             let today = dateFormatter.string(from: currentDateTime)
             let today_date = dateFormatter.date(from: today)
-
 
             if((date! < today_date!)){//compare dates green if not due yet red if overdue yellow if due today
                 c_cell.backgroundColor = UIColor(red: 1, green: 0.6588, blue: 0.6588, alpha: 0.5)

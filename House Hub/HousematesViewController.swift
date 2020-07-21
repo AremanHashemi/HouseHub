@@ -42,13 +42,11 @@ class HousematesViewController: UIViewController, UITableViewDelegate, UITableVi
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
             let h_cell = tableView.dequeueReusableCell(withIdentifier: "HouesemateCell", for: indexPath) as! HouseMatesTableViewCell
-
             let housemate = housematesMngr.housemates[indexPath.row]
             let imageURL = URL(string: housemate.url)
             h_cell.profilePic.kf.setImage(with: imageURL)
             h_cell.profilePic.layer.cornerRadius = h_cell.profilePic.frame.height/2
             h_cell.userNamelbl.text = housematesMngr.housemates[indexPath.row].name
-
             return h_cell
        }
 }
