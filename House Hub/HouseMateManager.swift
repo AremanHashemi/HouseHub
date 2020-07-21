@@ -12,6 +12,7 @@ import FirebaseStorage
 var housematesMngr: HousemateManager = HousemateManager()
 
 struct housemate{
+    var id = "NONE"
     var url = "NONE"
     var name = "None"
 }
@@ -19,7 +20,7 @@ struct housemate{
 class HousemateManager: NSObject {
     var housemates: [housemate] = []
     
-    func addHousemate(name: String, url: String){
-        housemates.append(housemate(url: url, name: name))
+    func addHousemate(id: String, name: String, url: String){
+        housemates.append(housemate(id: id, url: url, name: name))
     }
 }

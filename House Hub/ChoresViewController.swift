@@ -36,13 +36,18 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
              //iterates through the housemates dictionary id is the user id and the "key", name is the username and the "value"
              for (id, name) in userDictionary {
                  _ = ref.child("users").child(id).child("photoURL").observe(.value, with: { (snapshot) in
-                     
+                    
+                    if housematesMngr.housemates.contains(where: { $0.id == id }) {
+                        housematesMngr.housemates.removeAll(where: { $0.id == id })
+                    }
+                    
                      if !snapshot.exists() {
                          let url = "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0"
-                         housematesMngr.addHousemate(name: name, url: url)
+                        housematesMngr.addHousemate(id: id, name: name, url: url)
+                        print("no url")
                      }
                      if let url = snapshot.value  as? String{
-                         housematesMngr.addHousemate(name: name, url: url)
+                        housematesMngr.addHousemate(id: id, name: name, url: url)
                      }
                     housematesMngr.housemates.sort(by: { $0.name < $1.name })
                  })
