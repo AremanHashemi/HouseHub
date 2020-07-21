@@ -25,6 +25,11 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
             myRef.observe(.value, with: { (snapshot) in
              housematesMngr.housemates.removeAll()
+             
+            if !snapshot.exists() {//dont do anything if there isnt data
+                return
+            }
+                
              let groupData = snapshot.value as! [String: Any]
              let userDictionary = groupData["Users"] as! [String: String]
              
