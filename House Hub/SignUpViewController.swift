@@ -46,8 +46,6 @@ class SignUpViewController: UIViewController {
             enterPassword.text = "Password must be at least 6 characters."
             return
         }
-        
-        
         createUser()
     }
     
@@ -59,17 +57,6 @@ class SignUpViewController: UIViewController {
                 return
             }
             print("Success")
-            
-            /*guard let uid = result?.user.uid else {return}
-            
-            let values = ["email":email, "user":user]
-            
-            Database.database().reference().child("users").child(uid).updateChildValues(values, withCompletionBlock: {(error, ref) in
-                if let error = error {
-                    print("failed to update database values with error: ", error.localizedDescription)
-                    return
-                }
-            })*/
             let ref = Database.database().reference()
             let values = [ "user" : self.user.text,
                            "email" : self.email.text]
@@ -86,14 +73,4 @@ class SignUpViewController: UIViewController {
             userMngr.setUserId(userId_in: Auth.auth().currentUser!.uid)
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

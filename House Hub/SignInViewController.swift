@@ -19,34 +19,27 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var invalidUser: UILabel!
     
     @IBOutlet weak var LoginImage: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        LoginImage.layer.masksToBounds = true
-            //  LoginImage.layer.cornerRadius = LoginImage.bounds.width / 2
-
         // Do any additional setup after loading the view.
     }
     
     //IOS touch fcns
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {//exit keybord on outside touch
         self.view.endEditing(true)
     }
     
-    
-    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{//exit keyboard on enter
         
         textField.resignFirstResponder()
-        
         return true
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {//skips login if logged in
         checkUser()
     }
-    
+
     @IBAction func signInButton(_ sender: Any) {
         validateFields()
     }
@@ -79,10 +72,9 @@ class SignInViewController: UIViewController {
         if Auth.auth().currentUser != nil {
             
             /***********************************
-            * GROCERY DATA
+            * GET USER DATA
             ************************************/
             let ref = Database.database().reference()
-            
             
             //USER ID
             userMngr.setUserId(userId_in: (Auth.auth().currentUser!.uid))//sets user id for global user
@@ -114,7 +106,7 @@ class SignInViewController: UIViewController {
             
             //GROUP ID
             _ = ref.child("users").child(userMngr.getUserId()).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
-                if let group = snapshot.value  as? String{
+                if let group = snapshot.value  as? String{//user is in a group
                     userMngr.setGroupId(groupId_in: group)//sets group id for global user
 
                     let gid = userMngr.getGroupId()
@@ -130,7 +122,7 @@ class SignInViewController: UIViewController {
                     let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
                     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
                 }
-                else{
+                else{//user is not in a group
                     /*************************************
                     *GO TO JOIN CREATE GROUP PAGE
                     **************************************/
@@ -139,9 +131,6 @@ class SignInViewController: UIViewController {
                                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(join_create_grp)
                 }
             })
-
-        }else{
-            //invalidUser.text = "Invalid user"
         }
     }
 }

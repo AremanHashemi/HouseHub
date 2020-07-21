@@ -127,16 +127,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate &
         /*************************************
         *REMOVE USER FROM GROUP
         **************************************/
+        let numHousemates = housematesMngr.housemates.count
+        if(numHousemates == 1){
+            ref.child("Groups/\(gid)").removeValue()
+            ref.child("Bills/\(gid)").removeValue()
+            ref.child("Chores/\(gid)").removeValue()
+            ref.child("Fixit/\(gid)").removeValue()
+            ref.child("Groceries/\(gid)").removeValue()
+            ref.child("Groupchats/groupchat_\(gid)").removeValue()
+        }
+        else{
+            ref.child("Groups/\(gid)/Users/\(userMngr.getUserId())").removeValue()
+            chatMngr.sendLeaveGroupMessage(addCode: gid)//send leave message
+        }
 
-        ref.child("Groups/\(gid)/Users/\(userMngr.getUserId())").removeValue()
-        
-        /*************************************
-        *SEND LEAVE MESSAGE
-        **************************************/
-
-        chatMngr.sendLeaveGroupMessage(addCode: gid)
-        
-        
         ref.child("users/\(userID!)/Group").removeValue()
         userMngr.setGroupId(groupId_in: "")
         /*************************************

@@ -55,22 +55,5 @@ class ChangePasswordViewController: UIViewController {
             }
            }
         })
-        
-        /*let user = Auth.auth().currentUser
-        var credential: AuthCredential
-
-        // Prompt the user to re-provide their sign-in credentials
-
-        user?.reauthenticate(with: credential) { error in
-          if let error = error {
-            // An error happened.
-          } else {
-            // User re-authenticated.
-            Auth.auth().currentUser?.updatePassword(to: newPassText.text!) { (error) in
-              // ...
-            }
-          }
-        }*/
-        
     }
 }

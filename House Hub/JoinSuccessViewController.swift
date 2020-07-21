@@ -16,16 +16,9 @@ class JoinSuccessViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    
-    
-    @IBAction func goToAppbtn(_ sender: Any) {
-        // This is to get the SceneDelegate object from your view controller
-        // then call the change root view controller function to change to main tab bar
+    @IBAction func goToAppbtn(_ sender: Any) {//successfully joined group take to app
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabBarController = storyboard.instantiateViewController(identifier: "TabBarController")
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(tabBarController)
     }
-    
-
-
 }
