@@ -122,37 +122,6 @@ class SignInViewController: UIViewController {
                     userMngr.retGroupName(addCode: gid)
                     print("gname: \(userMngr.getGroupName())")
                     userMngr.setPhotoId(photoId_in: "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2F5Q7O5AjA8GgEyHmJsQO0qJbmzf13%2FEE02E776-05A7-4594-8612-416D5B27F19B?alt=media&token=6ee7c42b-94f1-4ebd-8938-99833b57318b")
-                    
-                //get housemates
-                let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
-                    myRef.observe(.value, with: { (snapshot) in
-                     if !snapshot.exists() {
-                         // handle data not found
-                         return
-                     }
-
-                     // data found
-                     housematesMngr.housemates.removeAll()
-                     let groupData = snapshot.value as! [String: Any]
-                     let userDictionary = groupData["Users"] as! [String: String]
-                     let sorteduserDictionary = userDictionary.sorted(by: <)
-                     
-                     //iterates through the housemates dictionary id is the user id and the "key", name is the username and the "value"
-                     for (id, name) in sorteduserDictionary {
-                         _ = ref.child("users").child(id).child("photoURL").observeSingleEvent(of: .value, with: { (snapshot) in
-                             
-                             if !snapshot.exists() {
-                                 let url = "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0"
-                                 housematesMngr.addHousemate(name: name, url: url)
-                                 print(name, url)
-                             }
-                             if let url = snapshot.value  as? String{
-                                 print(name, url)
-                                 housematesMngr.addHousemate(name: name, url: url)
-                             }
-                         })
-                     }
-                 })
 
                     /***********************************
                     * GO TO APP

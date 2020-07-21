@@ -39,6 +39,11 @@ class JoinGroupViewController: UIViewController {
                 ref.child("Groups/\(addCode)/Users/\(userMngr.getUserId())").setValue(userMngr.getUserName())
                 userMngr.setGroupId(groupId_in: addCode)
                 userMngr.retGroupName(addCode: addCode)
+                // This is to get the SceneDelegate object from your view controller
+                // then call the change root view controller function to change to main tab bar
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let jgs = storyboard.instantiateViewController(identifier: "JoinGroupSuccess")
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(jgs)
                 //Add current name to group
             }else{
                 print("Please enter a valid code")
@@ -46,11 +51,7 @@ class JoinGroupViewController: UIViewController {
             }
         })
          
-        // This is to get the SceneDelegate object from your view controller
-        // then call the change root view controller function to change to main tab bar
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let jgs = storyboard.instantiateViewController(identifier: "JoinGroupSuccess")
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(jgs)
+
     
 
         /*************************************
