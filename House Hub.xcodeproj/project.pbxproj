@@ -150,6 +150,8 @@
 		5A1F430124A427EE00761B9B /* House Hub */ = {
 			isa = PBXGroup;
 			children = (
+				5A1F431224A427F300761B9B /* Info.plist */,
+				8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */,
 				D69A9BD524C4E11E00578540 /* StoryBoards */,
 				D69A9BD424C4E0F300578540 /* XCodeGenerated */,
 				D69A9BD324C4E0AF00578540 /* Utilities */,
@@ -272,10 +274,8 @@
 		D69A9BD424C4E0F300578540 /* XCodeGenerated */ = {
 			isa = PBXGroup;
 			children = (
-				5A1F431224A427F300761B9B /* Info.plist */,
 				5A1F430224A427EE00761B9B /* AppDelegate.swift */,
 				5A1F430424A427EE00761B9B /* SceneDelegate.swift */,
-				8B9D6B3524ACFD9F0024303D /* GoogleService-Info.plist */,
 			);
 			path = XCodeGenerated;
 			sourceTree = "<group>";
