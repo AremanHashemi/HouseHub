@@ -23,6 +23,9 @@ class GroceriesViewController: UIViewController, UITableViewDelegate, UITableVie
         // Do any additional setup after loading the view.
         ref.child("Groceries/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
             groceryMngr.groceries.removeAll()
+            if !snapshot.exists() {//dont do anything if there isnt data
+                return
+            }
             print("Grocceries getting updated")
             print(userMngr.getGroupId())
             print("Snapshot =", snapshot)

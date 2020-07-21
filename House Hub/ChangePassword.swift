@@ -48,7 +48,7 @@ class ChangePasswordViewController: UIViewController {
               //.. go on
             Auth.auth().currentUser?.updatePassword(to: self.newPassText.text!) { (error) in
               // ...
-                print("success")
+                //print("success")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(identifier: "ProfileVC")
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(vc)

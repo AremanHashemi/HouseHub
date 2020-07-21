@@ -31,6 +31,11 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Do any additional setup after loading the view.
         ref.child("Bills/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
             billsMngr.bills.removeAll()
+           
+            if !snapshot.exists() {//dont do anything if there isnt data
+                return
+            }
+            
             self.bills_total = 0
             //groceryMngr.groceries.removeAll()
     //            if snapshot.value is NSNull{
@@ -108,11 +113,6 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         txtPrice.text = ""
         txtDeadline.text = ""
         txtSplit.text = ""
-        
-//        bills_total += Double(price_per_person_txt) ?? 0
-//        bills_total = (bills_total*100).rounded()/100 //round to 2 decimal places
-//        txtTotalBillsAmount.text = String(format: "$%.2f", bills_total)
-//        tblBills.reloadData()
     }
     
     //IOS touch fcns
