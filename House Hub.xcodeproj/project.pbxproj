@@ -40,6 +40,7 @@
 		D3FB78CC24C13F3200FA34C8 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FB78CB24C13F3200FA34C8 /* StorageService.swift */; };
 		D6099EF224BA955B00E1050C /* ChatDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099EF124BA955B00E1050C /* ChatDatabaseManager.swift */; };
 		D6099EF424BA957100E1050C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099EF324BA957100E1050C /* ChatViewController.swift */; };
+		D67B29CC24C6A2AC00669335 /* HeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D67B29CB24C6A2AC00669335 /* HeaderReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		D3FB78CB24C13F3200FA34C8 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		D6099EF124BA955B00E1050C /* ChatDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDatabaseManager.swift; sourceTree = "<group>"; };
 		D6099EF324BA957100E1050C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		D67B29CB24C6A2AC00669335 /* HeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			children = (
 				D6099EF124BA955B00E1050C /* ChatDatabaseManager.swift */,
 				D6099EF324BA957100E1050C /* ChatViewController.swift */,
+				D67B29CB24C6A2AC00669335 /* HeaderReusableView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				5AE9416B24AC23A20092DA4B /* CreateGroupViewController.swift in Sources */,
 				5A1F430524A427EE00761B9B /* SceneDelegate.swift in Sources */,
 				5AE9418324BD3FDF0092DA4B /* TabBarController.swift in Sources */,
+				D67B29CC24C6A2AC00669335 /* HeaderReusableView.swift in Sources */,
 				5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */,
 				D3634FFB24C4DFF70045E306 /* JoinSuccessViewController.swift in Sources */,
 				5A1F43FB24A6CF4500761B9B /* FixitViewController.swift in Sources */,
