@@ -21,6 +21,32 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //get housemates
+        let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
+            myRef.observe(.value, with: { (snapshot) in
+             housematesMngr.housemates.removeAll()
+             let groupData = snapshot.value as! [String: Any]
+             let userDictionary = groupData["Users"] as! [String: String]
+             
+             //iterates through the housemates dictionary id is the user id and the "key", name is the username and the "value"
+             for (id, name) in userDictionary {
+                 _ = ref.child("users").child(id).child("photoURL").observe(.value, with: { (snapshot) in
+                     
+                     if !snapshot.exists() {
+                         let url = "https://firebasestorage.googleapis.com/v0/b/househub-a961b.appspot.com/o/Users%2Fdefault%2Fdefault?alt=media&token=5b7b4873-3671-40fa-8428-4c02549e53c0"
+                         housematesMngr.addHousemate(name: name, url: url)
+                         print(name, url)
+                     }
+                     if let url = snapshot.value  as? String{
+                         print(name, url)
+                         housematesMngr.addHousemate(name: name, url: url)
+                     }
+                    housematesMngr.housemates.sort(by: { $0.name < $1.name })
+                 })
+             }
+         })
+        
+        
         datePicker = UIDatePicker()
         datePicker?.datePickerMode = .date
         datePicker?.addTarget(self, action: #selector(BillsViewController.dateChanged(datePicker:)), for: .valueChanged)
@@ -39,24 +65,6 @@ class ChoresViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.tblTasks.reloadData()
         })
         self.tblTasks.reloadData()
-        
-        let myRef = Database.database().reference().child("Groups/\(userMngr.getGroupId())")
-        myRef.observe(.value, with: { (snapshot) in
-
-            if !snapshot.exists() {
-                // handle data not found
-                return
-            }
-
-            // data found
-            let myData = snapshot.value as! [String: Any]    // the key is almost always a String
-            print(myData)
-            let userDictionary = myData["Users"] as! [String: String]
-            userMngr.setHouseMates(housemates_in: userDictionary)
-            for (iD, name) in userDictionary {
-                print("name: \(name) id: \(iD)")
-            }
-        })
     }
     
     

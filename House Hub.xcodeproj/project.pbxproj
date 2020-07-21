@@ -38,6 +38,8 @@
 		D3634FFB24C4DFF70045E306 /* JoinSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3634FFA24C4DFF70045E306 /* JoinSuccessViewController.swift */; };
 		D3634FFD24C4F97B0045E306 /* DeleteAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3634FFC24C4F97B0045E306 /* DeleteAccountViewController.swift */; };
 		D3FB78CC24C13F3200FA34C8 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FB78CB24C13F3200FA34C8 /* StorageService.swift */; };
+		D3FDA6BA24C684E6005E234D /* HousematesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FDA6B924C684E6005E234D /* HousematesViewController.swift */; };
+		D3FDA6BC24C68914005E234D /* HouseMateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3FDA6BB24C68914005E234D /* HouseMateManager.swift */; };
 		D6099EF224BA955B00E1050C /* ChatDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099EF124BA955B00E1050C /* ChatDatabaseManager.swift */; };
 		D6099EF424BA957100E1050C /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6099EF324BA957100E1050C /* ChatViewController.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +100,8 @@
 		D3634FFA24C4DFF70045E306 /* JoinSuccessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinSuccessViewController.swift; sourceTree = "<group>"; };
 		D3634FFC24C4F97B0045E306 /* DeleteAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountViewController.swift; sourceTree = "<group>"; };
 		D3FB78CB24C13F3200FA34C8 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		D3FDA6B924C684E6005E234D /* HousematesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HousematesViewController.swift; sourceTree = "<group>"; };
+		D3FDA6BB24C68914005E234D /* HouseMateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseMateManager.swift; sourceTree = "<group>"; };
 		D6099EF124BA955B00E1050C /* ChatDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDatabaseManager.swift; sourceTree = "<group>"; };
 		D6099EF324BA957100E1050C /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,6 +173,8 @@
 				CD42C18924B911CE00D43698 /* ChangePassword.swift */,
 				D3634FFC24C4F97B0045E306 /* DeleteAccountViewController.swift */,
 				5A1F430A24A427EE00761B9B /* Main.storyboard */,
+				D3FDA6B924C684E6005E234D /* HousematesViewController.swift */,
+				D3FDA6BB24C68914005E234D /* HouseMateManager.swift */,
 				5A1F433624A429D000761B9B /* ChoreManager.swift */,
 				5A1F430624A427EE00761B9B /* ChoresViewController.swift */,
 				5A1F43F824A6CE8300761B9B /* FixitManager.swift */,
@@ -433,6 +439,7 @@
 				D3634FFD24C4F97B0045E306 /* DeleteAccountViewController.swift in Sources */,
 				5A1F433724A429D000761B9B /* ChoreManager.swift in Sources */,
 				5AE9417524B58A070092DA4B /* join_createViewController.swift in Sources */,
+				D3FDA6BA24C684E6005E234D /* HousematesViewController.swift in Sources */,
 				D6099EF224BA955B00E1050C /* ChatDatabaseManager.swift in Sources */,
 				5A1F43F324A6A21000761B9B /* BillsViewController.swift in Sources */,
 				5A1F43F924A6CE8300761B9B /* FixitManager.swift in Sources */,
@@ -444,6 +451,7 @@
 				5A1F430524A427EE00761B9B /* SceneDelegate.swift in Sources */,
 				5AE9418324BD3FDF0092DA4B /* TabBarController.swift in Sources */,
 				5AE9416F24AC23F30092DA4B /* SignUpViewController.swift in Sources */,
+				D3FDA6BC24C68914005E234D /* HouseMateManager.swift in Sources */,
 				D3634FFB24C4DFF70045E306 /* JoinSuccessViewController.swift in Sources */,
 				5A1F43FB24A6CF4500761B9B /* FixitViewController.swift in Sources */,
 				5A1F43F724A6B4D600761B9B /* BillsManager.swift in Sources */,
