@@ -15,7 +15,8 @@ class HeaderReusableView: MessageReusableView {
         .font: UIFont.systemFont(ofSize: 12),
         .foregroundColor: UIColor.white
     ]
-    static private let insets = UIEdgeInsets(top: 12, left: 80, bottom: 12, right: 80)
+    
+    static private let insets = UIEdgeInsets(top: 12, left: 130, bottom: 12, right: 130)
 
     private var label: UILabel!
 
@@ -24,6 +25,7 @@ class HeaderReusableView: MessageReusableView {
         return insets.top + insets.bottom + 27
     }
 
+    // Initialize header object itself
     override init(frame: CGRect) {
         super.init(frame: frame)
         createUI()
@@ -41,9 +43,6 @@ class HeaderReusableView: MessageReusableView {
         label.attributedText = NSAttributedString(string: text)// , attributes: ChatHeaderReusableView.attributes)
     }
 
-    override func prepareForReuse() {
-        label.attributedText = nil
-    }
 
     // MARK: - Private Methods
     private func createUI() {
