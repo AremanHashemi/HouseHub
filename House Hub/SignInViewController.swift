@@ -115,12 +115,8 @@ class SignInViewController: UIViewController {
             
             //GROUP ID
             _ = ref.child("users").child(userMngr.getUserId()).child("Group").observeSingleEvent(of: .value, with: { (snapshot) in
-                if !snapshot.exists() {//dont do anything if there isnt data
-                    return
-                }
                 if let group = snapshot.value  as? String{//user is in a group
                     userMngr.setGroupId(groupId_in: group)//sets group id for global user
-
                     let gid = userMngr.getGroupId()
                     print("gid: \(gid)")
                     userMngr.retGroupName(addCode: gid)
