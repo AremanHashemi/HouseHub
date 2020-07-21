@@ -37,15 +37,10 @@ class BillsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             
             self.bills_total = 0
-            //groceryMngr.groceries.removeAll()
-    //            if snapshot.value is NSNull{
-    //                print("Empty")
-    //                return
-    //            }
             let postDict = snapshot.value as? NSDictionary ?? [:]
-            for (name, value1) in postDict{
+            for (name, valueDict) in postDict{
                 let name:String = name as! String
-                let value = value1 as? [String] ?? nil
+                let value = valueDict as? [String] ?? nil
                 let price:String = value![0]
                 let split:String = value![1]
                 let deadline:String = value![2]

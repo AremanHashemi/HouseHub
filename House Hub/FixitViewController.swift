@@ -37,11 +37,9 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
         /****************************************************/
             ref.child("Fixit/\(userMngr.getGroupId())").observe(.value, with: { (snapshot) in
                 fixesMngr.fixes.removeAll()
-                
                 if !snapshot.exists() {//dont do anything if there isnt data
                     return
                 }
-                
                 let postDict = snapshot.value as? NSDictionary ?? [:]
                 for (id, value1) in postDict{
                     let id:String = id as! String
@@ -51,12 +49,7 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let url:String = value![2]
                     fixesMngr.addFix(id: id, date: date, url: url, desc: desc)
                 }
-                print("sorting pictures")
                 fixesMngr.fixes.sort(by: { $0.date > $1.date })
-                self.tblFixes.reloadData()
-
-                
-                
                 self.tblFixes.reloadData()
             })
             self.tblFixes.reloadData()
@@ -116,8 +109,6 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
             ref.child("Fixit/\(userMngr.getGroupId())/\(imageID)").setValue(list)
         }
         //all information saved
-        
-        
         self.view.endEditing(true) //close keyboard
         txtDesc.text = ""
         myImageView.image = UIImage(named: "InsertImage")//replaces picture with default
@@ -138,7 +129,6 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //delete from table
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if((editingStyle == UITableViewCell.EditingStyle.delete) && (fixesMngr.fixes.count > 0)){
-            
             let imageRef = Storage.storage().reference().child("Fixit/\(userMngr.getGroupId())/\(fixesMngr.fixes[indexPath.row].id)")
             let fixesRef = ref.child("Fixit/\(userMngr.getGroupId())/\(fixesMngr.fixes[indexPath.row].id)")
             // Delete the file
@@ -152,9 +142,6 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
             fixesRef.removeValue { error, _ in
                 print(error)
             }
-            
-            
-            
             fixesMngr.fixes.remove(at: indexPath.row)
         }
         tblFixes.reloadData()
@@ -166,15 +153,11 @@ class FixitViewController: UIViewController, UITableViewDelegate, UITableViewDat
        }
        
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        
             let f_cell = tableView.dequeueReusableCell(withIdentifier: "FixItCell", for: indexPath) as! FixItTableViewCell
-        
             let fix = fixesMngr.fixes[indexPath.row]
             let imageURL = URL(string: fix.url)
             f_cell.fixItImage.kf.setImage(with: imageURL)
             f_cell.fixItLabel.text = fixesMngr.fixes[indexPath.row].desc
-            
-        
             return f_cell
        }
 }
